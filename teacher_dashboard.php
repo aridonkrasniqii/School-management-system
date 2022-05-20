@@ -30,10 +30,11 @@
 		#left_side{
 			background-color: #b2bec3;
 			width: 15%;
-			top: 37%;
+			top: 25%;
 			position: fixed;
 			border: solid 2px black;
 			border-radius: 10px;
+			padding-bottom:10px;
 		}
 		#left_side:hover{
             -webkit-box-shadow: -2px 7px 21px -9px rgba(0,0,0,0.75);
@@ -205,7 +206,7 @@
         if (isset($_POST['subjects'])) {
             ?>
               // load subject with table
-              
+
 
 
           <?php

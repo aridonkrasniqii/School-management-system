@@ -148,6 +148,11 @@
                 </tr>
                 <tr>
                     <td>
+                        <input type="submit" name="faq" value="FAQ" id="btn"><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <input type="submit" name="search_student" value="SEARCH STUDENT" id="btn"><br><br>
                     </td>
                 </tr>
@@ -168,12 +173,56 @@
        <div id="right_side"><br><br>
         <div id="demo">
 
+
+
+
         <?php
         if(isset($_POST['subjects'])){
           ?>
           <center>
               load subjects
           </center>
+
+          <?php
+        }
+
+        ?>
+        <?php
+        if(isset($_POST['homework'])){
+        ?>
+          <center>
+            load home work
+          </center>
+          <?php
+        }
+        ?>
+        <?php
+        if(isset($_POST['assessments'])){
+          ?>
+
+            <center>
+              load assessments
+            </center>
+          <?php
+        }
+        ?>
+        <?php
+        if(isset($_POST['attach'])){
+          ?>
+            <center>
+              load attach
+            </center>
+
+          <?php
+        }
+        ?>
+        <?php
+        if(isset($_POST['faq'])){
+          ?>
+
+            <center>
+              load faq
+            </center>
 
           <?php
         }
