@@ -1,3 +1,15 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+session_reset();
+session_start();
+
+  if(!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])){
+    header("Location: ./student_login.php");
+    exit();
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,7 +125,6 @@
 		}
 	</style>
     <?php
-        session_start();
 		$connection = mysqli_connect("localhost","root","");
 		$db = mysqli_select_db($connection,"aca");
     ?>
@@ -209,95 +220,39 @@
               <button type="submit" name="button_filter">Filter</button>
             </div>
           </form>
+
           <div class="box__section">
             <div class="container">
               <div class="box__wrapper">
+            <?php
+              include("./repositories/homework-repository.php");
+              include("./models/homework.php");
+              $homeworks = getAll();
+
+              foreach($homeworks as $homework) {?>
                 <div class="box">
                   <div class="box__wrapper--ins">
                     <div class="box__assigment">
-                      <!-- Koha e dorezimit per detyre -->
-                      <span>Assigment Due</span>
+
+                      <span>Assigment Due <?php echo $homework->getDeadline();?></span>
                     </div>
                     <div class="box__info">
                       <div class="box__number">
                         <!-- ID OF HOMEWORK -->
-                        aridon krasniqi
-                        <span>0265</span>
+
+                        <span><?php echo "ID: " . $homework->getId();?></span>
                       </div>
                       <div class="box__title">
-                        <h4><a href="./my-homework/my-homework.php">Accounting & Managment Control</a></h4>
+                        <h4><a href="./my-homework/my-homework.php"><?php
+                          echo $homework->getName();
+                        ?></a></h4>
                         </div>
                     </div>
                   </div>
                 </div>
-                <div class="box">
-                  <div class="box__wrapper--ins">
-                    <div class="box__assigment">
-                      <!-- Koha e dorezimit per detyre -->
-                      <span>Assigment Due</span>
-                    </div>
-                    <div class="box__info">
-                      <div class="box__number">
-                        <!-- ID OF HOMEWORK -->
-                        <span>0265</span>
-                      </div>
-                      <div class="box__title">
-                        <h4><a href="">Accounting & Managment Control</a></h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="box">
-                  <div class="box__wrapper--ins">
-                    <div class="box__assigment">
-                      <!-- Koha e dorezimit per detyre -->
-                      <span>Assigment Due</span>
-                    </div>
-                    <div class="box__info">
-                      <div class="box__number">
-                        <!-- ID OF HOMEWORK -->
-                        <span>0265</span>
-                      </div>
-                      <div class="box__title">
-                        <h4><a href="">Accounting & Managment Control</a></h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="box">
-                  <div class="box__wrapper--ins">
-                    <div class="box__assigment">
-                      <!-- Koha e dorezimit per detyre -->
-                      <span>Assigment Due</span>
-                    </div>
-                    <div class="box__info">
-                      <div class="box__number">
-                        <!-- ID OF HOMEWORK -->
-                        <span>0265</span>
-                      </div>
-                      <div class="box__title">
-                        <h4><a href="">Accounting & Managment Control</a></h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="box">
-                  <div class="box__wrapper--ins">
-                    <div class="box__assigment">
-                      <!-- Koha e dorezimit per detyre -->
-                      <span>Assigment Due</span>
-                    </div>
-                    <div class="box__info">
-                      <div class="box__number">
-                        <!-- ID OF HOMEWORK -->
-                        <span>0265</span>
-                      </div>
-                      <div class="box__title">
-                        <h4><a href="">Accounting & Managment Control</a></h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+                <?php }?>
+
               </div>
             </div>
           </div>
