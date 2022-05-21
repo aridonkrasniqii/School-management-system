@@ -83,8 +83,8 @@
             </div><br><br><br><br>
             <div id="container"><br><br><br>
                 <br>
-                <a href="../STUDENT-MANAGEMENT-SYSTEM/signup/teacher_signup.php"> <input type="submit" name="teacher_signup" value="Teacher Signup" id="btn"></a><br><br>
-                <a href="../STUDENT-MANAGEMENT-SYSTEM/signup/student_signup.php"> <input type="submit" name="student_signup" value="Student Signup" id="btn"></a><br><br><br>
+                <a href="../school-management-system/signup/teacher_signup.php"> <input type="submit" name="teacher_signup" value="Teacher Signup" id="btn"></a><br><br>
+                <a href="../school-management-system/signup/student_signup.php"> <input type="submit" name="student_signup" value="Student Signup" id="btn"></a><br><br><br>
                 <br>
             </div>
 
