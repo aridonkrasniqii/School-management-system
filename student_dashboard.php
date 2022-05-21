@@ -7,10 +7,12 @@
     <title>STUDENT DASHBOARD</title>
 
     <link rel="stylesheet" type="text/css" href="bootstrap-4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/student.css">
   	<script type="text/javascript" src="bootstrap-4.4.1/js/juqery_latest.js"></script>
   	<script type="text/javascript" src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
 	<style type="text/css">
 		body{
+      font-family: 'Arial';
 			background-color: #dfe6e9;
 		}
 		#header{
@@ -33,6 +35,7 @@
 			width: 15%;
 			top: 25%;
 			position: fixed;
+      overflow: scroll;
 			border: solid 2px black;
 			border-radius: 10px;
 			padding-bottom:10px;
@@ -43,15 +46,16 @@
             box-shadow: -2px 7px 21px -9px rgba(0,0,0,0.75);
         }
 		#right_side{
-			height: 75%;
+			height: auto;
 			width: 80%;
 			background-color: #b2bec3;
-			position: fixed;
+			position: absolute;
 			left: 17%;
 			top: 21%;
 			color: red;
 			border: solid 2px black;
 			border-radius: 10px;
+      padding-bottom: 20px;
 		}
 		#right_side:hover{
             -webkit-box-shadow: -2px 7px 21px -9px rgba(0,0,0,0.75);
@@ -115,10 +119,17 @@
     ?>
 </head>
 <body>
-    <div id="header">
+    <div id="header" class="student-header">
         <br>
-		<strong><center>STUDENT MANAGEMENT AND ACADEMIC SYSYTEM</center>
-		<center></strong>E-mail:<?php echo $_SESSION['email'];?> &nbsp; &nbsp; &nbsp; Name:<?php echo $_SESSION['name'];?>&nbsp; &nbsp;<a href="logout.php">logout</a></center>
+        <div>
+          <strong><center>STUDENT MANAGEMENT AND ACADEMIC SYSYTEM</center>
+          <center></strong>E-mail:<?php echo $_SESSION['user_email'];?> &nbsp; &nbsp; &nbsp; Name:<?php echo $_SESSION['user_username'];?>&nbsp; &nbsp;</center>
+        </div>
+         <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="./profile/profile.php">Profile</a></li>
+          <li><a href="logout.php">Logout</a></li>
+        </ul>
 		<br>
     </div>
     <span id="top_span"><marquee >if there is any problem plz contact to management group</marquee></span>
@@ -133,7 +144,7 @@
                 </tr>
                  <tr>
                     <td>
-                        <input type="submit" name="homework" value="HOMEWORK" id="btn"><br><br>
+                       <input type="submit" name="my_homework" value="MY HOMEWORK" id="btn"><br><br>
                     </td>
                 </tr>
                  <tr>
@@ -188,11 +199,109 @@
 
         ?>
         <?php
-        if(isset($_POST['homework'])){
+        if(isset($_POST['my_homework'])){
+
         ?>
-          <center>
-            load home work
-          </center>
+
+          <form action="" class="search_filter">
+            <div class="container">
+              <input type="search" name="search_filter" id="search" placeholder="Filter by semester">
+              <button type="submit" name="button_filter">Filter</button>
+            </div>
+          </form>
+          <div class="box__section">
+            <div class="container">
+              <div class="box__wrapper">
+                <div class="box">
+                  <div class="box__wrapper--ins">
+                    <div class="box__assigment">
+                      <!-- Koha e dorezimit per detyre -->
+                      <span>Assigment Due</span>
+                    </div>
+                    <div class="box__info">
+                      <div class="box__number">
+                        <!-- ID OF HOMEWORK -->
+                        aridon krasniqi
+                        <span>0265</span>
+                      </div>
+                      <div class="box__title">
+                        <h4><a href="./my-homework/my-homework.php">Accounting & Managment Control</a></h4>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="box">
+                  <div class="box__wrapper--ins">
+                    <div class="box__assigment">
+                      <!-- Koha e dorezimit per detyre -->
+                      <span>Assigment Due</span>
+                    </div>
+                    <div class="box__info">
+                      <div class="box__number">
+                        <!-- ID OF HOMEWORK -->
+                        <span>0265</span>
+                      </div>
+                      <div class="box__title">
+                        <h4><a href="">Accounting & Managment Control</a></h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="box">
+                  <div class="box__wrapper--ins">
+                    <div class="box__assigment">
+                      <!-- Koha e dorezimit per detyre -->
+                      <span>Assigment Due</span>
+                    </div>
+                    <div class="box__info">
+                      <div class="box__number">
+                        <!-- ID OF HOMEWORK -->
+                        <span>0265</span>
+                      </div>
+                      <div class="box__title">
+                        <h4><a href="">Accounting & Managment Control</a></h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="box">
+                  <div class="box__wrapper--ins">
+                    <div class="box__assigment">
+                      <!-- Koha e dorezimit per detyre -->
+                      <span>Assigment Due</span>
+                    </div>
+                    <div class="box__info">
+                      <div class="box__number">
+                        <!-- ID OF HOMEWORK -->
+                        <span>0265</span>
+                      </div>
+                      <div class="box__title">
+                        <h4><a href="">Accounting & Managment Control</a></h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="box">
+                  <div class="box__wrapper--ins">
+                    <div class="box__assigment">
+                      <!-- Koha e dorezimit per detyre -->
+                      <span>Assigment Due</span>
+                    </div>
+                    <div class="box__info">
+                      <div class="box__number">
+                        <!-- ID OF HOMEWORK -->
+                        <span>0265</span>
+                      </div>
+                      <div class="box__title">
+                        <h4><a href="">Accounting & Managment Control</a></h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <?php
         }
         ?>
@@ -200,18 +309,118 @@
         if(isset($_POST['assessments'])){
           ?>
 
-            <center>
-              load assessments
-            </center>
+          <table class="assessments">
+            <tr>
+              <th>ID</th>
+              <th>Homework name</th>
+              <th>Student ID</th>
+              <th>Points</th>
+              <th>Delivered on time</th>
+              <th>Date</th>
+            </tr>
+            <tr>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Ernst Handel</td>
+              <td>Roland Mendel</td>
+              <td>Austria</td>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Island Trading</td>
+              <td>Helen Bennett</td>
+              <td>UK</td>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Laughing Bacchus Winecellars</td>
+              <td>Yoshi Tannamuri</td>
+              <td>Canada</td>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Magazzini Alimentari Riuniti</td>
+              <td>Giovanni Rovelli</td>
+              <td>Italy</td>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Magazzini Alimentari Riuniti</td>
+              <td>Giovanni Rovelli</td>
+              <td>Italy</td>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+
+          </table>
+
           <?php
         }
         ?>
         <?php
         if(isset($_POST['attach'])){
           ?>
-            <center>
-              load attach
-            </center>
+
+          <form action="" class="attach">
+            <div class="select__subject">
+              <label for="subject">Choose a subject:</label>
+              <select name="subject" id="subject">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div>
+            <div class="select__semester">
+              <label for="semester">Choose a semester:</label>
+              <select name="semester" id="semester">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div>
+            <div class="select__homework">
+              <label for="homework">Choose a homework:</label>
+              <select name="homework" id="homwork">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div>
+
+            <div class="textarea__description">
+              <textarea placeholder="Enter description" name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
+
+            <input type="file">
+            <br><br>
+            <input type="submit" class="attach-button" value="Attach">
+          </form>
 
           <?php
         }
@@ -219,10 +428,88 @@
         <?php
         if(isset($_POST['faq'])){
           ?>
+          <section class="faq">
+            <div class="container">
+      <h2>Frequently Asked Questions</h2>
+            <div class="faq__input">
+              <form action="" class="faq__register">
+                <textarea name="register-faq" id="register-faq" placeholder="Type your question here"></textarea>
+                <input type="submit" value="Post">
+              </form>
+            </div>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button id="accordion-button-1" aria-expanded="false">
+            <span class="accordion-title">Why is the moon sometimes out during the day?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+              Ut tortor pretium viverra suspendisse potenti.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-2" aria-expanded="false">
+            <span class="accordion-title">Why is the sky blue?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+              Ut tortor pretium viverra suspendisse potenti.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-3" aria-expanded="false">
+            <span class="accordion-title">Will we ever discover aliens?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+              Ut tortor pretium viverra suspendisse potenti.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-3" aria-expanded="false">
+            <span class="accordion-title">Will we ever discover aliens?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+              Ut tortor pretium viverra suspendisse potenti.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const items = document.querySelectorAll('.accordion button');
+          function toggleAccordion() {
+            const itemToggle = this.getAttribute('aria-expanded');
 
-            <center>
-              load faq
-            </center>
+            for (i = 0; i < items.length; i++) {
+              items[i].setAttribute('aria-expanded', 'false');
+            }
+
+            if (itemToggle == 'false') {
+              this.setAttribute('aria-expanded', 'true');
+            }
+          }
+
+          items.forEach((item) => item.addEventListener('click', toggleAccordion));
+
+    </script>
+      </section>
 
           <?php
         }

@@ -1,0 +1,499 @@
+.container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.box__section {
+  margin-top: 20px;
+}
+
+.box__section .container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.box__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+.box {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 240px;
+  height: 180px;
+  display: flex;
+}
+
+.box__wrapper--ins {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.box__assigment {
+  margin-top: 20px;
+}
+
+.box__info .box__number {
+  margin-bottom: 10px;
+}
+
+.box__info .box__title {
+  margin-bottom: 20px;
+}
+
+.box__info .box__title h4 {
+  margin: 0;
+}
+
+.box__assigment span {
+  color: #000;
+}
+
+.box__info .box__number {
+  color: #000;
+}
+
+.box__info .box__title h4 a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  transition: 0.3s ease-in-out;
+}
+
+.box__info .box__title h4 a:hover {
+  transition: 0.3s ease-in-out;
+  border: 1px solid black;
+  box-shadow: 4px 4px gray;
+}
+
+/* Search filter */
+
+.search_filter input {
+  background-color: transparent;
+  padding: 5px;
+  border: 0;
+  border-bottom: 1px solid #000;
+  outline: none;
+  appearance: none;
+}
+
+.search_filter button {
+  padding: 5px;
+  border: none;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.search_filter button:hover {
+  transition: 0.3s ease-in-out;
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+
+/* Homework Details */
+
+.homework__heading {
+  border: 1px solid #c7d2d6;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: #c7d2d6;
+}
+
+.homework__heading h3 {
+  margin: 5px;
+  color: #000;
+}
+
+.homework__description,
+.homework__maxpoints,
+.homework__date,
+.homework__deadline,
+.homework__createdby {
+  margin-top: 15px;
+  border: 3px solid #c7ced6;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: #c7d2d6;
+}
+
+.homework__description p {
+  margin: 5px;
+  color: #000;
+}
+
+.homework__maxpoints span,
+.homework__date span,
+.homework__deadline span,
+.homework__createdby span {
+  margin: 5px;
+  color: #000;
+}
+
+.hidden {
+  display: none;
+}
+
+.homework__button {
+  margin-top: 10px;
+}
+
+.homework__button a {
+  text-decoration: none;
+  padding: 5px;
+  border: none;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: 1px solid transparent;
+  color: #000;
+  display: inline-block;
+}
+
+.homework__button a:hover {
+  transition: 0.3s ease-in-out;
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+
+/* Assessments */
+
+.assessments {
+  border: 1px solid black;
+  border-collapse: collapse;
+  color: #000;
+}
+.assessments th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  color: #000;
+}
+.assessments td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  color: #000;
+}
+
+.assessments {
+  margin: 0 auto;
+}
+
+/* Header */
+
+.student-header {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.student-header div {
+  padding: 10px;
+}
+
+.student-header ul {
+  display: flex;
+}
+
+.student-header ul li {
+  list-style: none;
+  margin-right: 20px;
+}
+
+.student-header ul li:last-child {
+  margin-right: 0;
+}
+
+.student-header ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Profile inputs */
+
+.profile {
+  margin-top: 50px;
+}
+
+.profile__wrapper {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.profile__title h3 {
+  font-size: 30px;
+}
+
+.profile__inputs {
+  width: 450px;
+}
+
+.profile__inputs--name,
+.profile__inputs--username,
+.profile__inputs--email,
+.profile__inputs--password,
+.profile__inputs--index {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile__inputs--name input,
+.profile__inputs--username input,
+.profile__inputs--email input,
+.profile__inputs--password input,
+.profile__inputs--index input {
+  padding: 7px;
+  width: 250px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.profile__inputs form button {
+  font-size: 15px;
+  padding: 5px;
+  border: none;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.profile__inputs form button:hover {
+  transition: 0.3s ease-in-out;
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+
+.profile__button a {
+  font-size: 15px;
+  padding: 5px;
+  border: none;
+  background: white;
+  color: #000;
+  text-decoration: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.profile__button a:hover {
+  transition: 0.3s ease-in-out;
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+
+/* FAQ */
+.faq .container {
+  margin: 0 auto;
+  padding: 4rem;
+  padding-top: 0;
+  width: 48rem;
+}
+
+.faq .container h2 {
+  color: #000;
+}
+
+.accordion .accordion-item {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.accordion .accordion-item button[aria-expanded='true'] {
+  border-bottom: 1px solid #000;
+}
+
+.accordion button {
+  position: relative;
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 1em 0;
+  color: #7288a2;
+  font-size: 1.15rem;
+  font-weight: 400;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.accordion button:hover,
+.accordion button:focus {
+  cursor: pointer;
+  /* color: #03b5d2; */
+}
+
+.accordion button:hover::after,
+.accordion button:focus::after {
+  cursor: pointer;
+  /* color: #03b5d2; */
+  /* border: 1px solid #03b5d2; */
+}
+
+.accordion button .accordion-title {
+  padding: 1em 1.5em 1em 0;
+}
+
+.accordion button .icon {
+  display: inline-block;
+  position: absolute;
+  top: 18px;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid;
+  border-radius: 22px;
+}
+
+.accordion button .icon::before {
+  display: block;
+  position: absolute;
+  content: '';
+  top: 9px;
+  left: 5px;
+  width: 10px;
+  height: 2px;
+  background: currentColor;
+}
+.accordion button .icon::after {
+  display: block;
+  position: absolute;
+  content: '';
+  top: 5px;
+  left: 9px;
+  width: 2px;
+  height: 10px;
+  background: currentColor;
+}
+
+.accordion button[aria-expanded='true'] {
+  color: #000;
+}
+.accordion button[aria-expanded='true'] .icon::after {
+  width: 0;
+}
+.accordion button[aria-expanded='true'] + .accordion-content {
+  opacity: 1;
+  max-height: 9em;
+  transition: all 200ms linear;
+  will-change: opacity, max-height;
+}
+.accordion .accordion-content {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 200ms linear, max-height 200ms linear;
+  will-change: opacity, max-height;
+}
+.accordion .accordion-content p {
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 2em 0;
+  color: #000;
+}
+
+textarea {
+  resize: none;
+  outline: none;
+  border: 0;
+  width: 90%;
+  height: 50px;
+  background: none;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 30px;
+}
+
+.faq__register {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq__register input {
+  outline: none;
+  padding: 5px;
+  background: white;
+  height: 30px;
+  width: 8%;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.faq__register textarea::placeholder {
+  color: #7288a2;
+  font-size: 1.15rem;
+}
+
+/* Attach style */
+
+.attach {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.select__subject,
+.select__semester,
+.select__homework {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.select__subject label,
+.select__semester label,
+.select__homework label {
+  color: #000;
+}
+
+.select__subject select,
+.select__semester select,
+.select__homework select {
+  outline: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.attach input[type='file'] {
+  color: #000;
+  padding: 5px;
+  border: none;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.attach .attach-button {
+  padding: 5px;
+  border: none;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.attach .textarea__description {
+  margin-top: 20px;
+  width: 300px;
+}
+.attach .textarea__description textarea {
+  width: 100%;
+}
