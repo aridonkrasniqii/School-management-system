@@ -146,3 +146,151 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+
+create database aca;
+
+use aca;
+
+
+drop table if exists student;
+	create table student(
+	  student_id integer primary key AUTO_INCREMENT,
+	  student_name varchar(100) ,
+	  student_role varchar(100),
+	  student_username varchar(100) not null,
+	  student_email varchar(100) not null ,
+	  student_password varchar(255) not null,
+	  student_salt varchar(20) default null,
+	  student_index varchar(100)
+	);
+
+
+drop table if exists teacher;
+	create table teacher(
+	  teacher_id integer primary key AUTO_INCREMENT,
+	  teacher_name varchar(100) ,
+	  teacher_role varchar(100),
+	  teacher_username varchar(100) not null ,
+	  teacher_email varchar(100) not null ,
+	  teacher_password varchar(255) not null,
+	  teacher_salt varchar(20) default null,
+	  teacher_index varchar(100)
+	);
+
+
+
+
+drop table if exists subject;
+
+create table subject(
+  subject_id integer primary key AUTO_INCREMENT,
+  subject_name varchar(100),
+  subject_credits integer,
+  subject_created_at date default now(),
+  subject_date date,
+  subject_created_by integer,
+  foreign key (subject_created_by) references teacher(teacher_id)
+);
+
+drop table if exists subject_lectured_by;
+
+create table subject_lectured_by (
+lecture_id integer primary key AUTO_INCREMENT,
+subject_id integer,
+teacher_id integer,
+foreign key (teacher_id) references teacher(teacher_id),
+foreign key (subject_id) references subject(subject_id)
+);
+
+drop table if exists exam;
+
+create table exam(
+  exam_id integer primary key AUTO_INCREMENT,
+  exam_subject varchar(100),
+  exam_created_at date default now(),
+  exam_date date,
+  exam_created_by integer,
+  foreign key(exam_created_by) references teacher(teacher_id)
+);
+
+drop table if exists exam_result;
+
+create table exam_result(
+  eresult_id integer primary key AUTO_INCREMENT,
+  student_id integer,
+  eresult_passed varchar(3) check (eresult_passed = "yes" or eresult_passed = "no"),
+  eresult_points decimal(3,2),
+  eresult_grade integer,
+  eresult_date date default now(),
+  foreign key (student_id) references student(student_id)
+);
+
+
+
+
+
+insert into exam_result() values(1, 1, 'yes',80,9,now());
+
+
+drop table if exists homework;
+
+create table homework(
+  homework_id integer primary key AUTO_INCREMENT,
+  homework_name varchar(100),
+  homework_description varchar(1000),
+  homework_max_points integer,
+  homework_created_at date default now(),
+  homework_deadline date,
+  homework_created_by integer,
+  foreign key(homework_created_by) references teacher(teacher_id)
+);
+
+
+// FIXME:
+create table attachedhomework ( )
+
+
+drop table if exists homework_result;
+
+create table homework_result(
+  hresult_id integer primary key AUTO_INCREMENT,
+  hhomework_id integer ,
+  hresult_student_id integer,
+  hresult_points decimal(3,2),
+  delivered_on_time varchar(3) check (delivered_on_time = "yes" or delivered_on_time = "no"),
+  hresult_date date default now(),
+  foreign key (hhomework_id) references homework(homework_id),
+  foreign key(hresult_student_id) references student(student_id)
+);
+
+
+drop table if exists parent;
+
+create table parent(
+  parent_id integer primary key AUTO_INCREMENT,
+  parent_name varchar(100),
+  parent_email varchar(100),
+  parent_occupation varchar(100)
+);
+
+drop table if exists parent_of;
+
+create table parent_of(
+  parent_of_id integer primary key AUTO_INCREMENT,
+  parent_id integer,
+  student_id integer,
+  foreign key(parent_id) references parent(parent_id),
+  foreign key(student_id) references student(student_id));
+
+
+
+
+
+
+
+
+
