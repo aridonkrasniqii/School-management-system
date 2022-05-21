@@ -239,11 +239,10 @@ session_start();
                     <div class="box__info">
                       <div class="box__number">
                         <!-- ID OF HOMEWORK -->
-
                         <span><?php echo "ID: " . $homework->getId();?></span>
                       </div>
                       <div class="box__title">
-                        <h4><a href="./my-homework/my-homework.php"><?php
+                        <h4><a href="./my-homework/my-homework.php?id=<?php echo $homework->getId();?>"><?php
                           echo $homework->getName();
                         ?></a></h4>
                         </div>

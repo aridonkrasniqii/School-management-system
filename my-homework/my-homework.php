@@ -1,3 +1,9 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,30 +123,54 @@
     ?>
 </head>
 <body>
-    <section class="homework">
+
+  <?php
+
+
+  if (isset($_GET['id'])) {
+      include("../repositories/homework-repository.php");
+      include("../models/homework.php");
+      $id = $_GET['id'];
+      $homework = find($id);
+      if($homework == null) {header("Location: ../student_dashboard.php"); exit();};
+
+  ?>
+
+  <section class="homework">
   <div class="homework__wrapper">
     <div class="container">
       <div class="homework__heading">
         <!-- Emri i detyres -->
         <h3>Homework Information</h3>
+        <br>
+          <h3>Name: <?php echo $homework->getName();?></h3>
+
       </div>
       <div class="homework__description">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis magnam dolore dolorem. Non eveniet dolores, inventore accusantium exercitationem aliquam nihil voluptas facilis? Ullam explicabo temporibus deleniti debitis quia reiciendis eaque.</p>
+        <h4>Description:</h4>
+        <p><?php echo $homework->getDescription();?></p>
       </div>
       <div class="homework__maxpoints">
         <!-- Piket maksimale -->
-        <span>100</span>
+        <h4>Max points: </h4>
+        <span><?php echo $homework->getMax_points();?></span>
       </div>
       <div class="homework__date">
         <!-- Data e leshimit te detyres -->
-        <span>23/15/2021</span>
+        Released date:
+        <span><?php echo $homework->getCreated_at();?></span>
       </div>
       <div class="homework__deadline">
-        <span>25/15/2021</span>
+        <!-- deadline -->
+        <h4>Deadline: </h4>
+        <span><?php echo $homework->getDeadline();?></span>
       </div>
       <div class="homework__createdby">
         <!-- Teacher -->
-        <span>Aridon Krasniqi</span>
+        Created by teacher:
+        <span><?php
+         echo findTeacher($homework->getId(),$homework->getCreated_by());
+         ?></span>
       </div>
       <div class="homework__button">
         <a href="../student_dashboard.php">Back</a>
@@ -148,5 +178,13 @@
     </div>
   </div>
 </section>
+
+
+      <?php
+      }else {
+          header("Location: ../student_dashboard.php");
+          exit();
+      }
+   ?>
 </body>
 </html>
