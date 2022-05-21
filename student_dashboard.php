@@ -9,6 +9,9 @@ session_start();
     header("Location: ./student_login.php");
     exit();
   }
+
+require("./database/dbconnect.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -227,7 +230,8 @@ session_start();
             <?php
               include("./repositories/homework-repository.php");
               include("./models/homework.php");
-              $homeworks = getAll();
+              $homework_repository = new homework_repository();
+              $homeworks = $homework_repository->getAll();
 
               foreach($homeworks as $homework) {?>
                 <div class="box">
@@ -302,12 +306,24 @@ session_start();
           <form action="" class="attach">
             <div class="select__subject">
               <label for="subject">Choose a subject:</label>
+              <?php
+
+                  include("./repositories/subject-repository.php");
+                  include("./models/subject.php");
+                  $s = new subject_repository();
+                  $subjects = $s->getAll();
+                  ?>
               <select name="subject" id="subject">
-                <?php
-                  
+
+          <?php
+                foreach ($subjects as $subject) {
+                    ?>
+                     <option value="<?echo strtolower($subject->getName()); ?>"><?php echo $subject->getName();?></option>
+
+                    <?php
+                  }
+
                 ?>
-                <option value="volvo">Volvo</option>
-                <?php ?>
               </select>
             </div>
             <div class="select__semester">
@@ -321,16 +337,22 @@ session_start();
             </div>
             <div class="select__homework">
               <label for="homework">Choose a homework:</label>
-              <select name="homework" id="homwork">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
+
+              <?php
+              //  echo   count($homeworks);
+              ?>
+              <select name="homework" id="homework">
+
+
+                  <option value="audi">Audi</option>
+
               </select>
             </div>
 
+
             <div class="textarea__description">
               <textarea placeholder="Enter description" name="description" id="description" cols="30" rows="10"></textarea>
+
             </div>
 
             <input type="file">

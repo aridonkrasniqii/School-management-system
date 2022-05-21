@@ -130,8 +130,10 @@ error_reporting(E_ALL);
   if (isset($_GET['id'])) {
       include("../repositories/homework-repository.php");
       include("../models/homework.php");
+      require("../database/dbconnect.php");
       $id = $_GET['id'];
-      $homework = find($id);
+      $h = new homework_repository();
+      $homework = $h->find($id);
       if($homework == null) {header("Location: ../student_dashboard.php"); exit();};
 
   ?>
@@ -169,7 +171,7 @@ error_reporting(E_ALL);
         <!-- Teacher -->
         Created by teacher:
         <span><?php
-         echo findTeacher($homework->getId(),$homework->getCreated_by());
+         echo $h->findTeacher($homework->getId(),$homework->getCreated_by());
          ?></span>
       </div>
       <div class="homework__button">
