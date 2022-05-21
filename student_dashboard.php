@@ -230,8 +230,8 @@ require("./database/dbconnect.php");
             <?php
               include("./repositories/homework-repository.php");
               include("./models/homework.php");
-              $homework_repository = new homework_repository();
-              $homeworks = $homework_repository->getAll();
+              $h1 = new homework_repository();
+              $homeworks = $h1->getAll();
 
               foreach($homeworks as $homework) {?>
                 <div class="box">
@@ -339,13 +339,17 @@ require("./database/dbconnect.php");
               <label for="homework">Choose a homework:</label>
 
               <?php
-              //  echo   count($homeworks);
+                include("./repositories/homework-repository.php");
+                include("./models/homework.php");
+                $h2 = new homework_repository();
+                $he = $h2->getAll();
+
               ?>
+
               <select name="homework" id="homework">
-
-
-                  <option value="audi">Audi</option>
-
+                <?php foreach ($he as $homework){?>
+                  <option value="<?php echo strtolower($homework->getName());?>"><?php echo $homework->getName();?></option>
+                <?php }?>
               </select>
             </div>
 
@@ -440,7 +444,7 @@ require("./database/dbconnect.php");
             }
 
             if (itemToggle == 'false') {
-              this.setAttribute('aria-expanded', 'true');
+                this.setAttribute('aria-expanded', 'true');
             }
           }
 
