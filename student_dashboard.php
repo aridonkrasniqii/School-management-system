@@ -265,87 +265,49 @@ session_start();
 
           <table class="assessments">
             <tr>
-              <th>ID</th>
-              <th>Homework name</th>
-              <th>Student ID</th>
-              <th>Points</th>
+              <th>Homework Result ID</th>
+              <th>Student Name</th>
+              <th>Homework Name</th>
+              <th>Homework Points</th>
               <th>Delivered on time</th>
-              <th>Date</th>
+              <th>Homework Date</th>
             </tr>
-            <tr>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td>Centro comercial Moctezuma</td>
-              <td>Francisco Chang</td>
-              <td>Mexico</td>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td>Ernst Handel</td>
-              <td>Roland Mendel</td>
-              <td>Austria</td>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td>Island Trading</td>
-              <td>Helen Bennett</td>
-              <td>UK</td>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td>Laughing Bacchus Winecellars</td>
-              <td>Yoshi Tannamuri</td>
-              <td>Canada</td>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td>Magazzini Alimentari Riuniti</td>
-              <td>Giovanni Rovelli</td>
-              <td>Italy</td>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td>Magazzini Alimentari Riuniti</td>
-              <td>Giovanni Rovelli</td>
-              <td>Italy</td>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
+            <?php
+              include("./repositories/homework-result-repository.php");
+              include("./models/homework-result.php");
+              $homework_results = getAll();
+              foreach ($homework_results as $result) {
 
+              ?>
+            <tr>
+              <td><?php echo $result->getId();?></td>
+              <td><?php echo $result->getStudent_id();?></td>
+              <td><?php echo getName($result->getId());?></td>
+              <td><?php echo $result->getPoints();?></td>
+              <td><?php echo $result->getDelivered_on_time();?></td>
+              <td><?php echo $result->getResult_date();?></td>
+            </tr>
+            <?php
+              }
+            ?>
           </table>
 
           <?php
         }
         ?>
+
         <?php
         if(isset($_POST['attach'])){
           ?>
-
           <form action="" class="attach">
             <div class="select__subject">
               <label for="subject">Choose a subject:</label>
               <select name="subject" id="subject">
+                <?php
+                  
+                ?>
                 <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
+                <?php ?>
               </select>
             </div>
             <div class="select__semester">
