@@ -241,12 +241,14 @@ drop table if exists homework;
 create table homework(
   homework_id integer primary key AUTO_INCREMENT,
   homework_name varchar(100),
+  homework_subject integer,
   homework_description varchar(1000),
   homework_max_points integer,
   homework_created_at date default now(),
   homework_deadline date,
   homework_created_by integer,
   foreign key(homework_created_by) references teacher(teacher_id)
+  foreign  key(homework_subject) references subject(subject_id)
 );
 
 
@@ -288,7 +290,7 @@ create table parent_of(
 
 
 
-create table faq ( 
+create table faq (
 	faq_id integer primary key auto_increment,
     faq_question varchar(255),
     faq_answer varchar(255) default null,

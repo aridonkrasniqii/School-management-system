@@ -38,10 +38,9 @@ class homework_repository
         return null;
     }
 
-
     public function fromFetchAssoc($row)
     {
-        return new homework($row['homework_id'], $row['homework_name'], $row['homework_description'], $row['homework_max_points'], $row['homework_created_at'], $row['homework_deadline'], $row['homework_created_by']);
+        return new homework($row['homework_id'], $row['homework_name'], $row['homework_subject'], $row['homework_description'], $row['homework_max_points'], $row['homework_created_at'], $row['homework_deadline'], $row['homework_created_by']);
     }
 
     public function find($id)
@@ -66,9 +65,7 @@ class homework_repository
         return null;
     }
 
-
-
-     function findTeacher($homework_id, $teacher_id)
+    public function findTeacher($homework_id, $teacher_id)
     {
         $query = "select * from homework, teacher
             where teacher_id = homework_created_by and teacher_id = ? and homework_id = ?";
@@ -87,4 +84,28 @@ class homework_repository
             }
         }
     }
+
+    public function filterHomeworks($semester, $subject)
+    {
+        
+        $query = "select * from homework where homework_subject = ?";
+        global $connection;
+        $stmt = mysqli_stmt_init($connection);
+
+        if (!mysqli_stmt_prepare($stmt, $query)) {
+            throw new Exception();
+        } else {
+            mysqli_stmt_bind_param($stmt, "i", $subject);
+            mysqli_stmt_execute($stmt);
+
+            $result = mysqli_stmt_get_result($stmt);
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                $homework = $this->fromFetchAssoc($row);
+            }
+            return $homework;
+        }
+        return null;
+    }
+
 }

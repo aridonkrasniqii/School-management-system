@@ -4,14 +4,11 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_reset();
 session_start();
-
-  if(!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])){
+if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])) {
     header("Location: ./student_login.php");
     exit();
-  }
-
-require("./database/dbconnect.php");
-
+}
+require "./database/dbconnect.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -128,16 +125,16 @@ require("./database/dbconnect.php");
 		}
 	</style>
     <?php
-		$connection = mysqli_connect("localhost","root","");
-		$db = mysqli_select_db($connection,"aca");
-    ?>
+$connection = mysqli_connect("localhost", "root", "");
+$db = mysqli_select_db($connection, "aca");
+?>
 </head>
 <body>
     <div id="header" class="student-header">
         <br>
         <div>
           <strong><center>STUDENT MANAGEMENT AND ACADEMIC SYSYTEM</center>
-          <center></strong>E-mail:<?php echo $_SESSION['user_email'];?> &nbsp; &nbsp; &nbsp; Name:<?php echo $_SESSION['user_username'];?>&nbsp; &nbsp;</center>
+          <center></strong>E-mail:<?php echo $_SESSION['user_email']; ?> &nbsp; &nbsp; &nbsp; Name:<?php echo $_SESSION['user_username']; ?>&nbsp; &nbsp;</center>
         </div>
          <ul>
           <li><a href="#">Home</a></li>
@@ -202,70 +199,71 @@ require("./database/dbconnect.php");
 
 
         <?php
-        if(isset($_POST['subjects'])){
-          ?>
+if (isset($_POST['subjects'])) {
+    ?>
           <center>
               load subjects
           </center>
 
           <?php
-        }
-
-        ?>
+}
+?>
         <?php
-        if(isset($_POST['my_homework'])){
+if (isset($_POST['my_homework'])) {
+    ?>
 
-        ?>
-
-          <form action="" class="search_filter">
+          <form action="" class="search_filter" post = "method">
             <div class="container">
               <input type="search" name="search_filter" id="search" placeholder="Filter by semester">
               <button type="submit" name="button_filter">Filter</button>
             </div>
           </form>
 
+    <?php  //TODO: filters           ?>
+      
+
           <div class="box__section">
             <div class="container">
               <div class="box__wrapper">
             <?php
-              include("./repositories/homework-repository.php");
-              include("./models/homework.php");
-              $h1 = new homework_repository();
-              $homeworks = $h1->getAll();
-
-              foreach($homeworks as $homework) {?>
+include "./repositories/homework-repository.php";
+    include "./models/homework.php";
+    $h1 = new homework_repository();
+    $homeworks = $h1->getAll();
+    foreach ($homeworks as $homework) {?>
                 <div class="box">
                   <div class="box__wrapper--ins">
                     <div class="box__assigment">
 
-                      <span>Assigment Due <?php echo $homework->getDeadline();?></span>
+                      <span>Assigment Due <?php echo $homework->getDeadline(); ?></span>
                     </div>
                     <div class="box__info">
                       <div class="box__number">
                         <!-- ID OF HOMEWORK -->
-                        <span><?php echo "ID: " . $homework->getId();?></span>
+                        <span><?php echo "ID: " . $homework->getId(); ?></span>
                       </div>
                       <div class="box__title">
-                        <h4><a href="./my-homework/my-homework.php?id=<?php echo $homework->getId();?>"><?php
-                          echo $homework->getName();
-                        ?></a></h4>
+                        <h4><a href="./my-homework/my-homework.php?id=<?php echo $homework->getId(); ?>"><?php
+echo $homework->getName();
+        ?></a></h4>
                         </div>
                     </div>
                   </div>
                 </div>
 
-                <?php }?>
+                <?php
+}?>
 
               </div>
             </div>
           </div>
 
           <?php
-        }
-        ?>
+}
+?>
         <?php
-        if(isset($_POST['assessments'])){
-          ?>
+if (isset($_POST['assessments'])) {
+    ?>
 
           <table class="assessments">
             <tr>
@@ -277,53 +275,50 @@ require("./database/dbconnect.php");
               <th>Homework Date</th>
             </tr>
             <?php
-              include("./repositories/homework-result-repository.php");
-              include("./models/homework-result.php");
-              $homework_results = getAll();
-              foreach ($homework_results as $result) {
-
-              ?>
+include "./repositories/homework-result-repository.php";
+    include "./models/homework-result.php";
+    $homework_results = getAll();
+    foreach ($homework_results as $result) {
+        ?>
             <tr>
-              <td><?php echo $result->getId();?></td>
-              <td><?php echo $result->getStudent_id();?></td>
-              <td><?php echo getName($result->getId());?></td>
-              <td><?php echo $result->getPoints();?></td>
-              <td><?php echo $result->getDelivered_on_time();?></td>
-              <td><?php echo $result->getResult_date();?></td>
+              <td><?php echo $result->getId(); ?></td>
+              <td><?php echo $result->getStudent_id(); ?></td>
+              <td><?php echo getName($result->getId()); ?></td>
+              <td><?php echo $result->getPoints(); ?></td>
+              <td><?php echo $result->getDelivered_on_time(); ?></td>
+              <td><?php echo $result->getResult_date(); ?></td>
             </tr>
             <?php
-              }
-            ?>
+}
+    ?>
           </table>
 
           <?php
-        }
-        ?>
+}
+?>
 
         <?php
-        if(isset($_POST['attach'])){
-          ?>
+if (isset($_POST['attach'])) {
+    ?>
           <form action="" class="attach">
             <div class="select__subject">
               <label for="subject">Choose a subject:</label>
               <?php
-
-                  include("./repositories/subject-repository.php");
-                  include("./models/subject.php");
-                  $s = new subject_repository();
-                  $subjects = $s->getAll();
-                  ?>
+include "./repositories/subject-repository.php";
+    include "./models/subject.php";
+    $s = new subject_repository();
+    $subjects = $s->getAll();
+    ?>
               <select name="subject" id="subject">
 
           <?php
-                foreach ($subjects as $subject) {
-                    ?>
-                     <option value="<?echo strtolower($subject->getName()); ?>"><?php echo $subject->getName();?></option>
+foreach ($subjects as $subject) {
+        ?>
+                     <option value="<?echo strtolower($subject->getName()); ?>"><?php echo $subject->getName(); ?></option>
 
                     <?php
-                  }
-
-                ?>
+}
+    ?>
               </select>
             </div>
             <div class="select__semester">
@@ -339,17 +334,17 @@ require("./database/dbconnect.php");
               <label for="homework">Choose a homework:</label>
 
               <?php
-                include("./repositories/homework-repository.php");
-                include("./models/homework.php");
-                $h2 = new homework_repository();
-                $he = $h2->getAll();
-
-              ?>
+include "./repositories/homework-repository.php";
+    include "./models/homework.php";
+    $h2 = new homework_repository();
+    $he = $h2->getAll();
+    ?>
 
               <select name="homework" id="homework">
-                <?php foreach ($he as $homework){?>
-                  <option value="<?php echo strtolower($homework->getName());?>"><?php echo $homework->getName();?></option>
-                <?php }?>
+                <?php foreach ($he as $homework) {?>
+                  <option value="<?php echo strtolower($homework->getName()); ?>"><?php echo $homework->getName(); ?></option>
+                <?php
+}?>
               </select>
             </div>
 
@@ -365,11 +360,11 @@ require("./database/dbconnect.php");
           </form>
 
           <?php
-        }
-        ?>
+}
+?>
         <?php
-        if(isset($_POST['faq'])){
-          ?>
+if (isset($_POST['faq'])) {
+    ?>
           <section class="faq">
             <div class="container">
               <h2>Frequently Asked Questions</h2>
@@ -383,35 +378,34 @@ require("./database/dbconnect.php");
               </form>
 
               <?php
-
-                include("./repositories/faq-repository.php");
-                $faqs = new faq_repositoy();
-                $faqArr = $faqs->getAll();
-
-              ?>
+include "./repositories/faq-repository.php";
+    $faqs = new faq_repositoy();
+    $faqArr = $faqs->getAll();
+    ?>
 
             </div>
               <div class="accordion">
-            <?php foreach($faqArr as $arr) {?>
+            <?php foreach ($faqArr as $arr) {?>
                 <div class="accordion-item">
                   <button id="accordion-button-1" aria-expanded="false">
                     <span class="accordion-title">
-                      <?php echo $arr['faq_question'];?>
+                      <?php echo $arr['faq_question']; ?>
                     </span>
                     <span class="icon" aria-hidden="true"></span>
                   </button>
                   <div class="accordion-content">
                     <p>
-                    <?php if(empty($arr['faq_answer'])) {
-                          echo "No answer for this question";
-                    }else {
-                      echo $arr['faq_answer'];
-                    }
-                      ?>
+                    <?php if (empty($arr['faq_answer'])) {
+        echo "No answer for this question";
+    } else {
+        echo $arr['faq_answer'];
+    }
+        ?>
                     </p>
                   </div>
                 </div>
-            <?php } ?>
+            <?php
+}?>
 
               </div>
     </div>
@@ -435,12 +429,11 @@ require("./database/dbconnect.php");
       </section>
 
           <?php
-        }
-        ?>
+}
+?>
             <?php
-				if(isset($_POST['search_student']))
-				{
-					?>
+if (isset($_POST['search_student'])) {
+    ?>
 					<center>
 					<form action="" method="post">
 					&nbsp;&nbsp;<b>Enter Roll No:</b>&nbsp;&nbsp; <input type="text" name="roll_no">
@@ -449,14 +442,12 @@ require("./database/dbconnect.php");
 
 					</center>
 					<?php
-				}
-				if(isset($_POST['search_by_roll_no_for_search']))
-				{
-					$query = "select * from students where roll_no = '$_POST[roll_no]'";
-					$query_run = mysqli_query($connection,$query);
-					while ($row = mysqli_fetch_assoc($query_run))
-					{
-						?>
+}
+if (isset($_POST['search_by_roll_no_for_search'])) {
+    $query = "select * from students where roll_no = '$_POST[roll_no]'";
+    $query_run = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_assoc($query_run)) {
+        ?>
 						<center><h4><b><u>Student's details</u></b></h4><br><br>
 							<table>
 								<tr>
@@ -464,7 +455,7 @@ require("./database/dbconnect.php");
 										<b>Roll No: &nbsp; &nbsp;&nbsp;</b>
 									</td>
 									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['roll_no']?>" disabled>
+										<input type="text"   id="btn1" value="<?php echo $row['roll_no'] ?>" disabled>
 									</td>
 								</tr>
 								<tr>
@@ -472,7 +463,7 @@ require("./database/dbconnect.php");
 										<b>Name: &nbsp; &nbsp;&nbsp;</b>
 									</td>
 									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['name']?>" disabled>
+										<input type="text"   id="btn1" value="<?php echo $row['name'] ?>" disabled>
 									</td>
 								</tr>
 								<tr>
@@ -480,7 +471,7 @@ require("./database/dbconnect.php");
 										<b>Father's Name: &nbsp; &nbsp;&nbsp;</b>
 									</td>
 									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['father_name']?>" disabled>
+										<input type="text"   id="btn1" value="<?php echo $row['father_name'] ?>" disabled>
 									</td>
 								</tr>
 								<tr>
@@ -488,7 +479,7 @@ require("./database/dbconnect.php");
 										<b>Class: &nbsp; &nbsp;&nbsp;</b>
 									</td>
 									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['class']?>" disabled>
+										<input type="text"   id="btn1" value="<?php echo $row['class'] ?>" disabled>
 									</td>
 								</tr>
 								<tr>
@@ -496,7 +487,7 @@ require("./database/dbconnect.php");
 										<b>Mobile: &nbsp; &nbsp;&nbsp;</b>
 									</td>
 									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['mobile']?>" disabled>
+										<input type="text"   id="btn1" value="<?php echo $row['mobile'] ?>" disabled>
 									</td>
 								</tr>
 								<tr>
@@ -504,7 +495,7 @@ require("./database/dbconnect.php");
 										<b>Email: &nbsp; &nbsp;&nbsp;</b>
 									</td>
 									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['email']?>" disabled>
+										<input type="text"   id="btn1" value="<?php echo $row['email'] ?>" disabled>
 									</td>
 								</tr>
 								<tr>
@@ -512,7 +503,7 @@ require("./database/dbconnect.php");
 										<b>Password: &nbsp; &nbsp;&nbsp;</b>
 									</td>
 									<td>
-										<input type="password"  id="btn1"  value="<?php echo $row['password']?>" disabled>
+										<input type="password"  id="btn1"  value="<?php echo $row['password'] ?>" disabled>
 									</td>
 								</tr>
 								<tr>
@@ -520,20 +511,18 @@ require("./database/dbconnect.php");
 										<b>Remark:&nbsp; &nbsp;&nbsp;</b>
 									</td>
 									<td>
-										<textarea rows="3" cols="40"   id="btn1" disabled><?php echo $row['remark']?></textarea>
+										<textarea rows="3" cols="40"   id="btn1" disabled><?php echo $row['remark'] ?></textarea>
 									</td>
 								</tr>
 							</table>
 						</center>
 						<?php
-
-					}
-				}
-			?>
+}
+}
+?>
 			<?php
-                if(isset($_POST['search_teacher']))
-                {
-                    ?>
+if (isset($_POST['search_teacher'])) {
+    ?>
                     <center>
                     <form action="" method="post">
                     &nbsp;&nbsp;<b>Enter Teacher's name:</b>&nbsp;&nbsp; <input type="text" name="teacher_name">
@@ -542,14 +531,12 @@ require("./database/dbconnect.php");
 
                     </center>
                     <?php
-                }
-                if(isset($_POST['search_by_roll_no_for_search_teacher']))
-                {
-                    $query = "select * from teachers where teacher_name = '$_POST[teacher_name]'";
-                    $query_run = mysqli_query($connection,$query);
-                    while ($row = mysqli_fetch_assoc($query_run))
-                    {
-                        ?>
+}
+if (isset($_POST['search_by_roll_no_for_search_teacher'])) {
+    $query = "select * from teachers where teacher_name = '$_POST[teacher_name]'";
+    $query_run = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_assoc($query_run)) {
+        ?>
 
                         <center><h4><b><u>Teacher's details</u></b></h4><br><br>
                             <table>
@@ -558,7 +545,7 @@ require("./database/dbconnect.php");
                                     <b>Name: &nbsp; &nbsp;&nbsp;</b>
                                 </td>
                                 <td>
-                                    <input type="text"   id="btn1" value="<?php echo $row['teacher_name']?>" disabled>
+                                    <input type="text"   id="btn1" value="<?php echo $row['teacher_name'] ?>" disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -566,7 +553,7 @@ require("./database/dbconnect.php");
                                     <b>Class Teacher: &nbsp; &nbsp;&nbsp;</b>
                                 </td>
                                 <td>
-                                    <input type="text"   id="btn1" value="<?php echo $row['class_teacher']?>" disabled>
+                                    <input type="text"   id="btn1" value="<?php echo $row['class_teacher'] ?>" disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -574,7 +561,7 @@ require("./database/dbconnect.php");
                                     <b>Subject: &nbsp; &nbsp;&nbsp;</b>
                                 </td>
                                 <td>
-                                    <input type="text"   id="btn1" value="<?php echo $row['teacher_subject']?>" disabled>
+                                    <input type="text"   id="btn1" value="<?php echo $row['teacher_subject'] ?>" disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -582,7 +569,7 @@ require("./database/dbconnect.php");
                                     <b>Mobile: &nbsp; &nbsp;&nbsp;</b>
                                 </td>
                                 <td>
-                                    <input type="text"   id="btn1" value="<?php echo $row['mobile_no']?>" disabled>
+                                    <input type="text"   id="btn1" value="<?php echo $row['mobile_no'] ?>" disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -590,7 +577,7 @@ require("./database/dbconnect.php");
                                     <b>Email: &nbsp; &nbsp;&nbsp;</b>
                                 </td>
                                 <td>
-                                    <input type="text"   id="btn1" value="<?php echo $row['email']?>" disabled>
+                                    <input type="text"   id="btn1" value="<?php echo $row['email'] ?>" disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -598,7 +585,7 @@ require("./database/dbconnect.php");
                                     <b>Password: &nbsp; &nbsp;&nbsp;</b>
                                 </td>
                                 <td>
-                                    <input type="password"   id="btn1" value="<?php echo $row['password']?>" disabled>
+                                    <input type="password"   id="btn1" value="<?php echo $row['password'] ?>" disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -606,19 +593,18 @@ require("./database/dbconnect.php");
                                     <b>Gender: &nbsp; &nbsp;&nbsp;</b>
                                 </td>
                                 <td>
-                                    <input type="text"   id="btn1" value="<?php echo $row['gender']?>" disabled>
+                                    <input type="text"   id="btn1" value="<?php echo $row['gender'] ?>" disabled>
                                 </td>
                             </tr>
                         </table>
                     </center>
                     <?php
-                    }
-                }
-            ?>
+}
+}
+?>
 			<?php
-			if(isset($_POST['search_result']))
-			{
-				?>
+if (isset($_POST['search_result'])) {
+    ?>
 				<center>
 				<form action="" method="post">
 				&nbsp;&nbsp;<b>Enter Roll No:</b>&nbsp;&nbsp; <input type="text" name="roll_no">
@@ -627,14 +613,12 @@ require("./database/dbconnect.php");
 
 				</center>
 				<?php
-			}
-			if(isset($_POST['search_by_roll_no_for_result_search']))
-			{
-				$query = "select * from results where roll_no = '$_POST[roll_no]'";
-				$query_run = mysqli_query($connection,$query);
-				while ($row = mysqli_fetch_assoc($query_run))
-				{
-					?>
+}
+if (isset($_POST['search_by_roll_no_for_result_search'])) {
+    $query = "select * from results where roll_no = '$_POST[roll_no]'";
+    $query_run = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_assoc($query_run)) {
+        ?>
 					<center><h4><b><u>Student's result</u></b></h4><br><br>
 						<table>
 							<tr>
@@ -642,7 +626,7 @@ require("./database/dbconnect.php");
 									<b>Roll No: &nbsp; &nbsp;&nbsp;</b>
 								</td>
 								<td>
-									<input type="text"   id="btn1" value="<?php echo $row['roll_no']?>" disabled>
+									<input type="text"   id="btn1" value="<?php echo $row['roll_no'] ?>" disabled>
 								</td>
 							</tr>
 							<tr>
@@ -650,7 +634,7 @@ require("./database/dbconnect.php");
 									<b>Name: &nbsp; &nbsp;&nbsp;</b>
 								</td>
 								<td>
-									<input type="text"   id="btn1" value="<?php echo $row['name']?>" disabled>
+									<input type="text"   id="btn1" value="<?php echo $row['name'] ?>" disabled>
 								</td>
 							</tr>
 							<tr>
@@ -658,7 +642,7 @@ require("./database/dbconnect.php");
 									<b>	English: &nbsp; &nbsp;&nbsp;</b>
 								</td>
 								<td>
-									<input type="text"   id="btn1" value="<?php echo $row['English']?>" disabled>
+									<input type="text"   id="btn1" value="<?php echo $row['English'] ?>" disabled>
 								</td>
 							</tr>
 							<tr>
@@ -666,7 +650,7 @@ require("./database/dbconnect.php");
 									<b>	Biology: &nbsp; &nbsp;&nbsp;</b>
 								</td>
 								<td>
-									<input type="text"   id="btn1" value="<?php echo $row['Biology']?>" disabled>
+									<input type="text"   id="btn1" value="<?php echo $row['Biology'] ?>" disabled>
 								</td>
 							</tr>
 							<tr>
@@ -674,7 +658,7 @@ require("./database/dbconnect.php");
 									<b>Chemistry: &nbsp; &nbsp;&nbsp;</b>
 								</td>
 								<td>
-									<input type="text"   id="btn1" value="<?php echo $row['Chemistry']?>" disabled>
+									<input type="text"   id="btn1" value="<?php echo $row['Chemistry'] ?>" disabled>
 								</td>
 							</tr>
 							<tr>
@@ -682,7 +666,7 @@ require("./database/dbconnect.php");
 									<b>Physics: &nbsp; &nbsp;&nbsp;</b>
 								</td>
 								<td>
-									<input type="text"   id="btn1" value="<?php echo $row['Physics']?>" disabled>
+									<input type="text"   id="btn1" value="<?php echo $row['Physics'] ?>" disabled>
 								</td>
 							</tr>
 							<tr>
@@ -690,7 +674,7 @@ require("./database/dbconnect.php");
 									<b>Mathematics: &nbsp; &nbsp;&nbsp;</b>
 								</td>
 								<td>
-									<input type="text"   id="btn1" value="<?php echo $row['Mathematics']?>" disabled>
+									<input type="text"   id="btn1" value="<?php echo $row['Mathematics'] ?>" disabled>
 								</td>
 							</tr>
 							<tr>
@@ -698,15 +682,15 @@ require("./database/dbconnect.php");
 									<b>Computer-Sciences: &nbsp; &nbsp;&nbsp;</b>
 								</td>
 								<td>
-									<input type="text"   id="btn1" value="<?php echo $row['ComputerSciences']?>" disabled>
+									<input type="text"   id="btn1" value="<?php echo $row['ComputerSciences'] ?>" disabled>
 								</td>
 							</tr>
 						</table>
 					</center>
 					<?php
-				}
-			}
-		?>
+}
+}
+?>
          </div>
     </div>
 </body>

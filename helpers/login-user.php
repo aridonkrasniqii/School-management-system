@@ -56,9 +56,8 @@ function loginProcessor($user, $pwd ,$role) {
           $pwdCheck = password_verify($pwd, $row[$role."_password"]);
 
           if($pwdCheck == false) {
-            // header("Location: ../".$role."_login.php?error=wrongpwd");
-            // exit();
-            echo "test password false ";
+            header("Location: ../".$role."_login.php?error=wrongpwd");
+            exit();
           }
           elseif($pwdCheck == true){
             echo "test password true";

@@ -1,55 +1,79 @@
 <?php
 
+class homework
+{
 
+    private $id;
+    private $name;
+    private $subject;
+    private $description;
+    private $max_points;
+    private $created_at;
+    private $deadline;
+    private $created_by;
 
-class homework{
+    public function __construct($id, $name, $subject, $description, $max_points, $created_at, $deadline, $created_by)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->subject = $subject;
+        $this->description = $description;
+        $this->max_points = $max_points;
+        $this->created_at = $created_at;
+        $this->deadline = $deadline;
+        $this->created_by = $created_by;
+    }
 
-  private $id;
-  private $name;
-  private $description;
-  private $max_points;
-  private $created_at;
-  private $deadline;
-  private $created_by;
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  public function __construct($id, $name, $description,$max_points, $created_at, $deadline, $created_by)
-  {
-    $this->id = $id;
-    $this->name = $name;
-    $this->description = $description;
-    $this-> max_points = $max_points;
-    $this-> created_at = $created_at;
-    $this-> deadline = $deadline;
-    $this-> created_by = $created_by;
-  }
+    public function getName()
+    {
+        return $this->name;
+    }
 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    public function getMax_points()
+    {
+        return $this->max_points;
+    }
 
-  public function getId(){
-    return $this->id;
-  }
+    public function getCreated_at()
+    {
+        return $this->created_at;
+    }
+    public function getDeadline()
+    {
+        return $this->deadline;
+    }
 
-  public function getName(){
-    return $this->name;
-  }
+    public function getCreated_by()
+    {
+        return $this->created_by;
+    }
 
-  public function getDescription(){
-    return $this->description;
-  }
-  public function getMax_points(){
-    return $this->max_points;
-  }
+    /**
+     * Get the value of subject
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
 
-  public function getCreated_at() {
-    return $this->created_at;
-  }
-  public function getDeadline(){
-    return $this->deadline;
-  }
+    /**
+     * Set the value of subject
+     *
+     * @return  self
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
 
-  public function getCreated_by(){
-    return $this->created_by;
-  }
-
-
-
+        return $this;
+    }
 }

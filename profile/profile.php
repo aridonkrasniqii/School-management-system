@@ -1,3 +1,11 @@
+<?php
+session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+?>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -112,34 +120,71 @@
 </head>
 <body>
 <section class="profile">
+
+
+  <?php
+
+?>
   <div class="container">
+
+     <?php
+include "../repositories/student-repository.php";
+include "../models/student.php";
+$userId = $_SESSION['user_id'];
+$repository = new student_repository();
+$userLoggedIn = $repository->find($userId);
+
+?>
     <div class="profile__wrapper">
       <div class="profile__title">
-        <h3>Settings</h3>
+        <h3>Profile Account</h3>
       </div>
       <div class="profile__inputs">
-        <form action="">
+        <form action="./change-profile.php" method = "post">
           <div class="profile__inputs--name">
             <label for="name">Your name</label>
-            <input type="text">
+            <input type="text" value = "<?php echo $userLoggedIn->getStudent_name(); ?>" name = "name" placeholder = "Full Name">
           </div>
           <div class="profile__inputs--username">
             <label for="name">Your username</label>
-            <input type="text">
+            <input type="text" value = "<?php echo $userLoggedIn->getStudent_username(); ?>" name = "username" placeholder = "Username">
           </div>
           <div class="profile__inputs--email">
             <label for="name">Your email address</label>
-            <input type="text">
+            <input type="text" value = "<?php echo $userLoggedIn->getStudent_email(); ?>" name = "email" placeholder = "Email">
           </div>
           <div class="profile__inputs--password">
-            <label for="name">Your password</label>
-            <input type="password">
+            <label for="name">Password</label>
+            <input type="password" name = "password" placeholder = "Password">
+          </div>
+          <div class="profile__inputs--password">
+            <label for="name">Confirm password</label>
+            <input type="password" name = "repeat_password" placeholder = "Repeat your password">
           </div>
           <div class="profile__inputs--index">
             <label for="name">Your index</label>
-            <input type="text">
+            <input type="text" value = "<?php echo $userLoggedIn->getStudent_index(); ?>" name = "index" placeholder = "Your index">
           </div>
-          <button type="submit">Save updates</button>
+          <button type="submit" name = "save-updates">Save updates</button>
+          <h4>
+            <?php
+              if(isset($_GET['error'])){
+                if($_GET['error'] == 'success') {
+                  echo "<p id = 's'>Successfully changed</p>";
+                }else {
+                  echo "<p id = 'f' >Failed to change profile settings </p>";
+                }
+              }
+            ?>
+            <style>
+              #f{
+                color:red;
+              }
+              #s{
+                color:green;
+              }
+            </style>
+          </h4>
         </form>
       </div>
       <div class="profile__button">
@@ -148,7 +193,13 @@
     </div>
   </div>
 </section>
+
+
+
+
+
 </body>
 </html>
+
 
 

@@ -77,34 +77,21 @@
             <form action="helpers/login-user.php"method="post">
                 <input type="text" name="username" placeholder="E-mail or Username" id="btn" required><br><br>
                 <input type="password" name="password" placeholder="Password" id="btn" required><br><br>
+                 <?php
+                    if(isset($_GET['error'])){
+                      if($_GET['error'] == "wrongpwd") {
+                          echo "<p id = 'f'>Wrong password</p>";
+                      }
+                    }
+                  ?>
                 <input type="submit" name="login-student" value = "login">
             </form><br>
 
-            <?php
-                // session_start();
-                // $name="";
-                // if(isset($_POST['submit'])){
-                //     $connection = mysqli_connect("localhost","root","");
-                //     $db = mysqli_select_db($connection,"aca");
-                //     $query = "select * from students where email = '$_POST[email]'";
-                //     $query_run = mysqli_query($connection,$query);
-                //     while($row = mysqli_fetch_assoc($query_run)){
-                //         if($row['email'] == $_POST['email']){
-                //             if($row['password'] == $_POST['password']){
-                //                 $_SESSION['name'] =  $row['name'];
-                //                 $_SESSION['email'] =  $row['email'];
-                //                 header("Location: student_dashboard.php");
-                //             }
-                //             else{
-                //                 echo"fail password";
-                //             }
-                //         }
-                //         else{
-                //             echo"fail email";
-                //         }
-                //     }
-                // }
-            ?>
+                  <style>
+                    #f { 
+                      color:red;
+                    }
+                  </style>
         </div>
     </center>
 </body>
