@@ -214,13 +214,19 @@ if (isset($_POST['my_homework'])) {
 
           <form action="" class="search_filter" post = "method">
             <div class="container">
-              <input type="search" name="search_filter" id="search" placeholder="Filter by semester">
+              <select name="subject" id="subject-homework">
+
+              </select>
+
+              <select name="semester" id="subject-homework">
+
+              </select>
               <button type="submit" name="button_filter">Filter</button>
             </div>
           </form>
 
     <?php  //TODO: filters           ?>
-      
+
 
           <div class="box__section">
             <div class="container">

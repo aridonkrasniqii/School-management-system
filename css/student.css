@@ -497,3 +497,15 @@ textarea {
 .attach .textarea__description textarea {
   width: 100%;
 }
+
+#subject-homework,
+#semester-homework {
+  width: 40px;
+  padding: 5px;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: 1px solid transparent;
+  outline: none;
+}
