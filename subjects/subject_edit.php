@@ -1,5 +1,5 @@
 <?php
-	$connection = mysqli_connect("localhost:3307","root","");
+	$connection = mysqli_connect("localhost","root","");
 	$db = mysqli_select_db($connection,"aca");
     $id = $_POST['id'];
 	$title = $_POST['title'];
@@ -10,7 +10,7 @@
 
     //create sql
     $query = "UPDATE subject
-    SET 
+    SET
     subject_title = '$title',
     subject_credits = $credits,
     subject_type = '$type',
@@ -20,6 +20,6 @@
     mysqli_query($connection,$query);
 ?>
 <script type="text/javascript">
-	alert("Subject edited successfully.");
-	window.location.href = "../teacher_dashboard.php";
+alert("Subject edited successfully.");
+window.location.href = "../teacher_dashboard.php";
 </script>

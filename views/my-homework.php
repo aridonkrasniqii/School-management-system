@@ -127,6 +127,11 @@ error_reporting(E_ALL);
 
   }
   </style>
+  <?php
+  session_start();
+  $connection = mysqli_connect("localhost", "root", "");
+  $db = mysqli_select_db($connection, "aca");
+  ?>
 </head>
 
 <body>
@@ -135,13 +140,16 @@ error_reporting(E_ALL);
 
 
   if (isset($_GET['id'])) {
-      include("../repositories/homework-repository.php");
-      include("../models/homework.php");
-      require("../database/dbconnect.php");
-      $id = $_GET['id'];
-      $h = new homework_repository();
-      $homework = $h->find($id);
-      if($homework == null) {header("Location: ../student_dashboard.php"); exit();};
+    include("../repositories/homework-repository.php");
+    include("../models/homework.php");
+    require("../database/dbconnect.php");
+    $id = $_GET['id'];
+    $h = new homework_repository();
+    $homework = $h->find($id);
+    if ($homework == null) {
+      header("Location: more-subject-view.php");
+      exit();
+    }
 
   ?>
 
@@ -152,37 +160,37 @@ error_reporting(E_ALL);
           <!-- Emri i detyres -->
           <h3>Homework Information</h3>
           <br>
-          <h3>Name: <?php echo $homework->getName();?></h3>
+          <h3>Name: <?php echo $homework->getName(); ?></h3>
 
         </div>
         <div class="homework__description">
           <h4>Description:</h4>
-          <p><?php echo $homework->getDescription();?></p>
+          <p><?php echo $homework->getDescription(); ?></p>
         </div>
         <div class="homework__maxpoints">
           <!-- Piket maksimale -->
           <h4>Max points: </h4>
-          <span><?php echo $homework->getMax_points();?></span>
+          <span><?php echo $homework->getMax_points(); ?></span>
         </div>
         <div class="homework__date">
           <!-- Data e leshimit te detyres -->
           Released date:
-          <span><?php echo $homework->getCreated_at();?></span>
+          <span><?php echo $homework->getCreated_at(); ?></span>
         </div>
         <div class="homework__deadline">
           <!-- deadline -->
           <h4>Deadline: </h4>
-          <span><?php echo $homework->getDeadline();?></span>
+          <span><?php echo $homework->getDeadline(); ?></span>
         </div>
         <div class="homework__createdby">
           <!-- Teacher -->
           Created by teacher:
           <span><?php
-         echo $h->findTeacher($homework->getId(),$homework->getCreated_by());
-         ?></span>
+                  echo $h->findTeacher($homework->getId(), $homework->getCreated_by());
+                  ?></span>
         </div>
         <div class="homework__button">
-          <a href="../student_dashboard.php">Back</a>
+          <a href="more-subject-view.php?id=<?php echo $homework->getSubject(); ?>">Back</a>
         </div>
       </div>
     </div>
@@ -190,11 +198,11 @@ error_reporting(E_ALL);
 
 
   <?php
-      }else {
-          header("Location: ../student_dashboard.php");
-          exit();
-      }
-   ?>
+  } else {
+    // header("Location: ../student_dashboard.php");
+    // exit();
+  }
+  ?>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <?php
-	$connection = mysqli_connect("localhost:3307","root","");
+	$connection = mysqli_connect("localhost","root","");
 	$db = mysqli_select_db($connection,"aca");
 	$name = $_POST['title'];//me evitu malicious sql actions
     $credits = $_POST['credits'];
@@ -13,6 +13,6 @@
     $query_run = mysqli_query($connection,$query);
 ?>
 <script type="text/javascript">
-	alert("Subject added successfully.");
-	window.location.href = "../teacher_dashboard.php";
+alert("Subject added successfully.");
+window.location.href = "../teacher_dashboard.php";
 </script>

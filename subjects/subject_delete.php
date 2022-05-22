@@ -1,5 +1,5 @@
 <?php
-	$connection = mysqli_connect("localhost:3307","root","");
+	$connection = mysqli_connect("localhost","root","");
 	$db = mysqli_select_db($connection,"aca");
 
     //check get request

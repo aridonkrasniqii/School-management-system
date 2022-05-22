@@ -81,5 +81,3 @@ function loginProcessor($user, $pwd ,$role) {
   }
 
 }
-
-

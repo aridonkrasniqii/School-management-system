@@ -1,0 +1,18 @@
+.subject-table {
+  border-collapse: collapse;
+}
+
+.subject-table th,
+.subject-table td {
+  height: 30px;
+  padding: 10px;
+}
+.table {
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  height: 30px;
+  padding: 10px;
+}

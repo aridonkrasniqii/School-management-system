@@ -17,6 +17,8 @@ if (isset($_POST['homework_filter'])) {
 
   $repository = new homework_repository();
   $homeworks = $repository->filterHomeworks($semester, $subject);
+
+  
 } else {
   header("Location: ../student_dashboard.php");
   exit();

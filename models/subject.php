@@ -9,16 +9,16 @@ class Subject
     private $name;
     private $credits;
     private $created_at;
-    private $date;
+    private $semester;
     private $create_by;
 
-    public function __construct($id, $name, $credits, $created_at, $date, $create_by)
+    public function __construct($id, $name, $credits, $created_at, $semester, $create_by)
     {
         $this->id = $id;
         $this->name = $name;
         $this->credits = $credits;
         $this->created_at = $created_at;
-        $this->date = $date;
+        $this->semester = $semester;
         $this->create_by = $create_by;
     }
 
@@ -41,14 +41,15 @@ class Subject
         return $this->created_at;
     }
 
-    public function getDate()
+    public function getSemester()
     {
-        return $this->date;
+        return $this->semester;
     }
 
     public function getCreated_by()
     {
         return $this->create_by;
     }
+
 
 }

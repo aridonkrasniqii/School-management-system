@@ -8,6 +8,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])) {
   header("Location: ./student_login.php");
   exit();
 }
+
 require "./database/dbconnect.php";
 ?>
 <!DOCTYPE html>
@@ -71,10 +72,14 @@ require "./database/dbconnect.php";
     position: absolute;
     left: 17%;
     top: 21%;
-    color: red;
+    color: black;
     border: solid 2px black;
     border-radius: 10px;
     padding-bottom: 20px;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   #right_side:hover {
@@ -236,10 +241,13 @@ require "./database/dbconnect.php";
 
       <?php
       if (isset($_POST['subjects'])) {
+        include("./models/subject.php");
+        include("./repositories/subject-repository.php");
+        include("./controllers/subject_controller.php");
+        include("./views/subject-view.php");
+
       ?>
-      <center>
-        load subjects
-      </center>
+
 
       <?php
       }
@@ -276,7 +284,6 @@ require "./database/dbconnect.php";
 
       <?php //TODO: filters
         ?>
-
 
       <div class="box__section">
         <div class="container">
@@ -337,170 +344,25 @@ require "./database/dbconnect.php";
     ?>
       <?php
     if (isset($_POST['assessments'])) {
-    ?>
-
-      <table class="assessments">
-        <tr>
-          <th>Homework Result ID</th>
-          <th>Student Name</th>
-          <th>Homework Name</th>
-          <th>Homework Points</th>
-          <th>Delivered on time</th>
-          <th>Homework Date</th>
-        </tr>
-        <?php
-        include "./repositories/homework-result-repository.php";
-        include "./models/homework-result.php";
-        $homework_results = getAll();
-        foreach ($homework_results as $result) {
-        ?>
-        <tr>
-          <td><?php echo $result->getId(); ?></td>
-          <td><?php echo $result->getStudent_id(); ?></td>
-          <td><?php echo getName($result->getId()); ?></td>
-          <td><?php echo $result->getPoints(); ?></td>
-          <td><?php echo $result->getDelivered_on_time(); ?></td>
-          <td><?php echo $result->getResult_date(); ?></td>
-        </tr>
-        <?php
-        } ?>
-      </table>
-
-      <?php
+      include("./views/assessments-view.php");
     }
-    ?>
+     ?>
+
 
       <?php
     if (isset($_POST['attach'])) {
-    ?>
-      <form action="" class="attach">
-        <div class="select__subject">
-          <label for="subject">Choose a subject:</label>
-          <?php
-          include "./repositories/subject-repository.php";
-          include "./models/subject.php";
-          $s = new subject_repository();
-          $subjects = $s->getAll(); ?>
-          <select name="subject" id="subject">
-
-            <?php
-            foreach ($subjects as $subject) {
-            ?>
-            <option value="<? echo strtolower($subject->getName()); ?>"><?php echo $subject->getName(); ?></option>
-
-            <?php
-            } ?>
-          </select>
-        </div>
-        <div class="select__semester">
-          <label for="semester">Choose a semester:</label>
-          <select name="semester" id="semester">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-          </select>
-        </div>
-        <div class="select__homework">
-          <label for="homework">Choose a homework:</label>
-
-          <?php
-          include "./repositories/homework-repository.php";
-          include "./models/homework.php";
-          $h2 = new homework_repository();
-          $he = $h2->getAll(); ?>
-
-          <select name="homework" id="homework">
-            <?php foreach ($he as $homework) { ?>
-            <option value="<?php echo strtolower($homework->getName()); ?>"><?php echo $homework->getName(); ?></option>
-            <?php
-            } ?>
-          </select>
-        </div>
-
-
-        <div class="textarea__description">
-          <textarea placeholder="Enter description" name="description" id="description" cols="30" rows="10"></textarea>
-
-        </div>
-
-        <input type="file">
-        <br><br>
-        <input type="submit" class="attach-button" value="Attach">
-      </form>
-
-      <?php
+      include("./views/attachement-view.php");
     }
     ?>
+
       <?php
     if (isset($_POST['faq'])) {
-    ?>
-      <section class="faq">
-        <div class="container">
-          <h2>Frequently Asked Questions</h2>
-          <div class="faq__input">
-            <form action="./faq/my-faq.php" method="post" class="faq__register">
-
-              <textarea name="faq_question" id="register-faq" placeholder="Type your question here"></textarea>
-              <input type="hidden" name="faq_answer">
-              <input type="submit" name="submit-faq" value="Post">
-
-            </form>
-
-            <?php
-            include "./repositories/faq-repository.php";
-            $faqs = new faq_repositoy();
-            $faqArr = $faqs->getAll(); ?>
-
-          </div>
-          <div class="accordion">
-            <?php foreach ($faqArr as $arr) { ?>
-            <div class="accordion-item">
-              <button id="accordion-button-1" aria-expanded="false">
-                <span class="accordion-title">
-                  <?php echo $arr['faq_question']; ?>
-                </span>
-                <span class="icon" aria-hidden="true"></span>
-              </button>
-              <div class="accordion-content">
-                <p>
-                  <?php if (empty($arr['faq_answer'])) {
-                      echo "No answer for this question";
-                    } else {
-                      echo $arr['faq_answer'];
-                    }
-                    ?>
-                </p>
-              </div>
-            </div>
-            <?php
-            } ?>
-
-          </div>
-        </div>
-        <script>
-        const items = document.querySelectorAll('.accordion button');
-
-        function toggleAccordion() {
-          const itemToggle = this.getAttribute('aria-expanded');
-
-          for (i = 0; i < items.length; i++) {
-            items[i].setAttribute('aria-expanded', 'false');
-          }
-
-          if (itemToggle == 'false') {
-            this.setAttribute('aria-expanded', 'true');
-          }
-        }
-
-        items.forEach((item) => item.addEventListener('click', toggleAccordion));
-        </script>
-      </section>
-
-      <?php
+      include("./views/faq-view.php");
     }
     ?>
+      <!--
       <?php
+
     if (isset($_POST['search_student'])) {
     ?>
       <center>
@@ -762,7 +624,7 @@ require "./database/dbconnect.php";
       <?php
       }
     }
-    ?>
+    ?> -->
     </div>
   </div>
 </body>

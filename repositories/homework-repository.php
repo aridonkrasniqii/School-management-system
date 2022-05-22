@@ -15,10 +15,9 @@ class homework_repository
   }
   public function getAll()
   {
-    global $connection;
 
     $query = "select * from homework;";
-    $stmt = mysqli_stmt_init($connection);
+    $stmt = mysqli_stmt_init($this->connection);
 
     if (!mysqli_stmt_prepare($stmt, $query)) {
       throw new Exception();
@@ -40,14 +39,13 @@ class homework_repository
 
   public function fromFetchAssoc($row)
   {
-    return new homework($row['homework_id'], $row['homework_name'], $row['homework_subject'], $row['homework_description'], $row['homework_max_points'], $row['homework_created_at'], $row['homework_deadline'], $row['homework_created_by']);
+    return new homework($row['id'], $row['name'], $row['subject_id'], $row['description'], $row['max_points'], $row['created_at'], $row['deadline'], $row['created_by'], $row['semester']);
   }
 
   public function find($id)
   {
-    global $connection;
-    $query = "select * from homework where homework_id = ?";
-    $stmt = mysqli_stmt_init($connection);
+    $query = "select * from homework where id = ?";
+    $stmt = mysqli_stmt_init($this->connection);
 
     if (!mysqli_stmt_prepare($stmt, $query)) {
       throw new Exception();
@@ -68,9 +66,8 @@ class homework_repository
   public function findTeacher($homework_id, $teacher_id)
   {
     $query = "select * from homework, teacher
-            where teacher_id = homework_created_by and teacher_id = ? and homework_id = ?";
-    global $connection;
-    $stmt = mysqli_stmt_init($connection);
+            where teacher_id = created_by and teacher_id = ? and id = ?";
+    $stmt = mysqli_stmt_init($this->connection);
 
     if (!mysqli_stmt_prepare($stmt, $query)) {
       throw new Exception();
@@ -88,9 +85,9 @@ class homework_repository
   public function filterHomeworks($semester, $subject)
   {
 
-    $query = "select * from homework where homework_subject = ?";
-    global $connection;
-    $stmt = mysqli_stmt_init($connection);
+    $query = "select * from homework where subject_id = ?";
+
+    $stmt = mysqli_stmt_init($this->connection);
 
     if (!mysqli_stmt_prepare($stmt, $query)) {
       throw new Exception();
@@ -106,5 +103,59 @@ class homework_repository
       return $homeworks;
     }
     return null;
+  }
+
+  public function showSubjectHomework($subject_id)
+  {
+    $query = "select * from homework where subject_id = ? order by semester desc;";
+
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "i", $subject_id);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+      $homeworks = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $homeworks[] = $this->fromFetchAssoc($row);
+      }
+      return $homeworks;
+    }
+    return null;
+  }
+  public function findSpecificTeacher($teacher_id)
+  {
+    $query = "select * from teacher where teacher_id = ?";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "i", $teacher_id);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      if ($row = mysqli_fetch_assoc($result)) {
+        return $row['teacher_name'];
+      }
+    }
+  }
+  public function findSpecificSubject($subject_id){
+    $query = "select * from subject where id = ?";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "i", $subject_id);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      if ($row = mysqli_fetch_assoc($result)) {
+        return $row['name'];
+      }
+    }
   }
 }

@@ -16,7 +16,7 @@ class db
         $this-> server = "localhost";
         $this-> username = "root";
         $this-> password = "";
-        $this-> database = "aca";
+        $this-> database = "school";
 
         $conn = mysqli_connect($this->server, $this-> username, $this-> password, $this-> database);
         if (!$conn) {
