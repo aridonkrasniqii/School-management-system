@@ -1,12 +1,3 @@
-<?php
-session_start();
-
-  if(!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])){
-    header("Location: ./teacher_signup.php");
-    exit();
-  }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,14 +5,16 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STUDENT DASHBOARD</title>
-
-    <link rel="stylesheet" type="text/css" href="bootstrap-4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="bootstrap-4.4.1/css/bootstrap.min.css">
   	<script type="text/javascript" src="bootstrap-4.4.1/js/juqery_latest.js"></script>
-  	<script type="text/javascript" src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="bootstrap-4.4.1/js/bootstrap.min.js"></script> -->
     <style type="text/css">
 		body{
 			background-color: #dfe6e9;
+           
 		}
+        
 		#header{
 			height: 8%;
 			width: 99%;
@@ -39,11 +32,10 @@ session_start();
 		#left_side{
 			background-color: #b2bec3;
 			width: 15%;
-			top: 25%;
+			top: 12%;
 			position: fixed;
 			border: solid 2px black;
 			border-radius: 10px;
-			padding-bottom:10px;
 		}
 		#left_side:hover{
             -webkit-box-shadow: -2px 7px 21px -9px rgba(0,0,0,0.75);
@@ -76,7 +68,7 @@ session_start();
 		#btn{
 			border-radius: 5px;
 			background-color: #dfe6e9;
-			width:150px
+			width:150px,
 
 		}
 
@@ -115,11 +107,35 @@ session_start();
 				font-size:8px
 			}
 
+
 		}
+        .brand{
+            background: #cbb09c !important;
+        }
+        .brand-text{
+
+            color:#cbb09c !important;
+            font-size:10px !important;
+        }
+        form{
+            max-width: 460px;
+            /* margin: 20px auto; */
+            padding:20px;
+        }
+        .card{
+            width:100% !important;
+            padding:0px !important;
+        }
+        .container{
+            width:90% !important;
+        }
+        
+        
+
 	</style>
     <?php
         session_start();
-		$connection = mysqli_connect("localhost","root","");
+		$connection = mysqli_connect("localhost:3307","root","");
 		$db = mysqli_select_db($connection,"aca");
     ?>
 </head>
@@ -136,72 +152,77 @@ session_start();
             <table>
               <tr>
                     <td>
-                        <input type="submit" name="subjects" value="SUBJECTS" id="btn"><br><br>
+                        <input type="submit" name="subjects" value="SUBJECTS" id="btn">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="add_subjects" value="ADD SUBJECTS" id="btn">
                     </td>
                 </tr>
               <tr>
                     <td>
-                        <input type="submit" name="students" value="STUDENTS" id="btn"><br><br>
+                        <input type="submit" name="students" value="STUDENTS" id="btn">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="attachments_teacher" value="ATTACHMENTS" id="btn"><br><br>
+                        <input type="submit" name="search_student" value="SEARCH STUDENT" id="btn">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="attachments_teacher" value="ASSESSMENTS" id="btn"><br><br>
+                        <input type="submit" name="edit_student" value="EDIT STUDENT" id="btn">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="faq_teacher" value="FAQ." id="btn"><br><br>
+                        <input type="submit" name="add_student" value="ADD STUDENT" id="btn"><br>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="search_student" value="SEARCH STUDENT" id="btn"><br><br>
+                        <input type="submit" name="delete_student" value="DELETE STUDENT" id="btn">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="edit_student" value="EDIT STUDENT" id="btn"><br><br>
+                        <input type="submit" name="assessments_teacher" value="ASSESSMENTS" id="btn">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="add_student" value="ADD STUDENT" id="btn"><br><br>
+                        <input type="submit" name="faq_teacher" value="FAQ." id="btn">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="delete_student" value="DELETE STUDENT" id="btn"><br><br>
+                        <input type="submit" name="attachments_teacher" value="ATTACHMENTS" id="btn">
                     </td>
                 </tr>
 				<tr>
                     <td>
-                        <input type="submit" name="search_teacher" value="SEARCH TEACHER" id="btn"><br><br>
+                        <input type="submit" name="search_teacher" value="SEARCH TEACHER" id="btn">
                     </td>
                 </tr>
 				<tr>
                     <td>
-                        <input type="submit" name="search_result" value="SEARCH RESULT" id="btn"><br><br>
+                        <input type="submit" name="search_result" value="SEARCH RESULT" id="btn">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="edit_result" value="EDIT RESULT" id="btn"><br><br>
+                        <input type="submit" name="edit_result" value="EDIT RESULT" id="btn">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="add_result" value="ADD RESULT" id="btn"><br><br>
+                        <input type="submit" name="add_result" value="ADD RESULT" id="btn">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="delete_result" value="DELETE RESULT" id="btn"><br><br>
+                        <input type="submit" name="delete_result" value="DELETE RESULT" id="btn"><br>
                     </td>
                 </tr>
             </table>
@@ -213,14 +234,18 @@ session_start();
 
         <?php
         if (isset($_POST['subjects'])) {
+    
+            include('subjects/subject_info.php');
             ?>
-              // load subject with table
-
-
 
           <?php
         }
           ?>
+          <?php
+                if(isset($_POST['add_subjects'])):
+                   include('subjects/subject_add_form.php');
+                   endif;?>
+
 
       <?php
 				if(isset($_POST['search_student']))
@@ -228,251 +253,36 @@ session_start();
 					?>
 					<center>
 					<form action="" method="post">
-					&nbsp;&nbsp;<b>Enter Roll No:</b>&nbsp;&nbsp; <input type="text" name="roll_no">
-					<input type="submit" name="search_by_roll_no_for_search" value="Search">
+					&nbsp;&nbsp;<b>Enter ID:</b>&nbsp;&nbsp; <input type="text" name="student_id">
+					<input type="submit" name="search_student_id" value="Search">
 					</form><br><br>
 
 					</center>
 					<?php
 				}
         if(isset($_POST['students'])){
+
+            
           ?>
 
-            <center>
+            
                 <body>
     <div class="container">
-      <h2>Students</h2>
-      <table border = "1px" style = "border-collapse:collapse">
-        <thead>
-          <tr>
-            <th>id.</th>
-            <th>name</th>
-            <th>role</th>
-            <th>email</th>
-            <th>index</th>
-          <tr>
-        </thead>
-        <tbody>
-          <?php
-            require("database/db.php");
-              $query = "select * from student;";
-              $students = [];
-              $stmt = mysqli_stmt_init($connection);
-
-              if(!mysqli_stmt_prepare($stmt, $query)){
-                throw new Exception();
-              }else {
-                mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
-
-                while($row = mysqli_fetch_assoc($result)){
-                  $students[] = $row;
-                }
-              }
-            foreach($students as $s) {
-              echo "<tr>";
-              echo "<td>" .$s['student_id']."</td>";
-              echo "<td>" .$s['student_name']."</td>";
-              echo "<td>" .$s['student_role']."</td>";
-              echo "<td>" .$s['student_email']."</td>";
-              echo "<td>" .$s['student_index']."</td>";
-              // FIXME: to edit student
-              echo "<td> <a href = '#'>edit</a></td>";
-              echo "</tr>";
-            }
-
-          ?>
-
-
-          <style>
-            td{
-              padding:10px;
-            }
-          </style>
-            </center>
-
+            <?php 
+                include('students/student_info.php');
+            ?>
 
           <?php
         }
-				if(isset($_POST['search_by_roll_no_for_search']))
+				if(isset($_POST['search_student_id']))
 				{
-					$query = "select * from students where roll_no = '$_POST[roll_no]'";
-					$query_run = mysqli_query($connection,$query);
-					while ($row = mysqli_fetch_assoc($query_run))
-					{
-						?>
-						<center><h4><b><u>Student's details</u></b></h4><br><br>
-							<table>
-								<tr>
-									<td>
-										<b>Roll No: &nbsp; &nbsp;&nbsp;</b>
-									</td>
-									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['roll_no']?>" disabled>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<b>Name: &nbsp; &nbsp;&nbsp;</b>
-									</td>
-									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['name']?>" disabled>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<b>Father's Name: &nbsp; &nbsp;&nbsp;</b>
-									</td>
-									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['father_name']?>" disabled>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<b>Class: &nbsp; &nbsp;&nbsp;</b>
-									</td>
-									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['class']?>" disabled>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<b>Mobile: &nbsp; &nbsp;&nbsp;</b>
-									</td>
-									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['mobile']?>" disabled>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<b>Email: &nbsp; &nbsp;&nbsp;</b>
-									</td>
-									<td>
-										<input type="text"   id="btn1" value="<?php echo $row['email']?>" disabled>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<b>Password: &nbsp; &nbsp;&nbsp;</b>
-									</td>
-									<td>
-										<input type="password"   id="btn1" value="<?php echo $row['password']?>" disabled>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<b>Remark:&nbsp; &nbsp;&nbsp;</b>
-									</td>
-									<td>
-										<textarea rows="3" cols="40"   id="btn1" disabled><?php echo $row['remark']?></textarea>
-									</td>
-								</tr>
-							</table>
-						</center>
-						<?php
-
-					}
-				}
+                    include('students/student_search.php');
+                }
 			?>
             <?php
                 if(isset($_POST['edit_student']))
                 {
-                    ?>
-                    <center>
-                    <form action="" method="post">
-                    &nbsp;&nbsp;<b>Enter Roll No:</b>&nbsp;&nbsp; <input type="text" name="roll_no">
-                    <input type="submit" name="search_by_roll_no_for_edit" value="Search">
-                    </form><br><br>
-
-                    </center>
-                    <?php
-                }
-                if(isset($_POST['search_by_roll_no_for_edit']))
-                {
-                    $query = "select * from students where roll_no = $_POST[roll_no]";
-                    $query_run = mysqli_query($connection,$query);
-                    while ($row = mysqli_fetch_assoc($query_run))
-                    {
-                        ?>
-                        <form action="admin_edit_student.php" method="post">
-                        <center>
-                            <h4><b><u>Student's details</u></b></h4><br><br>
-                            <table>
-                            <tr>
-                                <td>
-                                    <b>Roll No:&nbsp; &nbsp;&nbsp;</b>
-                                </td>
-                                <td>
-                                    <input type="text" name="roll_no"   id="btn1" value="<?php echo $row['roll_no']?>">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Name:&nbsp; &nbsp;&nbsp;</b>
-                                </td>
-                                <td>
-                                    <input type="text" name="name"   id="btn1" value="<?php echo $row['name']?>">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Father's Name:&nbsp; &nbsp;&nbsp;</b>
-                                </td>
-                                <td>
-                                    <input type="text" name="father_name"   id="btn1" value="<?php echo $row['father_name']?>">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Class:&nbsp; &nbsp;&nbsp;</b>
-                                </td>
-                                <td>
-                                    <input type="text" name="class"   id="btn1" value="<?php echo $row['class']?>">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Mobile:&nbsp; &nbsp;&nbsp;</b>
-                                </td>
-                                <td>
-                                    <input type="text" name="mobile"   id="btn1" value="<?php echo $row['mobile']?>">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Email:&nbsp; &nbsp;&nbsp;</b>
-                                </td>
-                                <td>
-                                    <input type="text" name="email"   id="btn1" value="<?php echo $row['email']?>">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Password:&nbsp; &nbsp;&nbsp;</b>
-                                </td>
-                                <td>
-                                    <input type="password" name="password"   id="btn1" value="<?php echo $row['password']?>">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Remark:&nbsp; &nbsp;&nbsp;</b>
-                                </td>
-                                <td>
-                                    <textarea rows="3" cols="40"   id="btn1" name="remark"><?php echo $row['remark']?></textarea>
-                                </td>
-                            </tr><br>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <input type="submit" name="edit" value="Save">
-                                </td>
-                            </tr>
-                        </table>
-                        </center>
-                        </form>
-                        <?php
-                    }
+                    include('students/student_edit_search.php');
                 }
             ?>
             <?php
