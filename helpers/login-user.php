@@ -64,7 +64,8 @@ function loginProcessor($user, $pwd ,$role) {
             echo "test password true";
           // A session is a way to store information (in variables) to be used across multiple pages. Unlike a cookie, the information is not stored on the users computer.
           session_start();
-          $_SESSION['user_id'] = $row[$role."_index"];
+          $_SESSION['user_id'] = $row[$role."_id"];
+          $_SESSION['user_index'] = $row[$role."_index"];
           $_SESSION['user_username'] = $row[$role."_username"];
           $_SESSION['user_name'] = $row[$role."_fullname"];
           $_SESSION['user_email'] = $row[$role."_email"];

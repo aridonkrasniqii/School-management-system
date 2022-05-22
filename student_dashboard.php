@@ -372,67 +372,48 @@ require("./database/dbconnect.php");
           ?>
           <section class="faq">
             <div class="container">
-      <h2>Frequently Asked Questions</h2>
+              <h2>Frequently Asked Questions</h2>
             <div class="faq__input">
-              <form action="" class="faq__register">
-                <textarea name="register-faq" id="register-faq" placeholder="Type your question here"></textarea>
-                <input type="submit" value="Post">
+              <form action="./faq/my-faq.php" method = "post" class="faq__register">
+
+                <textarea name="faq_question" id="register-faq" placeholder="Type your question here"></textarea>
+                <input type ="hidden" name = "faq_answer" >
+                <input type="submit" name = "submit-faq" value="Post">
+
               </form>
+
+              <?php
+
+                include("./repositories/faq-repository.php");
+                $faqs = new faq_repositoy();
+                $faqArr = $faqs->getAll();
+
+              ?>
+
             </div>
-      <div class="accordion">
-        <div class="accordion-item">
-          <button id="accordion-button-1" aria-expanded="false">
-            <span class="accordion-title">Why is the moon sometimes out during the day?</span>
-            <span class="icon" aria-hidden="true"></span>
-          </button>
-          <div class="accordion-content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
-              Ut tortor pretium viverra suspendisse potenti.
-            </p>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button id="accordion-button-2" aria-expanded="false">
-            <span class="accordion-title">Why is the sky blue?</span>
-            <span class="icon" aria-hidden="true"></span>
-          </button>
-          <div class="accordion-content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
-              Ut tortor pretium viverra suspendisse potenti.
-            </p>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button id="accordion-button-3" aria-expanded="false">
-            <span class="accordion-title">Will we ever discover aliens?</span>
-            <span class="icon" aria-hidden="true"></span>
-          </button>
-          <div class="accordion-content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
-              Ut tortor pretium viverra suspendisse potenti.
-            </p>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button id="accordion-button-3" aria-expanded="false">
-            <span class="accordion-title">Will we ever discover aliens?</span>
-            <span class="icon" aria-hidden="true"></span>
-          </button>
-          <div class="accordion-content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
-              Ut tortor pretium viverra suspendisse potenti.
-            </p>
-          </div>
-        </div>
-      </div>
+              <div class="accordion">
+            <?php foreach($faqArr as $arr) {?>
+                <div class="accordion-item">
+                  <button id="accordion-button-1" aria-expanded="false">
+                    <span class="accordion-title">
+                      <?php echo $arr['faq_question'];?>
+                    </span>
+                    <span class="icon" aria-hidden="true"></span>
+                  </button>
+                  <div class="accordion-content">
+                    <p>
+                    <?php if(empty($arr['faq_answer'])) {
+                          echo "No answer for this question";
+                    }else {
+                      echo $arr['faq_answer'];
+                    }
+                      ?>
+                    </p>
+                  </div>
+                </div>
+            <?php } ?>
+
+              </div>
     </div>
     <script>
       const items = document.querySelectorAll('.accordion button');

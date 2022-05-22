@@ -288,6 +288,17 @@ create table parent_of(
 
 
 
+create table faq ( 
+	faq_id integer primary key auto_increment,
+    faq_question varchar(255),
+    faq_answer varchar(255) default null,
+    student_id integer,
+    teacher_id integer,
+    foreign key(student_id) references student(student_id),
+    foreign key(teacher_id) references teacher(teacher_id)
+);
+
+
 
 
 
