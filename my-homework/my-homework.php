@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -150,46 +150,46 @@ error_reporting(E_ALL);
       <div class="container">
         <div class="homework__heading">
           <!-- Emri i detyres -->
-          <h3>Homework Information</h3>
-          <br>
-          <h3>Name: <?php echo $homework->getName();?></h3>
+<h3>Homework Information</h3>
+<br>
+<h3>Name: <?php echo $homework->getName();?></h3>
 
-        </div>
-        <div class="homework__description">
-          <h4>Description:</h4>
-          <p><?php echo $homework->getDescription();?></p>
-        </div>
-        <div class="homework__maxpoints">
-          <!-- Piket maksimale -->
-          <h4>Max points: </h4>
-          <span><?php echo $homework->getMax_points();?></span>
-        </div>
-        <div class="homework__date">
-          <!-- Data e leshimit te detyres -->
-          Released date:
-          <span><?php echo $homework->getCreated_at();?></span>
-        </div>
-        <div class="homework__deadline">
-          <!-- deadline -->
-          <h4>Deadline: </h4>
-          <span><?php echo $homework->getDeadline();?></span>
-        </div>
-        <div class="homework__createdby">
-          <!-- Teacher -->
-          Created by teacher:
-          <span><?php
+</div>
+<div class="homework__description">
+  <h4>Description:</h4>
+  <p><?php echo $homework->getDescription();?></p>
+</div>
+<div class="homework__maxpoints">
+  <!-- Piket maksimale -->
+  <h4>Max points: </h4>
+  <span><?php echo $homework->getMax_points();?></span>
+</div>
+<div class="homework__date">
+  <!-- Data e leshimit te detyres -->
+  Released date:
+  <span><?php echo $homework->getCreated_at();?></span>
+</div>
+<div class="homework__deadline">
+  <!-- deadline -->
+  <h4>Deadline: </h4>
+  <span><?php echo $homework->getDeadline();?></span>
+</div>
+<div class="homework__createdby">
+  <!-- Teacher -->
+  Created by teacher:
+  <span><?php
          echo $h->findTeacher($homework->getId(),$homework->getCreated_by());
          ?></span>
-        </div>
-        <div class="homework__button">
-          <a href="../student_dashboard.php">Back</a>
-        </div>
-      </div>
-    </div>
-  </section>
+</div>
+<div class="homework__button">
+  <a href="../student_dashboard.php">Back</a>
+</div>
+</div>
+</div>
+</section>
 
 
-  <?php
+<?php
       }else {
           header("Location: ../student_dashboard.php");
           exit();
@@ -197,4 +197,4 @@ error_reporting(E_ALL);
    ?>
 </body>
 
-</html>
+</html> -->

@@ -17,13 +17,13 @@ if (isset($_POST['attach_homework'])) {
   $description = $_POST['description'];
 
   if (empty($subject_id) || empty($semester) || empty($homework_id) || empty($student_id) || empty($description)) {
-    header("location: ../student_dashboard.php?error=emptyfields");
+    header("location: ../views/uploaded-file.php?error=emptyfields");
     exit();
   }
   $model = new attached(1, $homework_id, $subject_id, $student_id, 0, $description);
   $repository = new attached_repository();
   if ($repository->create($model) == null) {
-    header("location: ../student_dashboard.php?error=failedtoattachhomework");
+    header("location: ../views/uploaded-file.php?error=failedtoattachhomework");
     exit();
   }
 

@@ -82,29 +82,6 @@ class homework_repository
     }
   }
 
-  public function filterHomeworks($semester, $subject)
-  {
-
-    $query = "select * from homework where subject_id = ?";
-
-    $stmt = mysqli_stmt_init($this->connection);
-
-    if (!mysqli_stmt_prepare($stmt, $query)) {
-      throw new Exception();
-    } else {
-      mysqli_stmt_bind_param($stmt, "i", $subject);
-      mysqli_stmt_execute($stmt);
-
-      $result = mysqli_stmt_get_result($stmt);
-      $homeworks = array();
-      while ($row = mysqli_fetch_assoc($result)) {
-        $homeworks[] = $this->fromFetchAssoc($row);
-      }
-      return $homeworks;
-    }
-    return null;
-  }
-
   public function showSubjectHomework($subject_id)
   {
     $query = "select * from homework where subject_id = ? order by semester desc;";
@@ -142,7 +119,8 @@ class homework_repository
       }
     }
   }
-  public function findSpecificSubject($subject_id){
+  public function findSpecificSubject($subject_id)
+  {
     $query = "select * from subject where id = ?";
     $stmt = mysqli_stmt_init($this->connection);
 
@@ -158,4 +136,28 @@ class homework_repository
       }
     }
   }
-}
+
+
+  public function filterHomework($subject_id, $semester)
+  {
+
+    $query = "select * from homework where subject_id = ? and semester = ?;";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "ii", $subject_id, $semester);
+      mysqli_stmt_execute($stmt);
+
+      $result = mysqli_stmt_get_result($stmt);
+
+      $homeworks = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $homeworks[] = $this->fromFetchAssoc($row);
+      }
+      return $homeworks;
+    }
+    return null;
+  }
+};

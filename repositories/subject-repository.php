@@ -70,6 +70,9 @@ class subject_repository
 }
 
 
+
+
+
 $connection = mysqli_connect("localhost", "root", "", "school");
 
 function getAll()
