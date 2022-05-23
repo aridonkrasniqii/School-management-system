@@ -3,7 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-class attached_homework{
+class attached_homework
+{
   private $id;
   private $homework;
   private $subject;
@@ -13,7 +14,7 @@ class attached_homework{
   private $date;
 
 
-  public function __construct($id, $homework, $subject, $student, $semester , $points, $date)
+  public function __construct($id, $homework, $subject, $student, $semester, $points, $date)
   {
     $this->id = $id;
     $this->homework = $homework;
@@ -24,27 +25,33 @@ class attached_homework{
     $this->date = $date;
   }
 
-  public function getId() {
+  public function getId()
+  {
     return $this->id;
   }
-  public function getHomework(){
+  public function getHomework()
+  {
     return $this->homework;
   }
 
-  public function getSubject() {
+  public function getSubject()
+  {
     return $this->subject;
   }
-  public function getPoints(){
+  public function getPoints()
+  {
     return $this->points;
   }
-  public function getDate() {
+  public function getDate()
+  {
     return $this->date;
   }
-  public function getSemester(){
+  public function getSemester()
+  {
     return $this->semester;
   }
-  public function getStudent() {
+  public function getStudent()
+  {
     return $this->student;
   }
-
 }
