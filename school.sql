@@ -29,9 +29,9 @@ drop table if exists teacher;
 		  teacher_password varchar(255) not null,
 		  teacher_salt varchar(20) default null,
 		  teacher_index varchar(100)
-		);	
-        
-        
+		);
+
+
 
 insert into teacher() values(1, "Aridon", "Teacher","aridonk16","aridonk16@outlook.com","aridon123","123123123","100000");
 
@@ -46,7 +46,7 @@ create table subject(
 );
 
 
-insert into subject(name,credits,created_at , created_by , semester) 
+insert into subject(name,credits,created_at , created_by , semester)
 values("Math" , 5, now() , 1 , 1),
 	("Programming" , 5, now() , 1 , 1),
 	("Internet Security" , 5, now() , 1 , 1),
@@ -87,7 +87,7 @@ create table exam_result(
   grade integer,
   date datetime default now(),
   foreign key (student_id) references student(student_id),
-  foreign key(exam) references exam_result(id) 
+  foreign key(exam) references exam_result(id)
 );
 
 
@@ -103,7 +103,7 @@ create table homework(
   semester integer,
   foreign key(created_by) references teacher(teacher_id),
   foreign key(subject_id) references subject(id)
-);	
+);
 
 
 
@@ -127,14 +127,14 @@ create table homework_result(
   foreign key(homework_id) references homework(id)
 );
 
-    
-insert into homework_result(homework_id,student_id,points, delivered_on_time, date) 
+
+insert into homework_result(homework_id,student_id,points, delivered_on_time, date)
 values( 1, 1,1 ,90,"yes", now()),( 2, 1,1 ,90,"yes", now()), ( 2, 1,1 ,80,"yes", now());
 
 select * from homework_result;
 
 drop table attached_homework;
-        
+
 create table attached_homework(
     id integer primary key AUTO_INCREMENT,
     homework_id integer ,
@@ -142,15 +142,16 @@ create table attached_homework(
     student_id integer,
     attached_date datetime default now(),
     description varchar(255),
+    filename varchar(255),
     foreign key(homework_id) references homework(id),
     foreign key(student_id) references student(student_id),
     foreign key(subject_id) references subject(id)
 );
 
 
-create table faq ( 
-	faq_id integer primary key auto_increment, 
-    faq_question varchar(255), 
+create table faq (
+	faq_id integer primary key auto_increment,
+    faq_question varchar(255),
     faq_answer varchar(255) default null
 );
 

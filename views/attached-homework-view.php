@@ -18,6 +18,7 @@ $attached_homeworks = $repository->getStudentHomeworks($student_id);
       <th>Attached Date</th>
       <th>Description</th>
       <th>Semester</th>
+      <th>FileName</th>
     </tr>
     <?php foreach ($attached_homeworks as $h) { ?>
     <tr>
@@ -27,6 +28,7 @@ $attached_homeworks = $repository->getStudentHomeworks($student_id);
       <td><?php echo $h->getAttached_date(); ?></td>
       <td><?php echo $h->getDescription(); ?></td>
       <td><?php echo $repository->findSemester($h->getHomework_id()); ?></td>
+      <td><a href="./uploads/files.php?filename=<?php echo $h->getFilename(); ?>">Check uploaded file ...</a></td>
     </tr>
 
     <?php } ?>

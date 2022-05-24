@@ -187,6 +187,12 @@ error_reporting(E_ALL);
               if (isset($_GET['error'])) {
                 if ($_GET['error'] == 'success') {
                   echo "<p id = 's'>Successfully changed</p>";
+                } elseif ($_GET['error'] == 'usernametaken') {
+                  echo "<p id = 'f' >Username is taken</p>";
+                } elseif ($_GET['error'] == 'indextaken') {
+                  echo "<p id = 'f' >Index is taken</p>";
+                } elseif ($_GET['error'] == 'indextaken') {
+                  echo "<p id = 'f' >Username taken</p>";
                 } else {
                   echo "<p id = 'f' >Failed to change profile settings </p>";
                 }
@@ -210,8 +216,6 @@ error_reporting(E_ALL);
       </div>
     </div>
   </section>
-
-
 
 
 

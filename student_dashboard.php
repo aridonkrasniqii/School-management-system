@@ -160,10 +160,6 @@ require "./database/dbconnect.php";
     outline: none;
   }
   </style>
-  <?php
-  $connection = mysqli_connect("localhost", "root", "");
-  $db = mysqli_select_db($connection, "aca");
-  ?>
 </head>
 
 <body>

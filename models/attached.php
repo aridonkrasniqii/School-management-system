@@ -14,8 +14,8 @@ class attached
   protected $student_id;
   protected $attached_date;
   protected $description;
-
-  public function __construct($id, $homework_id, $subject_id, $student_id, $attached_date, $description)
+  protected $filename;
+  public function __construct($id, $homework_id, $subject_id, $student_id, $attached_date, $description, $filename)
   {
     $this->id = $id;
     $this->homework_id = $homework_id;
@@ -23,6 +23,7 @@ class attached
     $this->student_id = $student_id;
     $this->attached_date = $attached_date;
     $this->description = $description;
+    $this->filename = $filename;
   }
 
   /**
@@ -141,6 +142,26 @@ class attached
   public function setDescription($description)
   {
     $this->description = $description;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of filename
+   */
+  public function getFilename()
+  {
+    return $this->filename;
+  }
+
+  /**
+   * Set the value of filename
+   *
+   * @return  self
+   */
+  public function setFilename($filename)
+  {
+    $this->filename = $filename;
 
     return $this;
   }

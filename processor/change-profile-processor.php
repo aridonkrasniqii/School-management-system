@@ -28,8 +28,21 @@ if (isset($_POST['save-updates'])) {
     header("Location: ../views/profile-view.php?error=error");
     exit();
   }
-
   $repository = new student_repository();
+
+  // check if user exists
+  if ($repository->userExists($username)) {
+    header("Location: ../views/profile-view.php?error=usernametaken");
+    exit();
+  }
+
+  // check if index is used
+  if ($repository->indexExists($index)) {
+    header("Location: ../views/profile-view.php?error=indextaken");
+    exit();
+  }
+
+
   $stu = new student($id, $name, $role, $username, $email, $password, $salt, $index);
 
   if ($repository->update($stu) != null) {

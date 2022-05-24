@@ -88,6 +88,9 @@
           if ($_GET['error'] == "wrongpwd") {
             echo "<p id = 'f'>Wrong password</p>";
           }
+          if ($_GET['error'] == 'invalidusername') {
+            echo "<p id = 'f' >Invalid username </p>";
+          }
         }
         ?>
         <input type="submit" name="login-student" value="login">

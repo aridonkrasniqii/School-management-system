@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STUDENT DASHBOARD</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/student.css">
   <!-- <link rel="stylesheet" type="text/css" href="bootstrap-4.4.1/css/bootstrap.min.css">
   	<script type="text/javascript" src="bootstrap-4.4.1/js/juqery_latest.js"></script>
   	<script type="text/javascript" src="bootstrap-4.4.1/js/bootstrap.min.js"></script> -->
@@ -48,12 +49,12 @@
   }
 
   #right_side {
-    height: 75%;
+    height: auto;
     width: 80%;
     background-color: #b2bec3;
     position: fixed;
     left: 17%;
-    top: 21%;
+    top: 10%;
     color: red;
     border: solid 2px black;
     border-radius: 10px;
@@ -160,9 +161,7 @@
       Name:<?php echo $_SESSION['user_name']; ?>&nbsp; &nbsp;<a href="logout.php">logout</a>
     </center>
   </div>
-  <span id="top_span">
-    <marquee>if there is any problem plz contact to management group</marquee>
-  </span>
+
   <div id="left_side"><br>
     <form action="" method="post">
       <center>
@@ -299,9 +298,20 @@
             include('students/student_edit_search.php');
           }
           ?>
+
+          <?php if (isset($_POST['faq_teacher'])) {
+            include("./teacher/views/faq-view.php");
+          } ?>
+          <?php
+          if (isset($_POST['attachments_teacher'])) {
+            include("./teacher/views/attached-teacher-view.php");
+          }
+          ?>
           <?php
           if (isset($_POST['add_student'])) {
           ?>
+
+
           <center>
             <h4>Fill the given details</h4>
           </center>
@@ -794,6 +804,8 @@
           ?>
         </div>
     </div>
+
+
 </body>
 
 </html>

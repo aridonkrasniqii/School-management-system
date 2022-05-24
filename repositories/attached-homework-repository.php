@@ -2,61 +2,16 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-// $connection = mysqli_connect("localhost", "root", "", "aca");
-
-// function getAttached($studentId)
-// {
-
-//   global $connection;
-
-//   $query = "select * from attached_homework where student_id = ?";
-//   $stmt = mysqli_stmt_init($connection);
-
-//   if (!mysqli_stmt_prepare($stmt, $query)) {
-//     throw new Exception();
-//     exit();
-//   } else {
-//     mysqli_stmt_bind_param($stmt, "i", $studentId);
-
-//     mysqli_stmt_execute($stmt);
-
-//     $result = mysqli_stmt_get_result($stmt);
 
 
-//     $homeworks = array();
-
-//     while ($row = mysqli_fetch_assoc($result)) {
-//       $homeworks[] = fromFetchAssoc($row);
-//     }
-//     return $homeworks;
-//   }
-//   return null;
-// }
-
-
-
-// function fromFetchAssoc($row)
-// {
-//   return new attached_homework(
-//     $row['attached_id'],
-//     $row['homework_id'],
-//     $row['subject_id'],
-//     $row['student_id'],
-//     $row['semester'],
-//     $row['homework_points'],
-//     $row['attached_date']
-//   );
-// }
 
 class attached_repository
 {
 
-  private $dbconn;
   private $connection;
   public function __construct()
   {
-    $this->dbconn = new db();
-    $this->connection = $this->dbconn->conn();
+    $this->connection = mysqli_connect("localhost", "root", "", "school");
   }
 
   public function find($id)
@@ -73,13 +28,13 @@ class attached_repository
       $result = mysqli_stmt_get_result($stmt);
 
       if ($row = mysqli_fetch_assoc($result)) {
-        return new attached($row['id'], $row['homework_id'], $row['subject_id'], $row['student_id'], $row['attached_date'], $row['description']);
+        return new attached($row['id'], $row['homework_id'], $row['subject_id'], $row['student_id'], $row['attached_date'], $row['description'], $row['filename']);
       }
     }
   }
   public function create($model)
   {
-    $query = "insert into attached_homework(homework_id,subject_id,student_id,description) values(?,?,?,?)";
+    $query = "insert into attached_homework(homework_id,subject_id,student_id,description,filename) values(?,?,?,?,?)";
     $stmt = mysqli_stmt_init($this->connection);
 
     if (!mysqli_stmt_prepare($stmt, $query)) {
@@ -90,8 +45,8 @@ class attached_repository
       $student_id = $model->getStudent_id();
       $subject_id = $model->getSubject_id();
       $description = $model->getDescription();
-
-      mysqli_stmt_bind_param($stmt, "iiis", $homework_id, $subject_id, $student_id, $description);
+      $filename = $model->getFilename();
+      mysqli_stmt_bind_param($stmt, "iiiss", $homework_id, $subject_id, $student_id, $description, $filename);
       if (mysqli_stmt_execute($stmt)) {
         return $model;
       }
@@ -101,6 +56,22 @@ class attached_repository
 
   public function getAll()
   {
+
+    $query = "select * from attached_homework ;";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      $attached = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $attached[] = $this->fromFetchAssoc($row);
+      }
+      return $attached;
+    }
   }
   public function getStudentHomeworks($student_id)
   {
@@ -123,7 +94,7 @@ class attached_repository
   }
   public function fromFetchAssoc($row)
   {
-    return new attached($row['id'], $row['homework_id'], $row['subject_id'], $row['student_id'], $row['attached_date'], $row['description']);
+    return new attached($row['id'], $row['homework_id'], $row['subject_id'], $row['student_id'], $row['attached_date'], $row['description'], $row['filename']);
   }
 
 

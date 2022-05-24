@@ -5,13 +5,11 @@ error_reporting(E_ALL);
 
 class homework_repository
 {
-  private $db;
-  private $connection;
 
+  private $connection;
   public function __construct()
   {
-    $this->db = new db();
-    $this->connection = $this->db->conn();
+    $this->connection = mysqli_connect("localhost", "root", "", "school");
   }
   public function getAll()
   {

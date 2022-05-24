@@ -15,17 +15,14 @@ if (isset($_POST['attach_homework'])) {
   $homework_id = $_POST['homework'];
   $student_id = $_SESSION['user_id'];
   $description = $_POST['description'];
+  $filename = $_POST['filename'];
+
 
   if (empty($subject_id) || empty($semester) || empty($homework_id) || empty($student_id) || empty($description)) {
     header("location: ../views/uploaded-file.php?error=emptyfields");
     exit();
   }
-  $model = new attached(1, $homework_id, $subject_id, $student_id, 0, $description);
-  $repository = new attached_repository();
-  if ($repository->create($model) == null) {
-    header("location: ../views/uploaded-file.php?error=failedtoattachhomework");
-    exit();
-  }
+
 
 
   $file = $_FILES['file'];
@@ -36,7 +33,7 @@ if (isset($_POST['attach_homework'])) {
   $fileExctension = explode(".", $fileName);
   $finalExc = strtolower(end($fileExctension));
 
-  $allowedFiles = array("jpg", "jpeg", "png", "pdf");
+  $allowedFiles = array("pdf");
 
   if (!in_array($finalExc, $allowedFiles)) {
     header("Location: ../views/uploaded-file.php?error=notsupported");
@@ -50,11 +47,18 @@ if (isset($_POST['attach_homework'])) {
     header("Location: ../views/uploaded-file.php?error=bigfilesize");
     exit();
   }
-  $storedFileName = $fileName . "." . $finalExc;
-  $fileDestination = "../uploads/" . $storedFileName;
+  $uniqueName = $filename . "." . $finalExc;
+
+  $fileDestination = "../uploads/" . $uniqueName;
 
   if (!move_uploaded_file($tmpFileName, $fileDestination)) {
     header("Location: ../views/uploaded-file.php?error=uploaderror");
+    exit();
+  }
+  $model = new attached(1, $homework_id, $subject_id, $student_id, 0, $description, $uniqueName);
+  $repository = new attached_repository();
+  if ($repository->create($model) == null) {
+    header("location: ../views/uploaded-file.php?error=failedtoattachhomework");
     exit();
   } else {
     header("Location: ../views/uploaded-file.php?error=success");

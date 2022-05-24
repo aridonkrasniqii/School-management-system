@@ -13,7 +13,7 @@ class faq_repository
   public function getAll()
   {
 
-    require("./database/db.php");
+    $connection = mysqli_connect("localhost", "root", "", "school");
 
     $query = "select * from faq";
     $stmt = mysqli_stmt_init($connection);
@@ -36,7 +36,7 @@ class faq_repository
 
   public function create($question, $answer)
   {
-    require("../database/db.php");
+    $connection = mysqli_connect("localhost", "root", "", "school");
     $query = "insert into faq(faq_question , faq_answer) values( ? , ? )";
     $stmt = mysqli_stmt_init($connection);
 
@@ -45,8 +45,22 @@ class faq_repository
     } else {
       mysqli_stmt_bind_param($stmt, "ss", $question, $answer);
       mysqli_stmt_execute($stmt);
-      header("Location: ../student_dashboard.php");
-      exit();
+    }
+  }
+
+  public function updateAnswer($faq_id, $faq_answer)
+  {
+
+    require("../../database/db.php");
+    $query = "update faq set faq_answer = ? where faq_id = ?";
+    $stmt = mysqli_stmt_init($connection);
+
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "si", $faq_answer, $faq_id);
+      mysqli_stmt_execute($stmt);
     }
   }
 }
