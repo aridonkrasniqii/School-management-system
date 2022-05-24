@@ -1,14 +1,9 @@
 <?php
 
 
-$server = "localhost";
-$username = "root";
-$password = "";
-$database = "aca";
-
-$connection = mysqli_connect($server, $username, $password, $database);
+$connection = mysqli_connect("localhost", "root", "", "school");
 
 
-if(!$connection){
+if (!$connection) {
   die("Unable to connect to database");
 }
