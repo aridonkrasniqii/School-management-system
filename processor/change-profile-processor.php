@@ -20,11 +20,12 @@ if (isset($_POST['save-updates'])) {
 
 
   if (empty($name) || empty($username) || empty($email) || empty($password) || empty($repeat_password) || empty($role) || empty($salt)) {
-    header("Location: ./profile.php?error=error");
+    header("Location: ../views/profile-view.php?error=error");
     exit();
   }
+
   if ($password != $repeat_password) {
-    header("Location: ./profile.php?error=error");
+    header("Location: ../views/profile-view.php?error=error");
     exit();
   }
 
@@ -32,13 +33,13 @@ if (isset($_POST['save-updates'])) {
   $stu = new student($id, $name, $role, $username, $email, $password, $salt, $index);
 
   if ($repository->update($stu) != null) {
-    header("Location: ./profile.php?error=success");
+    header("Location: ../views/profile-view.php?error=success");
     exit();
   } else {
-    header("Location: ./profile.php?error=error");
+    header("Location: ../views/profile-view.php?error=error");
     exit();
   }
 } else {
-  header("Location: ./profile.php");
+  header("Location: ../views/profile-view.php");
   exit();
 }

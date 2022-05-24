@@ -178,7 +178,7 @@ require "./database/dbconnect.php";
     </div>
     <ul>
       <li><a href="#">Home</a></li>
-      <li><a href="./profile/profile.php">Profile</a></li>
+      <li><a href="./views/profile-view.php">Profile</a></li>
       <li><a href="logout.php">Logout</a></li>
     </ul>
     <br>

@@ -55,9 +55,9 @@
                 <span><?php echo "ID: " . $homework->getId(); ?></span>
               </div>
               <div class="box__title">
-                <h4><a href="./my-homework/my-homework.php?id=<?php echo $homework->getId(); ?>"><?php
-                                                                                                    echo $homework->getName();
-                                                                                                    ?></a></h4>
+                <h4><a href="./views/my-homework.php?id=<?php echo $homework->getId(); ?>"><?php
+                                                                                              echo $homework->getName();
+                                                                                              ?></a></h4>
               </div>
             </div>
           </div>

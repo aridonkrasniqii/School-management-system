@@ -12,42 +12,42 @@
   <script type="text/javascript" src="bootstrap-4.4.1/js/juqery_latest.js"></script>
   <script type="text/javascript" src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
   <style type="text/css">
-    #login {
-      height: 350px;
-      width: 250px;
-      border: 2px solid black;
-      border-radius: 5px;
-      margin: 220px auto 0px auto;
-      background-color: #b2bec3;
+  #login {
+    height: 350px;
+    width: 250px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 220px auto 0px auto;
+    background-color: #b2bec3;
 
-    }
+  }
 
-    #login:hover {
-      -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-      box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-    }
+  #login:hover {
+    -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+  }
 
-    #heading {
-      padding-top: 50px;
-    }
+  #heading {
+    padding-top: 50px;
+  }
 
-    body {
-      background-color: #dfe6e9;
+  body {
+    background-color: #dfe6e9;
 
-    }
+  }
 
-    #btn {
-      background-color: #dfe6e9;
-      border-radius: 5px;
-      width: 150px
-    }
+  #btn {
+    background-color: #dfe6e9;
+    border-radius: 5px;
+    width: 150px
+  }
 
-    #btn:hover {
-      -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-      box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-    }
+  #btn:hover {
+    -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+  }
   </style>
 </head>
 
@@ -63,16 +63,16 @@
   </header>
 
   <style>
-    .header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 10px;
-    }
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
 
-    a {
-      padding: 10px;
-    }
+  a {
+    padding: 10px;
+  }
   </style>
 
   <center><br><br>
@@ -94,9 +94,9 @@
       </form><br>
 
       <style>
-        #f {
-          color: red;
-        }
+      #f {
+        color: red;
+      }
       </style>
     </div>
   </center>

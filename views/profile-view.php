@@ -1,17 +1,18 @@
 <?php
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 ?>
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STUDENT DASHBOARD</title>
+  <title>PROFILE DASHBOARD</title>
 
   <link rel="stylesheet" type="text/css" href="bootstrap-4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/student.css">
@@ -130,74 +131,90 @@ error_reporting(E_ALL);
 </head>
 
 <body>
+  <section class="profile">
 
-  <?php
 
+    <?php
 
-  if (isset($_GET['id'])) {
-    include("../repositories/homework-repository.php");
-    include("../models/homework.php");
-    require("../database/dbconnect.php");
-    $id = $_GET['id'];
-    $h = new homework_repository();
-    $homework = $h->find($id);
-    if ($homework == null) {
-      header("Location: ../student_dashboard.php");
-      exit();
-    };
+    ?>
+    <div class="container">
 
-  ?>
+      <?php
+      include "../repositories/student-repository.php";
+      include "../models/student.php";
+      $userId = $_SESSION['user_id'];
+      $repository = new student_repository();
+      $userLoggedIn = $repository->find($userId);
 
-  <section class="homework">
-    <div class="homework__wrapper">
-      <div class="container">
-        <div class="homework__heading">
-          <!-- Emri i detyres -->
-          <h3>Homework Information</h3>
-          <br>
-          <h3>Name: <?php echo $homework->getName(); ?></h3>
+      ?>
+      <div class="profile__wrapper">
+        <div class="profile__title">
+          <h3>Profile Account</h3>
+        </div>
+        <div class="profile__inputs">
+          <form action="../processor/change-profile-processor.php" method="post">
+            <div class="profile__inputs--name">
+              <label for="name">Your name</label>
+              <input type="text" value="<?php echo $userLoggedIn->getStudent_name(); ?>" name="name"
+                placeholder="Full Name">
+            </div>
+            <div class="profile__inputs--username">
+              <label for="name">Your username</label>
+              <input type="text" value="<?php echo $userLoggedIn->getStudent_username(); ?>" name="username"
+                placeholder="Username">
+            </div>
+            <div class="profile__inputs--email">
+              <label for="name">Your email address</label>
+              <input type="text" value="<?php echo $userLoggedIn->getStudent_email(); ?>" name="email"
+                placeholder="Email">
+            </div>
+            <div class="profile__inputs--password">
+              <label for="name">Password</label>
+              <input type="password" name="password" placeholder="Password">
+            </div>
+            <div class="profile__inputs--password">
+              <label for="name">Confirm password</label>
+              <input type="password" name="repeat_password" placeholder="Repeat your password">
+            </div>
+            <div class="profile__inputs--index">
+              <label for="name">Your index</label>
+              <input type="text" value="<?php echo $userLoggedIn->getStudent_index(); ?>" name="index"
+                placeholder="Your index">
+            </div>
+            <button type="submit" name="save-updates">Save updates</button>
+            <h4>
+              <?php
+              if (isset($_GET['error'])) {
+                if ($_GET['error'] == 'success') {
+                  echo "<p id = 's'>Successfully changed</p>";
+                } else {
+                  echo "<p id = 'f' >Failed to change profile settings </p>";
+                }
+              }
+              ?>
+              <style>
+              #f {
+                color: red;
+              }
 
+              #s {
+                color: green;
+              }
+              </style>
+            </h4>
+          </form>
         </div>
-        <div class="homework__description">
-          <h4>Description:</h4>
-          <p><?php echo $homework->getDescription(); ?></p>
-        </div>
-        <div class="homework__maxpoints">
-          <!-- Piket maksimale -->
-          <h4>Max points: </h4>
-          <span><?php echo $homework->getMax_points(); ?></span>
-        </div>
-        <div class="homework__date">
-          <!-- Data e leshimit te detyres -->
-          Released date:
-          <span><?php echo $homework->getCreated_at(); ?></span>
-        </div>
-        <div class="homework__deadline">
-          <!-- deadline -->
-          <h4>Deadline: </h4>
-          <span><?php echo $homework->getDeadline(); ?></span>
-        </div>
-        <div class="homework__createdby">
-          <!-- Teacher -->
-          Created by teacher:
-          <span><?php
-                  echo $h->findTeacher($homework->getId(), $homework->getCreated_by());
-                  ?></span>
-        </div>
-        <div class="homework__button">
-          <a href="../student_dashboard.php">Back</a>
+        <div class="profile__button">
+          <a href="../student_dashboard.php">Go Back</a>
         </div>
       </div>
     </div>
   </section>
 
 
-  <?php
-  } else {
-    header("Location: ../student_dashboard.php");
-    exit();
-  }
-  ?>
+
+
+
 </body>
 
 </html>

@@ -10,7 +10,7 @@ class student_repository
   {
     $query = "select * from student where student_id = ?;";
 
-    $connection = mysqli_connect("localhost", "root", "", "aca");
+    $connection = mysqli_connect("localhost", "root", "", "school");
 
     $stmt = mysqli_stmt_init($connection);
 
@@ -33,7 +33,7 @@ class student_repository
   {
 
     $query = "update student set student_name = ? , student_role = ? , student_username = ? ,student_email = ? , student_password = ? , student_salt = ? , student_index = ? where student_id = ?";
-    $connection = mysqli_connect("localhost", "root", "", "aca");
+    $connection = mysqli_connect("localhost", "root", "", "school");
     $stmt = mysqli_stmt_init($connection);
 
     if (!mysqli_stmt_prepare($stmt, $query)) {
