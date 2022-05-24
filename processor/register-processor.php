@@ -15,18 +15,18 @@ class register_processor
     require("../database/db.php");
 
     if (empty($index) || empty($fullname) || empty($role) || empty($username) || empty($email) || empty($password) || empty($passwordRepeat)) {
-      header("Location: ../signup/" . $role . "_signup.php?error=emptyfield");
+      header("Location: ../views/" . $role . "-signup-views.php?error=emptyfield");
       exit();
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      header("Location: ../signup/" . $role . "_signup.php?error=invalidemail");
+      header("Location: ../views/" . $role . "-signup-view.php?error=invalidemail");
       // we send back the username becase it is supposed to be correct
       exit();
     } elseif (!preg_match('/^[a-zA-Z0-9]/', $password)) {
-      header("Location: ../signup/" . $role . "_signup.php?error=invaliduid&mailTEDT=" . $email . "=password=" . $password);
+      header("Location: ../views/" . $role . "-signup-view.php?error=invaliduid&mailTEDT=" . $email . "=password=" . $password);
       // we send back the email
       exit();
     } elseif ($password != $passwordRepeat) {
-      header("Location: ../signup/" . $role . "_signup.php?error=passworddoesnotmatch");
+      header("Location: ../views/" . $role . "-signup-view.php?error=passworddoesnotmatch");
       exit();
     }
     // if the user try to create a username that already exists
@@ -35,7 +35,7 @@ class register_processor
     $stmt = mysqli_stmt_init($connection);
     // always check for errors in php code
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-      header("Location: ../signup/" . $role . "_signup.php?error=sqlerror");
+      header("Location: ../views/" . $role . "-signup-view.php?error=sqlerror");
       exit();
     } else {
       // if ss $username, $password
@@ -48,14 +48,14 @@ class register_processor
 
       if ($resultCheck > 0) {
         // return user to the signed up page with error message
-        header("Location: ../signup/" . $role . "_signup.php?error=usernametaken");
+        header("Location: ../views/" . $role . "-signup-view.php?error=usernametaken");
         exit();
       } else {
         // insted of selecting we are gonna insert into the database
         $sql = "INSERT INTO " . $role . "(" . $role . "_name," . $role . "_role, " . $role . "_username," . $role . "_email," . $role . "_password," . $role . "_salt," . $role . "_index) values(?,?,?,?,?,?,?);";
         $stmt = mysqli_stmt_init($connection);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-          header("Location: ../signup/" . $role . "_signup.php?error=sqlerror");
+          header("Location: ../views/" . $role . "-signup-view.php?error=sqlerror");
           exit();
         } else {
 
@@ -66,7 +66,7 @@ class register_processor
 
           mysqli_stmt_bind_param($stmt, "sssssss", $fullname, $role, $username, $email, $hashpwd, $salt, $index);
           mysqli_stmt_execute($stmt);
-          header("Location: ../signup/" . $role . "_signup.php?error=success");
+          header("Location: ../views/" . $role . "-signup-view.php?error=success");
           exit();
         }
       }

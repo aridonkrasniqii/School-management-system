@@ -12,42 +12,42 @@
   <script type="text/javascript" src="bootstrap-4.4.1/js/juqery_latest.js"></script>
   <script type="text/javascript" src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
   <style type="text/css">
-  #container {
-    width: 300px;
-    border: 2px solid black;
-    border-radius: 30px;
-    background-color: #b2bec3;
-    -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-    box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-  }
+    #container {
+      width: 300px;
+      border: 2px solid black;
+      border-radius: 30px;
+      background-color: #b2bec3;
+      -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+      box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+    }
 
-  #heading {
-    width: 300px;
-    margin: 50px auto 0px auto;
-    border: 2px solid black;
-    border-radius: 5px;
-    background-color: #b2bec3;
-    -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-    box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-  }
+    #heading {
+      width: 300px;
+      margin: 50px auto 0px auto;
+      border: 2px solid black;
+      border-radius: 5px;
+      background-color: #b2bec3;
+      -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+      box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+    }
 
-  body {
-    background-color: #dfe6e9;
-  }
+    body {
+      background-color: #dfe6e9;
+    }
 
-  #btn {
-    background-color: #dfe6e9;
-    border-radius: 5px;
-    width: 120px
-  }
+    #btn {
+      background-color: #dfe6e9;
+      border-radius: 5px;
+      width: 120px
+    }
 
-  #btn:hover {
-    -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-    box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
-  }
+    #btn:hover {
+      -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+      box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+    }
   </style>
 
 </head>
@@ -63,16 +63,16 @@
 </header>
 
 <style>
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
 
-a {
-  padding: 10px;
-}
+  a {
+    padding: 10px;
+  }
 </style>
 
 <body>
@@ -106,15 +106,15 @@ a {
         ?>
       </div>
       <style>
-      #p {
-        color: red;
-        font-family: 'Courier New', Courier, monospace;
-      }
+        #p {
+          color: red;
+          font-family: 'Courier New', Courier, monospace;
+        }
 
-      #s {
-        color: green;
-        font-family: 'Courier New', Courier, monospace;
-      }
+        #s {
+          color: green;
+          font-family: 'Courier New', Courier, monospace;
+        }
       </style>
 
       <div id="container">
@@ -143,10 +143,10 @@ a {
 
 
 <style>
-#form {
-  padding: 20px;
-  margin: 20px;
-}
+  #form {
+    padding: 20px;
+    margin: 20px;
+  }
 </style>
 <?php require("../header&footer/footer.php"); ?>
 
