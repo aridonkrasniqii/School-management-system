@@ -1,6 +1,6 @@
 <?php $student_id = $_POST['student_id'];
-$connection = mysqli_connect("localhost", "root", "");
-$db = mysqli_select_db($connection, "aca");
+$connection = mysqli_connect("localhost:3307", "root", "");
+$db = mysqli_select_db($connection, "school");
 $query = "SELECT * FROM student WHERE student_id = {$student_id};";
 $query_run = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($query_run)) {
@@ -21,14 +21,6 @@ while ($row = mysqli_fetch_assoc($query_run)) {
     </td>
     <td>
       <input type="text" id="btn1" value="<?php echo $row['student_name'] ?>" disabled>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <b>Father's Name: &nbsp; &nbsp;&nbsp;</b>
-    </td>
-    <td>
-      <input type="text" id="btn1" value="<?php echo $row['student_parent'] ?>" disabled>
     </td>
   </tr>
   <tr>

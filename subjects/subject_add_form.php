@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$title = $credits = $type = $lectured_by = "";
+$name = $credits = $created_by = $lectured_by = $semester = "";
 ?>
 
 <center>
@@ -10,11 +10,15 @@ $title = $credits = $type = $lectured_by = "";
     <h4 class="center" style="color:black;">Add subject</h4>
     <form action="subjects/subject_add.php" method="POST" class="white">
       <label for="title">Title of subject:</label>
-      <input type="text" name="title">
+      <input type="text" name="name">
       <label for="credits">Credits of subject: </label>
       <input type="text" name="credits">
+      <label for="lectured_by">Created by: </label>
+      <input type="text" name="created_by" placeholder="Teacher ID">
       <label for="lectured_by">Lectured by: </label>
       <input type="text" name="lectured_by" placeholder="Teacher ID">
+      <label for="lectured_by">Semester: </label>
+      <input type="text" name="semester">
       <div class="center">
         <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
 

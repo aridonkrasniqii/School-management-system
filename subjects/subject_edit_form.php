@@ -1,15 +1,15 @@
 <?php require("../database/db.php");
-$connection = mysqli_connect("localhost","root","");
-$db = mysqli_select_db($connection,"aca");
+$connection = mysqli_connect("localhost:3307","root","");
+$db = mysqli_select_db($connection,"school");
 
-    $id=$title=$credits=$type=$lectured_by="";
+    $id=$name=$credits=$lectured_by=$semester="";
 
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $title = $_GET['title'];
+        $name = $_GET['name'];
         $credits = $_GET['credits'];
-        $type = $_GET['type'];
         $lectured_by = $_GET['lectured_by'];
+        $semester = $_GET['semester'];
     }
 ?>
 
@@ -56,13 +56,13 @@ form {
       <label for="title">ID of subject:</label>
       <input type="text" name="id" value=<?php echo $id; ?>>
       <label for="title">Title of subject:</label>
-      <input type="text" name="title" value=<?php echo $title; ?>>
+      <input type="text" name="name" value=<?php echo $name; ?>>
       <label for="credits">Credits of subject: </label>
       <input type="text" name="credits" value=<?php echo $credits; ?>>
-      <label for="type">Type of subject : </label>
-      <input type="text" name="type" placeholder="Compulsory or Recommended" value=<?php echo $type; ?>>
       <label for="lectured_by">Lectured by (teacher ID): </label>
       <input type="text" name="lectured_by" placeholder="Teacher ID" value=<?php echo $lectured_by; ?>>
+      <label for="type">Semester: </label>
+      <input type="text" name="semester" value=<?php echo $semester; ?>>
       <div class="center">
         <input type="submit" name="edit" value="submit" class="btn brand z-depth-0">
 
@@ -70,6 +70,8 @@ form {
 
 
     </form>
+
+
 
   </section>
 </body>

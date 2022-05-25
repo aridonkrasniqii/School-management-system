@@ -1,6 +1,6 @@
 <?php
                                 include("../database/db.php");
-                                $connection = mysqli_connect("localhost","root","");
+                                $connection = mysqli_connect("localhost:3307","root","");
                                 $db = mysqli_select_db($connection,"aca");
 
                                 if(isset($_POST['student_edit_search'])){
@@ -24,7 +24,6 @@
 
                                         $id = $s['student_id'];
                                         $name = $s['student_name'];
-                                        $parent = $s['student_parent'];
                                         $username = $s['student_username'];
                                         $email = $s['student_email'];
                                         $index = $s['student_index'];
@@ -76,8 +75,6 @@ form {
       <input type="text" name="id" value=<?php echo $id; ?>>
       <label for="name">Name of student: </label>
       <input type="text" name="name" value=<?php echo $name; ?>>
-      <label for="parent">ID of parent: </label>
-      <input type="text" name="parent" value=<?php echo $parent; ?>>
       <label for="username">Username of subject : </label>
       <input type="text" name="username" value=<?php echo $username; ?>>
       <label for="email">Email of student: </label>

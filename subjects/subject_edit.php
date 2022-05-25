@@ -1,23 +1,33 @@
 <?php
-	$connection = mysqli_connect("localhost","root","");
-	$db = mysqli_select_db($connection,"aca");
+	$connection = mysqli_connect("localhost:3307","root","");
+	$db = mysqli_select_db($connection,"school");
     $id = $_POST['id'];
-	$title = $_POST['title'];
+	$name = $_POST['name'];
     $credits = $_POST['credits'];
-    $type =$_POST['type'];
-    $lectured_by = $_POST['lectured_by'];
+    $lectured_by =$_POST['lectured_by'];
+    $semester = $_POST['semester'];
     //validimi...
 
     //create sql
     $query = "UPDATE subject
     SET
-    subject_title = '$title',
-    subject_credits = $credits,
-    subject_type = '$type',
-    subject_lectured_by = $lectured_by
+    name = '$name',
+    credits = $credits,
+    semester = $semester
+    WHERE
+    id = $id;";
+    mysqli_query($connection,$query);
+
+    $query2 = "UPDATE subject_lectured_by
+    SET
+    teacher_id = $lectured_by
     WHERE
     subject_id = $id;";
-    mysqli_query($connection,$query);
+    mysqli_query($connection,$query2);
+
+    
+
+    
 ?>
 <script type="text/javascript">
 alert("Subject edited successfully.");

@@ -39,7 +39,7 @@
 
                         <?php
                             if(isset($_POST['search'])){
-                                $id=$name=$parent=$username=$email=$index=""; 
+                                $id=$name=$username=$email=$index=""; 
                                 $id = $_POST['id'];
 
                                 include('students/student_edit_form.php');

@@ -5,7 +5,8 @@
 
     <?php
 
-                        require("../database/db.php");
+                        $connection = mysqli_connect("localhost:3307","root","");
+                        $db = mysqli_select_db($connection,"school");
 
                         $query = "select * from subject;";
                         $subjects = [];
@@ -24,18 +25,18 @@
 
 
     <?php
-                                foreach($subjects as $s):?>
+      foreach($subjects as $s):?>
 
     <div class="col s3 md3">
       <div class="card z-depth-0" id="card">
         <div class="card-content center">
-          <h6><?php echo htmlspecialchars($s['subject_title']); ?></h6>
-          <div><?php echo htmlspecialchars($s['subject_credits']);?></div>
+          <h6><?php echo htmlspecialchars($s['name']); ?></h6>
+          <div><?php echo htmlspecialchars($s['credits']);?></div>
         </div>
         <div class="card-action right-align">
-          <a class="brand-text" href="subjects/subject_delete.php?id=<?php echo $s['subject_id'];?>">Delete subject</a>
+          <a class="brand-text" href="subjects/subject_delete.php?id=<?php echo $s['id'];?>">Delete subject</a>
           <a class="brand-text"
-            href="subjects/subject_edit_form.php?id=<?php echo $s['subject_id'];?>&title=<?php echo $s['subject_title'];?>&credits=<?php echo $s['subject_credits'];?>&type=<?php echo $s['subject_type'];?>&lectured_by=<?php echo $s['subject_lectured_by'];?>">Edit
+            href="subjects/subject_edit_form.php?id=<?php echo $s['id'];?>&name=<?php echo $s['name'];?>&credits=<?php echo $s['credits'];?>&lectured_by=<?php echo $s['created_by'];?>&semester=<?php echo $s['semester'];?>">Edit
             subject</a>
 
         </div>

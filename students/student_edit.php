@@ -1,11 +1,10 @@
 <?php
-$connection = mysqli_connect("localhost", "root", "");
-$db = mysqli_select_db($connection, "aca");
+$connection = mysqli_connect("localhost:3307", "root", "");
+$db = mysqli_select_db($connection, "school");
 
 if (isset($_POST['edit'])) {
   $id = $_POST['id'];
   $name = $_POST['name'];
-  $parent = $_POST['parent'];
   $username = $_POST['username'];
   $email = $_POST['email'];
   $index = $_POST['index'];
@@ -15,7 +14,6 @@ if (isset($_POST['edit'])) {
   $query = "UPDATE student
     SET
     student_name = '$name',
-    student_parent = $parent,
     student_username = '$username',
     student_email = '$email',
     student_index = $index
