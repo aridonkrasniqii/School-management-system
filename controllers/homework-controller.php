@@ -1,7 +1,8 @@
 <?php
-include("../repositories/homework-repository.php");
-include("../models/homework.php");
-require("../database/dbconnect.php");
+
+include("/opt/lampp/htdocs/school-management-system/repositories/homework-repository.php");
+include("/opt/lampp/htdocs/school-management-system/models/homework.php");
+
 
 
 class homework_controller
@@ -17,5 +18,10 @@ class homework_controller
   {
     $h = new homework_repository;
     return $h->findTeacher($id, $created_by);
+  }
+  public function getAll()
+  {
+    $h = new homework_repository;
+    return $h->getAll();
   }
 }

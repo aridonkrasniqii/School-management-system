@@ -1,3 +1,9 @@
+ <?php
+  include "./repositories/faq-repository.php";
+  $faqs = new faq_repository();
+  $faqArr = $faqs->getAll();
+  ?>
+
  <section class="faq">
    <div class="container">
      <h2>Frequently Asked Questions</h2>
@@ -9,12 +15,6 @@
          <input type="submit" name="submit-faq" value="Post">
 
        </form>
-
-       <?php
-        include "./repositories/faq-repository.php";
-        $faqs = new faq_repository();
-        $faqArr = $faqs->getAll(); ?>
-
      </div>
      <div class="accordion">
        <?php foreach ($faqArr as $arr) { ?>

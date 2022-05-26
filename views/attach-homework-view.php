@@ -1,12 +1,12 @@
  <?php
-  include "./repositories/subject-repository.php";
-  include "./models/subject.php";
-  $s = new subject_repository();
-  $subjects = $s->getAll();
-  include "./repositories/homework-repository.php";
-  include "./models/homework.php";
-  $h2 = new homework_repository();
-  $he = $h2->getAll();
+  include("./controllers/subject_controller.php");
+  include("./controllers/homework-controller.php");
+
+  $subject_controller = new subject_controller;
+  $subjects = $subject_controller->findAllSubjects();
+
+  $homework_controller = new homework_controller;
+  $he = $homework_controller->getAll();
 
   ?>
 
@@ -29,6 +29,7 @@
      <select name="semester" id="semester">
        <option value="1">1</option>
        <option value="2">2</option>
+       <option value="3">3</option>
      </select>
    </div>
    <div class="select__homework">

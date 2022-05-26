@@ -91,21 +91,15 @@ require "./database/dbconnect.php";
 
       <?php
       if (isset($_POST['subjects'])) {
-
         include("./views/subject-view.php");
-
-      ?>
-
-
-      <?php
       }
       ?>
 
       <?php
-
       if (isset($_POST['assigments'])) {
         include("./views/todo-view.php");
-      } ?>
+      }
+      ?>
 
 
       <?php if (isset($_POST['attachments'])) {
