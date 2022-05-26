@@ -1,8 +1,12 @@
   <?php
-  include "./repositories/subject-repository.php";
-  include "./models/subject.php";
-  $s = new subject_repository();
-  $sub = $s->getAll();
+  include "./controllers/subject_controller.php";
+  include "./controllers/todo-controller.php";
+
+  $subject_controller = new subject_controller;
+  $sub = $subject_controller->findAllSubjects();
+
+  $homework_controller = new todo_controller;
+  $homeworks = $homework_controller->getAll();
 
   ?>
 
@@ -35,10 +39,7 @@
 
 
         <?php
-        include "./repositories/homework-repository.php";
-        include "./models/homework.php";
-        $h1 = new homework_repository();
-        $homeworks = $h1->getAll();
+
         foreach ($homeworks as $homework) {
         ?>
 
@@ -55,9 +56,9 @@
                 <span><?php echo "ID: " . $homework->getId(); ?></span>
               </div>
               <div class="box__title">
-                <h4><a href="./views/my-homework.php?id=<?php echo $homework->getId(); ?>"><?php
-                                                                                              echo $homework->getName();
-                                                                                              ?></a></h4>
+                <h4><a href="./views/todo-homework-view.php?id=<?php echo $homework->getId(); ?>"><?php
+                                                                                                    echo $homework->getName();
+                                                                                                    ?></a></h4>
               </div>
             </div>
           </div>

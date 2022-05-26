@@ -31,6 +31,7 @@ error_reporting(E_ALL);
     $homework_controller = new homework_controller;
     $homework = $homework_controller->getSpecificHomework($id);
 
+
     if ($homework == null) {
       header("Location: more-subject-view.php");
       exit();
@@ -75,7 +76,7 @@ error_reporting(E_ALL);
                   ?></span>
         </div>
         <div class="homework__button">
-          <a href="more-subject-view.php?id=<?php echo $homework->getSubject(); ?>">Back</a>
+          <a href="../student_dashboard.php">Back</a>
         </div>
       </div>
     </div>

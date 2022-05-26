@@ -1,3 +1,13 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+include("./controllers/subject_controller.php");
+$controller = new subject_controller;
+$subjects = $controller->findAllSubjects();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,30 +25,22 @@
   <center>
     <h4>Student Subjects</h4>
 
-    <table border="1" class="subject-table">
-      <?php
-      $subjects = findAllSubject();
-      ?>
+    <table border="1" class="subject-table styled-table">
+
       <tr>
-        <!-- name -->
         <th>
           Subject Name
         </th>
-        <!-- credits -->
         <th>Subject Credits</th>
-        <!-- created by -->
         <th>Teacher</th>
-        <!-- semester -->
         <th>Semester</th>
-        <!-- subject of id -->
         <th>More info</th>
-
       </tr>
       <?php foreach ($subjects as $s) { ?>
       <tr>
         <td><?php echo $s->getName(); ?></td>
         <td><?php echo $s->getCredits(); ?></td>
-        <td><?php echo findTeacher($s->getCreated_by()); ?></td>
+        <td><?php echo $controller->findTeacher($s->getCreated_by()); ?></td>
         <td><?php echo $s->getSemester(); ?></td>
         <td><a href="views/more-subject-view.php?id=<?php echo $s->getId(); ?>">More ...</a></td>
       </tr>
@@ -58,6 +60,48 @@
   height: 30px;
   padding: 10px;
 
+}
+
+
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+  white-space: nowrap;
+}
+
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 30px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
 }
 </style>
 

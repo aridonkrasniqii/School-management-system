@@ -1,15 +1,17 @@
 <?php
-// php code to load homework
-include("./models/attached.php");
-include("./repositories/attached-homework-repository.php");
-include("./models/subject.php");
-include("./repositories/subject-repository.php");
-$repository = new attached_repository();
-$student_id = $_SESSION['user_id'];
-$attached_homeworks = $repository->getStudentHomeworks($student_id);
+include("./controllers/subject_controller.php");
+include("./controllers/attached-controller.php");
 
-$subject_repo = new subject_repository;
-$array = $subject_repo->getAll();
+
+
+$student_id = $_SESSION['user_id'];
+
+$attached_controller = new attached_controller;
+$attached_homeworks = $attached_controller->getStudentHomeworks($student_id);
+
+$subject_controller = new subject_controller;
+$array = $subject_controller->findAllSubjects();
+
 
 
 ?>
@@ -45,12 +47,12 @@ $array = $subject_repo->getAll();
     </tr>
     <?php foreach ($attached_homeworks as $h) { ?>
     <tr>
-      <td><?php echo $repository->findHomework($h->getHomework_id()); ?></td>
-      <td><?php echo $repository->findSubject($h->getSubject_id()); ?></td>
-      <td><?php echo $repository->findStudent($h->getStudent_id()); ?></td>
+      <td><?php echo $attached_controller->findHomework($h->getHomework_id()); ?></td>
+      <td><?php echo $attached_controller->findSubject($h->getSubject_id()); ?></td>
+      <td><?php echo $attached_controller->findStudent($h->getStudent_id()); ?></td>
       <td><?php echo $h->getAttached_date(); ?></td>
       <td><?php echo $h->getDescription(); ?></td>
-      <td><?php echo $repository->findSemester($h->getHomework_id()); ?></td>
+      <td><?php echo $attached_controller->findSemester($h->getHomework_id()); ?></td>
       <td><a href="./uploads/files.php?filename=<?php echo $h->getFilename(); ?>">Check uploaded file ...</a></td>
     </tr>
 
