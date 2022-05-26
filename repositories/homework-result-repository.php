@@ -122,3 +122,153 @@ function create($model)
 
   return null;
 }
+
+
+
+class homework_result_repository
+{
+
+
+  private $connection;
+
+
+  public function __construct()
+  {
+    $this->connection = mysqli_connect("localhost", "root", "", "school");
+  }
+  public function filterData($student_id, $subject_id, $semester)
+  {
+
+    $query = "select * from homework h inner join homework_result hr on h.id = hr.homework_id where hr.student_id = ? and h.subject_id = ? and h.semester = ? ;";
+
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "iii", $student_id, $subject_id, $semester);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+      $homework_results = array();
+
+      while ($row = mysqli_fetch_assoc($result)) {
+        $homework_results[] = fromFetchAssoc($row);
+      }
+      return $homework_results;
+    }
+    return null;
+  }
+
+  function fromFetchAssoc($row)
+  {
+    return new homework_result($row['id'], $row['homework_id'], $row['student_id'], $row['points'], $row['delivered_on_time'], $row['date']);
+  }
+
+
+  public function findSubject($homework_id)
+  {
+
+    $query = "select * from homework_result hr inner join homework h on h.id = hr.homework_id where hr.homework_id = ? ";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "i", $homework_id);
+
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      if ($row = mysqli_fetch_assoc($result)) {
+        return $this->getSubjectName($row['subject_id']);
+      }
+    }
+    return null;
+  }
+  public function getSubjectName($subject_id)
+  {
+    $query = "select * from subject where id = ?";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "i", $subject_id);
+
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      if ($row = mysqli_fetch_assoc($result)) {
+        return $row['name'];
+      }
+    }
+    return null;
+  }
+
+  public function getSemester($homework_id)
+  {
+
+    $query = "select * from homework_result hr inner join homework h on h.id = hr.homework_id where hr.homework_id = ? ";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "i", $homework_id);
+
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      if ($row = mysqli_fetch_assoc($result)) {
+        return $row['semester'];
+      }
+    }
+    return null;
+  }
+
+  public function getStudentResults($student_id)
+  {
+    $query = "select * from homework_result where student_id = ?";
+    $stmt = mysqli_stmt_init($this->connection);
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "i", $student_id);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      $results = [];
+      while ($row = mysqli_fetch_assoc($result)) {
+        $results[] = $this->fromFetchAssoc($row);
+      }
+
+      return $results;
+    }
+
+    return null;
+  }
+
+
+  function findDeliveredOnTime($homework_id, $attached_date)
+  {
+    global $connection;
+    $query = "select * from homework where id = ? and deadline > ?";
+    $stmt = mysqli_stmt_init($connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "is", $homework_id, $attached_date);
+
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+
+      if ($row = mysqli_fetch_assoc($result)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+}

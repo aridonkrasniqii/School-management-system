@@ -67,38 +67,40 @@ class subject_repository
       return null;
     }
   }
+
+
 }
 
 
 
 
 
-$connection = mysqli_connect("localhost", "root", "", "school");
+// $connection = mysqli_connect("localhost", "root", "", "school");
 
-function getAll()
-{
-  $query = "select * from subject";
+// function getAll()
+// {
+//   $query = "select * from subject";
 
-  global $connection;
-  $stmt = mysqli_stmt_init($connection);
+//   global $connection;
+//   $stmt = mysqli_stmt_init($connection);
 
-  if (!mysqli_stmt_prepare($stmt, $query)) {
-    throw new Exception();
-  } else {
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+//   if (!mysqli_stmt_prepare($stmt, $query)) {
+//     throw new Exception();
+//   } else {
+//     mysqli_stmt_execute($stmt);
+//     $result = mysqli_stmt_get_result($stmt);
 
-    $subjects = array();
+//     $subjects = array();
 
-    while ($row = mysqli_fetch_assoc($result)) {
-      $subjects[] = fromFetchAssoc($row);
-    }
-    return $subjects;
-  }
-  return null;
-}
+//     while ($row = mysqli_fetch_assoc($result)) {
+//       $subjects[] = fromFetchAssoc($row);
+//     }
+//     return $subjects;
+//   }
+//   return null;
+// }
 
-function fromFetchAssoc($row)
-{
-  return new subject($row['id'], $row['name'], $row['credits'], $row['created_at'], $row['semester'],  $row['created_by']);
-}
+// function fromFetchAssoc($row)
+// {
+//   return new subject($row['id'], $row['name'], $row['credits'], $row['created_at'], $row['semester'],  $row['created_by']);
+// }
