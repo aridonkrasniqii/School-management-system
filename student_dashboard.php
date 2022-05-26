@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-session_reset();
+
 session_start();
 if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])) {
   header("Location: ./student_login.php");

@@ -9,8 +9,6 @@ $attached_homeworks = $repository->getFilteredData($student_id, $subject_id, $se
 
 
 
-
-
 ?>
 
 <center>

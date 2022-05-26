@@ -27,9 +27,9 @@
    <div class="select__semester">
      <label for="semester">Choose a semester:</label>
      <select name="semester" id="semester">
-       <option value="1">1</option>
-       <option value="2">2</option>
-       <option value="3">3</option>
+       <option value="1">Semester 1</option>
+       <option value="2">Semester 2</option>
+       <option value="3">Semester 3</option>
      </select>
    </div>
    <div class="select__homework">

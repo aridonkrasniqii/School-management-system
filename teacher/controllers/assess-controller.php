@@ -64,6 +64,7 @@ if (isset($_POST['submit-assess'])) {
         <tr>
           <td> <button type="submit" id="b" name="reg-result">Submit Assess</button>
           </td>
+          <td> <button id="b"><a href="../../teacher_dashboard.php">Go back</a></button></td>
         </tr>
       </table>
       <input type="hidden" name="studentId" value="<?php echo $studentId; ?>">

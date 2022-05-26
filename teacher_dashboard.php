@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
+  header("Location: teacher_login.php");
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +44,7 @@
   #left_side {
     background-color: #b2bec3;
     width: 15%;
-    top: 12%;
+    top: 5%;
     position: fixed;
     border: solid 2px black;
     border-radius: 10px;
@@ -134,7 +142,7 @@
   form {
     max-width: 460px;
     /* margin: 20px auto; */
-    padding: 20px;
+    padding: 5px;
   }
 
   .card {
@@ -146,11 +154,6 @@
     width: 90% !important;
   }
   </style>
-  <?php
-
-  $connection = mysqli_connect("localhost", "root", "");
-  $db = mysqli_select_db($connection, "aca");
-  ?>
 </head>
 
 <body>
@@ -158,7 +161,7 @@
     <center><br>
       <strong>STUDENT MANAGEMENT AND ACADEMIC SYSYTEM &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
         &nbsp;</strong>E-mail:<?php echo $_SESSION['user_email']; ?> &nbsp; &nbsp; &nbsp;
-      Name:<?php echo $_SESSION['user_name']; ?>&nbsp; &nbsp;<a href="logout.php">logout</a>
+      Name:<?php echo $_SESSION['user_username']; ?>&nbsp; &nbsp;<a href="logout.php">logout</a>
     </center>
   </div>
 

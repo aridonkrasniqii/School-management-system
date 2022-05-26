@@ -11,7 +11,7 @@
   ?>
 
 
-  <form action="./filters/todo-filter.php" class="search_filter" method="post">
+  <!-- <form action="./filters/todo-filter.php" class="search_filter" method="post">
     <div class="container">
       <select name="subject" class="subject-homework">
         <?php foreach ($sub as $s) { ?>
@@ -31,7 +31,7 @@
       <button type="submit" name="filter_homework">Filter</button>
     </div>
 
-  </form>
+  </form> -->
 
   <div class="box__section">
     <div class="container">

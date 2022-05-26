@@ -41,7 +41,7 @@ function loginProcessor($user, $pwd, $role)
           $_SESSION['user_id'] = $row[$role . "_id"];
           $_SESSION['user_index'] = $row[$role . "_index"];
           $_SESSION['user_username'] = $row[$role . "_username"];
-          $_SESSION['user_name'] = $row[$role . "_fullname"];
+          $_SESSION['user_name'] = $row[$role . "_name"];
           $_SESSION['user_email'] = $row[$role . "_email"];
 
           header("Location: ../" . $role . "_dashboard.php?login=success");
