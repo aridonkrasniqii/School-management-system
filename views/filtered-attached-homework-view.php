@@ -2,36 +2,19 @@
 // php code to load homework
 include("./models/attached.php");
 include("./repositories/attached-homework-repository.php");
-include("./models/subject.php");
-include("./repositories/subject-repository.php");
+
 $repository = new attached_repository();
 $student_id = $_SESSION['user_id'];
-$attached_homeworks = $repository->getStudentHomeworks($student_id);
+$attached_homeworks = $repository->getFilteredData($student_id, $subject_id, $semester_id);
 
-$subject_repo = new subject_repository;
-$array = $subject_repo->getAll();
+
+
 
 
 ?>
 
 <center>
 
-
-  <form action="" method="post">
-    <select name="filter-subject" id="">
-      <?php foreach ($array as $a) { ?>
-      <option value="<?php echo $a->getId(); ?>"><?php echo $a->getName(); ?></option>
-      <?php } ?>
-    </select>
-
-    <select name="filter-semester" id="">
-      <option value="1" name="semester">Semester 1 </option>
-      <option value="2" name="semester">Semester 2</option>
-      <option value="3" name="semester">Semester 3 </option>
-    </select>
-    <button type="submit" name="submitmyname">submit</button>
-
-  </form>
 
   <table class="styled-table" style="width:300px;">
     <tr>

@@ -259,6 +259,15 @@ require "./database/dbconnect.php";
       }
       ?>
 
+      <?php if (isset($_POST['submitmyname'])) {
+
+
+        $semester_id = $_POST['filter-semester'];
+        $subject_id = $_POST['filter-subject'];
+        include("./views/filtered-attached-homework-view.php");
+      }
+      ?>
+
 
       <?php
       if (isset($_POST['attach'])) {

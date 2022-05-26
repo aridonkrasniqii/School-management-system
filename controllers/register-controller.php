@@ -8,13 +8,13 @@ error_reporting(E_ALL);
 if (isset($_POST['student-register'])) {
 
   require("../database/db.php");
-  $index = $_POST['index'];
-  $fullname = $_POST['fullname'];
+  $index = mysqli_real_escape_string($connection, $_POST['index']);
+  $fullname = mysqli_real_escape_string($connection, $_POST['fullname']);
   $role = "student";
-  $username = $_POST['username'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $passwordRepeat = $_POST['pwd-repeat'];
+  $username = mysqli_real_escape_string($connection, $_POST['username']);
+  $email = mysqli_real_escape_string($connection, $_POST['email']);
+  $password = mysqli_real_escape_string($connection, $_POST['password']);
+  $passwordRepeat = mysqli_real_escape_string($connection, $_POST['pwd-repeat']);
 
   include("../processor/register-processor.php");
   $processor = new register_processor();
@@ -24,13 +24,13 @@ if (isset($_POST['student-register'])) {
 
   require("../database/db.php");
 
-  $index = $_POST['index'];
-  $fullname = $_POST['fullname'];
+  $index = mysqli_real_escape_string($connection, $_POST['index']);
+  $fullname = mysqli_real_escape_string($connection, $_POST['fullname']);
   $role = "teacher";
-  $username = $_POST['username'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $passwordRepeat = $_POST['pwd-repeat'];
+  $username = mysqli_real_escape_string($connection, $_POST['username']);
+  $email = mysqli_real_escape_string($connection, $_POST['email']);
+  $password = mysqli_real_escape_string($connection, $_POST['password']);
+  $passwordRepeat = mysqli_real_escape_string($connection, $_POST['pwd-repeat']);
   include("../processor/register-processor.php");
 
   $processor = new register_processor();

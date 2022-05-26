@@ -47,7 +47,7 @@
    <div class="textarea__description">
      <textarea placeholder="Enter description" name="description" id="description" cols="30" rows="10"></textarea>
    </div>
-   <input type="hidden" name="filename" value="<?php echo uniqid(".", true)?>">,
+   <input type="hidden" name="filename" value="<?php echo uniqid(".", true) ?>">
    <input type="file" name="file">
    <br><br>
    <input type="submit" name="attach_homework" class="attach-button" value="Attach">

@@ -168,4 +168,25 @@ class attached_repository
       }
     }
   }
+
+  public function getFilteredData($student_id, $subject_id, $semester_id)
+  {
+
+    $query = "select * from homework h inner join attached_homework a on h.id = a.homework_id where a.student_id = ? and a.subject_id = ? and h.semester = ?";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "iii", $student_id, $subject_id, $semester_id);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      $attached = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $attached[] = $this->fromFetchAssoc($row);
+      }
+      return $attached;
+    }
+  }
 }
