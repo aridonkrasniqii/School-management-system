@@ -1,48 +1,37 @@
 <?php
 session_start();
-// load some teachers
 require("./models/teacher.php");
 require("./database/connection.php");
 require("./repositories/teacher_repository.php");
+include("./files/readfile.php");
+
 $teacher_repository = new teacher_repository;
 
 $teachers = $teacher_repository->aboutTeachers();
 
 
-$file1 = "";
-$file2 = "";
-$file3 = "";
-
-
-
 
 
 ?>
 
 
-<div>
+<div class="btn-container">
   <?php
   $userRole = $_SESSION['user_role'];
   $i = 0;
   if ($userRole == "student") { ?>
-  <button><a href="student_dashboard.php">Go Back To Home Page</a></button>
+  <button><a href="student_dashboard.php" id="bobackbtn">Go Back To Home Page</a></button>
   <?php } else if ($userRole == "teacher") { ?>
 
-  <button> <a href="teacher_dashboard.php">Go Back To Home Page</a></button>
+  <button> <a href="teacher_dashboard.php" id="bobackbtn">Go Back To Home Page</a></button>
   <?php } ?>
 </div>
 
 
-<?php
-// here you need to read some file content
-
-
-
-?>
 <div class="about-section">
   <h1>About Us Page</h1>
-  <p>Some text about who we are and what we do.</p>
-  <p>Resize the browser window to see that this page is responsive by the way.</p>
+  <p><?php echo $aboutContent[0]; ?></p>
+  <p><?php echo $aboutContent[1]; ?></p>
 </div>
 
 
@@ -54,13 +43,18 @@ $file3 = "";
   <?php foreach ($teachers as $t) { ?>
   <div class="column">
     <div class="card">
-      <img src="<?php echo "./images/person" . $i . ".jpeg"; ?>" alt="Jane" style="width:100%">
+      <img src="<?php echo "./images/person" . $i . ".jpeg"; ?>" alt="Professor" style="width:100%">
       <div class="container">
         <h2> <?php echo $t->getTeacher_name(); ?></h2>
-        <p class="title"><?php echo $t->getTeacher_role(); ?></p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p class="title"><?php echo strtoupper($t->getTeacher_role()); ?></p>
+        <p>
+          <?php echo $fileContent[$i]; ?>
+        </p>
         <p><?php echo $t->getTeacher_email(); ?></p>
-        <p><button class="button" type="submit">Contact</button></p>
+        <form action="contact.php" method="post">
+          <button class="button" type="submit" name="submit-contact">Contact</button>
+          <input type="hidden" name="teacher-id" value="<?php echo $t->getTeacher_id(); ?>">
+        </form>
       </div>
     </div>
   </div>
@@ -143,5 +137,19 @@ html {
     width: 100%;
     display: block;
   }
+}
+
+
+#bobackbtn {
+  color: black;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.btn-container {
+  padding: 10px;
+  background-color: #474e5d;
 }
 </style>

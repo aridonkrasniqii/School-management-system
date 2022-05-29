@@ -52,21 +52,47 @@ class register_processor
         exit();
       } else {
         // insted of selecting we are gonna insert into the database
-        $sql = "INSERT INTO " . $role . "(" . $role . "_name," . $role . "_role, " . $role . "_username," . $role . "_email," . $role . "_password," . $role . "_salt," . $role . "_index) values(?,?,?,?,?,?);";
-        $stmt = mysqli_stmt_init($connection);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
-          header("Location: ../views/" . $role . "-signup-view.php?error=sqlerror");
-          exit();
-        } else {
+        if ($role == "teacher") {
+          $sql = "insert into teacher(teacher_name,teacher_role, teacher_username, teacher_email, teacher_password, teacher_index)
+          values(? , ? , ? , ? , ? ,?);";
+          $stmt = mysqli_stmt_init($connection);
+          if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("Location: ../views/" . $role . "-signup-view.php?error=sqlerror");
+            exit();
+          } else {
 
-          // hash the password
-          $hashpwd = password_hash($password, PASSWORD_DEFAULT);
+            // hash the password
+            $hashpwd = password_hash($password, PASSWORD_DEFAULT);
 
 
-          mysqli_stmt_bind_param($stmt, "sssssss", $fullname, $role, $username, $email, $hashpwd, $index);
-          mysqli_stmt_execute($stmt);
-          header("Location: ../views/" . $role . "-signup-view.php?error=success");
-          exit();
+            mysqli_stmt_bind_param($stmt, "ssssss", $fullname, $role, $username, $email, $hashpwd, $index);
+            mysqli_stmt_execute($stmt);
+            header("Location: ../views/" . $role . "-signup-view.php?error=success");
+            exit();
+          }
+        }
+
+
+        if ($role == "student") {
+          $sql = "insert into student(student_name, student_username, student_email, student_password, student_index)
+          values(? , ? , ? , ? , ?);";
+
+
+          $stmt = mysqli_stmt_init($connection);
+          if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("Location: ../views/" . $role . "-signup-view.php?error=sqlerror");
+            exit();
+          } else {
+
+            // hash the password
+            $hashpwd = password_hash($password, PASSWORD_DEFAULT);
+
+
+            mysqli_stmt_bind_param($stmt, "sssss", $fullname, $username, $email, $hashpwd, $index);
+            mysqli_stmt_execute($stmt);
+            header("Location: ../views/" . $role . "-signup-view.php?error=success");
+            exit();
+          }
         }
       }
     }
