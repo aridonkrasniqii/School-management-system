@@ -30,9 +30,7 @@
          <div class="accordion-content">
            <p>
              <?php
-                // load answers
                 $faq_answers = $faqs->getSpecificAnswers($arr['faq_id']);
-
                 ?>
              <?php
                 if (empty($faq_answers)) {

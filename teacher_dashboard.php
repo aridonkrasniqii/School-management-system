@@ -63,7 +63,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
     position: fixed;
     left: 17%;
     top: 10%;
-    color: red;
+    color: black;
     border: solid 2px black;
     border-radius: 10px;
   }
@@ -266,9 +266,8 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
 
       <?php
       if (isset($_POST['search_student'])) {
-      
+
         include('students/student_search_form.php');
-      
       }
       if (isset($_POST['students'])) {
 
@@ -287,13 +286,13 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
         if (isset($_POST['search_student_id'])) {
           include('students/student_search.php');
         }
-        ?>
+          ?>
           <?php
           if (isset($_POST['add_student'])) {
             include('students/student_add_form.php');
           }
           ?>
-          
+
           <?php
           if (isset($_POST['edit_student'])) {
             include('students/student_edit_search.php');
@@ -310,10 +309,9 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
           ?>
           <?php
           if (isset($_POST['add_student'])) {
-
           }
           ?>
-          
+
 
           <?php
           if (isset($_POST['search_teacher'])) {

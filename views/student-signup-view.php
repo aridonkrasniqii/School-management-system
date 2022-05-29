@@ -100,6 +100,8 @@ a {
             echo "<p id = 'p'>Something went wrong try again ! </p>";
           } elseif ($_GET['error'] == "userexists") {
             echo "<p id = 'p'>User already exists</p>";
+          } elseif ($_GET['error'] == 'wrngrole') {
+            echo "<p id = 'p'>Wrong role </p>";
           } else if ($_GET['error'] == "success") {
             echo "<p id = 's'> Registered succesfully </p>";
           }

@@ -24,7 +24,7 @@ class register_processor
       header("Location: ../views/" . $role . "-signup-view.php?error=passworddoesnotmatch");
       exit();
     } elseif ($role != "teacher" || $role != "assistant") {
-      header("Location: ../signup.php?error=");
+      header("Location: ../signup.php?error=wrngrole");
       exit();
     }
 
