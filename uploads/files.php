@@ -26,8 +26,13 @@ session_start();
   ?>
 
   <div>
-    <?php ?>
-    <button id="button"> <a href=" ../student_dashboard.php" id="btn">Go back to home page</a></button>
+    <?php
+    $role = $_SESSION['user_role'];
+    if ($role == "student") $view = "student";
+    elseif ($role == "teacher") $view = "teacher";
+    ?>
+    <button id="button"> <a href="<?php echo '../' . $role . '_dashboard.php'; ?>" id="btn">Go back to home
+        page</a></button>
     <?php ?>
   </div>
 </body>

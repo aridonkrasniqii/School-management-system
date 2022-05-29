@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+require("../../database/connection.php");
 
 
 
@@ -12,6 +12,7 @@ if (isset($_POST['submit-answer'])) {
   $faq_answer = $_POST['faq-answer'];
   $repository = new faq_repository();
   $repository->updateAnswer($faq_id, $faq_answer);
+  
 
   header("Location: ../../teacher_dashboard.php?error=success");
   exit();
