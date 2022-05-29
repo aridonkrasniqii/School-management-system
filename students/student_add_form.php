@@ -45,24 +45,12 @@ form {
       <label for="index">Index of student: </label>
       <input type="text" name="index">
       <div class="center">
-        <input type="submit" name="edit" value="submit" class="btn brand z-depth-0">
+        <input type="submit" name="add-student" value="submit" class="btn brand z-depth-0">
 
       </div>
 
 
     </form>
-
-    <?php
-
-    if (isset($_POST['edit'])) {
-      if (empty($_POST['name']) || empty($_POST['username']) || empty($_POST['email']) || empty($_POST['index'])) {
-        echo "fill all fields";
-      } else {
-        // include('student_add.php');
-      }
-    }
-
-    ?>
 
 
   </section>

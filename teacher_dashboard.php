@@ -279,6 +279,20 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
           ?>
 
 
+          <center>
+            <h3>
+              <?php
+              if (isset($_GET['error'])) {
+                if ($_GET['error'] == 'addedstudent') {
+                  echo "Student is added";
+                }
+              }
+              ?>
+
+            </h3>
+          </center>
+
+
         </div>
 
 

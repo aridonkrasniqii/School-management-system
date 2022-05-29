@@ -8,7 +8,7 @@ require("../database/connection.php");
 require("../models/student.php");
 require("../repositories/student-repository.php");
 
-if (isset($_POST[''])) {
+if (isset($_POST['add-student'])) {
   $name = $_POST['name']; //me evitu malicious sql actions
   $username = $_POST['username'];
   $email = $_POST['email'];
