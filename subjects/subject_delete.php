@@ -1,5 +1,5 @@
 <?php
-$connection = mysqli_connect("localhost", "root", "");
+$connection = mysqli_connect("localhost:3307", "root", "");
 $db = mysqli_select_db($connection, "school");
 
 //check get request
@@ -16,6 +16,7 @@ if (isset($_GET['id'])) {
 
   $query3 = "SET FOREIGN_KEY_CHECKS=1;";
   mysqli_query($connection, $query3);
+
 
 
   header('Location: ../teacher_dashboard.php');

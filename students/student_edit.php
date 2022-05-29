@@ -1,16 +1,42 @@
 <?php
 $connection = mysqli_connect("localhost:3307", "root", "");
 $db = mysqli_select_db($connection, "school");
+$id="";
 
 if (isset($_POST['edit'])) {
+  
+  update($id);
+
+  ?>
+
+<script type="text/javascript">
+alert("Student with id <?php echo $id;?> edited successfully.");
+window.location.href = "../teacher_dashboard.php";
+</script>
+  <?php
+}
+
+if(isset($_POST['delete'])){
+
+  delete($id);?>
+<script type="text/javascript">
+alert("Student with id <?php echo $id;?> deleted successfully.");
+window.location.href = "../teacher_dashboard.php";
+</script>
+  <?php
+
+}
+
+
+function update(&$id){
+  $connection = mysqli_connect("localhost:3307", "root", "");
+$db = mysqli_select_db($connection, "school");
+
   $id = $_POST['id'];
   $name = $_POST['name'];
   $username = $_POST['username'];
   $email = $_POST['email'];
   $index = $_POST['index'];
-
-
-
   $query = "UPDATE student
     SET
     student_name = '$name',
@@ -23,10 +49,24 @@ if (isset($_POST['edit'])) {
   mysqli_query($connection, $query);
 }
 
+function delete(&$id){
+  $connection = mysqli_connect("localhost:3307", "root", "");
+  $db = mysqli_select_db($connection, "school");
+
+  $id = $_POST['id'];
+  $query = "SET FOREIGN_KEY_CHECKS=0;";
+  mysqli_query($connection, $query);
+      
+  $query2 = "DELETE FROM student WHERE student_id = $id;";
+      
+      
+  mysqli_query($connection, $query2);
+      
+  $query3 = "SET FOREIGN_KEY_CHECKS=1;";
+  mysqli_query($connection, $query3);
+}
 
 
+unset($id);
 ?>
-<script type="text/javascript">
-alert("Student edited successfully.");
-window.location.href = "../teacher_dashboard.php";
-</script>
+

@@ -10,14 +10,13 @@
     <tr>
       <th>id.</th>
       <th>name</th>
-      <th>role</th>
       <th>email</th>
       <th>index</th>
     <tr>
   </thead>
   <tbody>
     <?php
-    $connection = mysqli_connect("localhost","root", "", "aca");
+    $connection = mysqli_connect("localhost:3307","root", "", "school");
     $query = "select * from student;";
     $students = [];
     $stmt = mysqli_stmt_init($connection);
@@ -36,13 +35,21 @@
       echo "<tr>";
       echo "<td>" . $s['student_id'] . "</td>";
       echo "<td>" . $s['student_name'] . "</td>";
-      echo "<td>" . $s['student_role'] . "</td>";
       echo "<td>" . $s['student_email'] . "</td>";
       echo "<td>" . $s['student_index'] . "</td>";
-      // FIXME: to edit student
-
+      $id=$s['student_id'];
+      ?>
+      <td>
+      <a href="students/student_delete.php?id=<?php echo $id;?>">Delete</a>
+    </td>
+      <?php
       echo "</tr>";
+      
+
     }
+
+
+
 
     ?>
 

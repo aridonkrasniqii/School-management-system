@@ -1,5 +1,5 @@
 <?php
-$connection = mysqli_connect("localhost", "root", "");
+$connection = mysqli_connect("localhost:3307", "root", "");
 $db = mysqli_select_db($connection, "school");
 $id = $_POST['id'];
 $name = $_POST['name'];

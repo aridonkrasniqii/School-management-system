@@ -5,7 +5,7 @@
 
     <?php
 
-    $connection = mysqli_connect("localhost", "root", "");
+    $connection = mysqli_connect("localhost:3307", "root", "");
     $db = mysqli_select_db($connection, "school");
 
     $query = "select * from subject;";
@@ -20,6 +20,7 @@
 
       while ($row = mysqli_fetch_assoc($result)) {
         $subjects[] = $row;
+        arsort($subjects);
       }
     } ?>
 

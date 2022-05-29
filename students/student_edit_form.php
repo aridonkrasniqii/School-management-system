@@ -1,7 +1,7 @@
 <?php
-                                include("../database/db.php");
+                                
                                 $connection = mysqli_connect("localhost:3307","root","");
-                                $db = mysqli_select_db($connection,"aca");
+                                $db = mysqli_select_db($connection,"school");
 
                                 if(isset($_POST['student_edit_search'])){
                                     $id = $_POST['id'];
@@ -83,7 +83,7 @@ form {
       <input type="text" name="index" value=<?php echo $index; ?>>
       <div class="center">
         <input type="submit" name="edit" value="submit" class="btn brand z-depth-0">
-
+        <input type="submit" name="delete" value="delete" class="btn brand z-depth-0">
       </div>
 
 

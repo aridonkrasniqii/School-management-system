@@ -2,18 +2,19 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$connection = mysqli_connect("localhost", "root", "");
+$connection = mysqli_connect("localhost:3307", "root", "");
 $db = mysqli_select_db($connection, "school");
+session_start();
 $name = $_POST['name'];
 $credits = $_POST['credits'];
-$created_by = $_POST['created_by'];
+$created_by = $_SESSION['user_id'];
 $lectured_by = $_POST['lectured_by'];
 $semester = $_POST['semester'];
 //validimi...
 
 //create sql
 $query1 = "INSERT INTO subject(name, credits, created_by, semester)
-    VALUES('$name', $credits, '$created_by', $semester);";
+    VALUES('$name', $credits, $created_by, $semester);";
 mysqli_query($connection, $query1);
 
 $query2 = "SELECT id FROM subject

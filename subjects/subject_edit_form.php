@@ -1,5 +1,5 @@
 <?php require("../database/db.php");
-$connection = mysqli_connect("localhost","root","");
+$connection = mysqli_connect("localhost:3307","root","");
 $db = mysqli_select_db($connection,"school");
 
     $id=$name=$credits=$lectured_by=$semester="";

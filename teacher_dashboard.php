@@ -158,6 +158,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
 
 <body>
   <div id="header">
+
     <center><br>
       <strong>STUDENT MANAGEMENT AND ACADEMIC SYSYTEM &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
         &nbsp;</strong>E-mail:<?php echo $_SESSION['user_email']; ?> &nbsp; &nbsp; &nbsp;
@@ -197,11 +198,6 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
           <tr>
             <td>
               <input type="submit" name="add_student" value="ADD STUDENT" id="btn"><br>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input type="submit" name="delete_student" value="DELETE STUDENT" id="btn">
             </td>
           </tr>
           <tr>
@@ -251,6 +247,8 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
   <div id="right_side"><br><br>
     <div id="demo">
 
+
+
       <?php
       if (isset($_POST['subjects'])) {
 
@@ -268,15 +266,9 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
 
       <?php
       if (isset($_POST['search_student'])) {
-      ?>
-      <center>
-        <form action="" method="post">
-          &nbsp;&nbsp;<b>Enter ID:</b>&nbsp;&nbsp; <input type="text" name="student_id">
-          <input type="submit" name="search_student_id" value="Search">
-        </form><br><br>
-
-      </center>
-      <?php
+      
+        include('students/student_search_form.php');
+      
       }
       if (isset($_POST['students'])) {
 
@@ -295,7 +287,13 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
         if (isset($_POST['search_student_id'])) {
           include('students/student_search.php');
         }
+        ?>
+          <?php
+          if (isset($_POST['add_student'])) {
+            include('students/student_add_form.php');
+          }
           ?>
+          
           <?php
           if (isset($_POST['edit_student'])) {
             include('students/student_edit_search.php');
@@ -312,101 +310,10 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
           ?>
           <?php
           if (isset($_POST['add_student'])) {
-          ?>
 
-
-          <center>
-            <h4>Fill the given details</h4>
-          </center>
-          <form action="add_student.php" method="post">
-            <table>
-              <tr>
-                <td>
-                  <b>Roll No:</b>
-                </td>
-                <td>
-                  <input type="text" name="roll_no" id="btn1" required>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>Name:</b>
-                </td>
-                <td>
-                  <input type="text" name="name" id="btn1" required>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>Father's Name:</b>
-                </td>
-                <td>
-                  <input type="text" name="father_name" id="btn1" required>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>Class:</b>
-                </td>
-                <td>
-                  <input type="text" name="class" id="btn1" required>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>Mobile:</b>
-                </td>
-                <td>
-                  <input type="text" name="mobile" id="btn1" required>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>Email:</b>
-                </td>
-                <td>
-                  <input type="text" name="email" id="btn1" required>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>Password:</b>
-                </td>
-                <td>
-                  <input type="password" name="password" id="btn1" required>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>Remark:</b>
-                </td>
-                <td>
-                  <textarea rows="3" cols="40" placeholder="Optional" id="btn1" name="remark"></textarea>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><br><input type="submit" name="add" value="Add Student"></td>
-              </tr>
-            </table>
-          </form>
-          <?php
           }
           ?>
-          <?php
-          if (isset($_POST['delete_student'])) {
-          ?>
-          <center>
-            <h5>Enter Roll NO to Delete Student</h5><br>
-            <form action="delete_student.php" method="post">
-              Roll NO:
-              <input type="text" name="roll_no">
-              <input type="submit" name="search_by_roll_no_for_delete" value="Delete Student">
-            </form>
-          </center>
-          <?php
-          }
-          ?>
+          
 
           <?php
           if (isset($_POST['search_teacher'])) {
