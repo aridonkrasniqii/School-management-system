@@ -14,6 +14,8 @@ if (isset($_POST['add-subject'])) {
   $date = date("Y-m-d");
 
   $model = new subject(1, $name, $creadits, $date, $semester, $create_by);
+
+  
 } else {
   header("Location: ../teacher_dashboard.php");
   exit();

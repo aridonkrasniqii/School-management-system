@@ -65,7 +65,11 @@ class subject_repository
       return null;
     }
   }
+
+
+  public function create($model)
+  {
+    $query = "insert into subject(name,)values()";
+    // $stmt = mysqli_stmt_
+  }
 }
-
-
-
