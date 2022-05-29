@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 ?>
 
 
@@ -18,62 +19,92 @@ $student_id = $_SESSION['user_id'];
 $subject_repo = new subject_repository;
 $subject_array = $subject_repo->getAll();
 $homework_repo = new homework_result_repository;
-$homework_results = $homework_repo->getStudentResults($student_id);
+
+$user_role = $_SESSION['user_role'];
+
+if ($user_role == "student")
+  $homework_results = $homework_repo->getStudentResults($student_id);
+elseif ($user_role == "teacher")
+  $homework_results = $homework_repo->getAll();
 
 ?>
 
 
 
 <center>
-  <form action="" method="post">
-    <select name="subject">
-      <?php foreach ($subject_array as $s) { ?>
-      <option value="<?php echo $s->getId(); ?>"><?php echo $s->getName(); ?></option>
-      <?php } ?>
-    </select>
-    <select name="semester">
-      <option value="1">Semester 1</option>
-      <option value="2">Semester 2</option>
-      <option value="3">Semester 3 </option>
-    </select>
-    <button type="submit" name="filter-assessments">Filter</button>
-  </form>
 
+  <?php if ($user_role == "student") { ?>
+  <div>
+    <form action="" method="post">
+      <select name="subject">
+        <?php foreach ($subject_array as $s) { ?>
+        <option value="<?php echo $s->getId(); ?>"><?php echo $s->getName(); ?></option>
+        <?php } ?>
+      </select>
+
+      <select name="semester">
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+        <option value="3">Semester 3 </option>
+      </select>
+      <button type="submit" name="filter-assessments">Filter</button>
+    </form>
+  </div>
+  <?php } ?>
+  <?php if ($user_role == "teacher") { ?>
+  <div>
+    <form action="" method="post" class="palidhje">
+      <input type="text" name="subject" placeholder="Subject">
+      <input type="text" name="semester" placeholder="Semester">
+      <button type="submit" name="filter-assessments">Filter</button>
+    </form>
+  </div>
+  <?php } ?>
+
+  <style>
+  .palidhje {
+    color: black;
+    background-color: white;
+  }
+  </style>
   <br><br>
-  <table class="assessments styled-table">
-    <tr>
-      <th>Homework Result ID</th>
-      <th>Student Name</th>
-      <th>Homework Name</th>
-      <th>Homework Points</th>
-      <th>Delivered on time</th>
-      <th>Homework Date</th>
-      <th>Subject</th>
-      <th>Semester</th>
-    </tr>
-    <?php
+  <div class="era">
+    <table class=" assessments styled-table">
+      <tr>
+        <th>Homework Result ID</th>
+        <th>Student Name</th>
+        <th>Homework Name</th>
+        <th>Homework Points</th>
+        <th>Delivered on time</th>
+        <th>Homework Date</th>
+        <th>Subject</th>
+        <th>Semester</th>
+      </tr>
+      <?php
 
-    foreach ($homework_results as $result) {
-    ?>
-    <tr>
-      <td><?php echo $result->getId(); ?></td>
-      <td><?php echo getStudentName($result->getStudent_id()); ?></td>
-      <td><?php echo getHomeworkName($result->getHomework()); ?></td>
-      <td><?php echo $result->getPoints(); ?></td>
-      <td><?php echo $result->getDelivered_on_time(); ?></td>
-      <td><?php echo $result->getResult_date(); ?></td>
-      <td><?php echo $homework_repo->findSubject($result->getHomework()); ?></td>
-      <td><?php echo $homework_repo->getSemester($result->getHomework()); ?></td>
-    </tr>
-    <?php
-    } ?>
-  </table>
+      foreach ($homework_results as $result) {
+      ?>
+      <tr>
+        <td><?php echo $result->getId(); ?></td>
+        <td><?php echo getStudentName($result->getStudent_id()); ?></td>
+        <td><?php echo getHomeworkName($result->getHomework()); ?></td>
+        <td><?php echo $result->getPoints(); ?></td>
+        <td><?php echo $result->getDelivered_on_time(); ?></td>
+        <td><?php echo $result->getResult_date(); ?></td>
+        <td><?php echo $homework_repo->findSubject($result->getHomework()); ?></td>
+        <td><?php echo $homework_repo->getSemester($result->getHomework()); ?></td>
+      </tr>
+      <?php
+      } ?>
+    </table>
+  </div>
 </center>
 <style>
 .assessments {
   color: black;
   border: 1px solid black;
 }
+
 
 .assessments td,
 .assessments th {
@@ -83,6 +114,7 @@ $homework_results = $homework_repo->getStudentResults($student_id);
 }
 
 .styled-table {
+
   width: 100%;
   border-collapse: collapse;
   margin: 25px 0;

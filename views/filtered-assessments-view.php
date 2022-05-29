@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 ?>
 
 <?php
@@ -9,8 +10,18 @@ require("./database/connection.php");
 include "./repositories/homework-result-repository.php";
 include "./models/homework-result.php";
 $repository = new homework_result_repository;
-$student_id = $_SESSION['user_id'];
-$result_array = $repository->filterData($student_id, $subject_id, $semester);
+
+$user_role = $_SESSION['user_role'];
+
+
+
+if ($user_role == "student")
+  $result_array = $repository->filterData($student_id, $subject_id, $semester);
+elseif ($user_role == "teacher")
+  $result_array = $repository->filterTeacherData($subject_id, $semester);
+
+
+
 
 ?>
 

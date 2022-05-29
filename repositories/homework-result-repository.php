@@ -159,12 +159,76 @@ class homework_result_repository
     return null;
   }
 
+
+
+  public function filterTeacherData($subject_id, $semester)
+  {
+
+
+    $query = "select * from homework h inner join homework_result hr on h.id = hr.homework_id where h.subject_id = ? and h.semester = ?;";
+
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      $subject = $this->findIdSubject($subject_id);
+      $semester = trim($semester);
+
+      mysqli_stmt_bind_param($stmt, "ii", $subject, $semester);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+      $homework_results = array();
+
+      while ($row = mysqli_fetch_assoc($result)) {
+        $homework_results[] = fromFetchAssoc($row);
+      }
+      return $homework_results;
+    }
+    return null;
+  }
   function fromFetchAssoc($row)
   {
     return new homework_result($row['id'], $row['homework_id'], $row['student_id'], $row['points'], $row['delivered_on_time'], $row['date']);
   }
+  public function findIdSubject($subject)
+  {
+    $s = mysqli_real_escape_string($this->connection, $subject);
+    $query = "select * from subject where name like '%" . $s . "%'";
+    $stmt = mysqli_stmt_init($this->connection);
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_execute($stmt);
+
+      $result = mysqli_stmt_get_result($stmt);
+
+      if ($row = mysqli_fetch_assoc($result)) {
+        return $row['id'];
+      }
+    }
+  }
 
 
+  public function getAll()
+  {
+    $query = "select * from homework_result;";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_execute($stmt);
+
+      $result = mysqli_stmt_get_result($stmt);
+
+      $homeworks = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $homeworks[] = $this->fromFetchAssoc($row);
+      }
+      return $homeworks;
+    }
+  }
   public function findSubject($homework_id)
   {
 

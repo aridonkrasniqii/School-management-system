@@ -219,46 +219,71 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
       </center>
     </form>
   </div>
+
   <body>
-  <div class="container">
-  <div id="right_side"><br><br>
-    <div id="demo">
+    <div class="container">
+      <div id="right_side"><br><br>
+        <div id="demo">
 
-      <?php
-      if (isset($_POST['subjects'])) {
-        include('subjects/subject_info.php');
-      }
-      ?>
+          <?php
+          if (isset($_POST['subjects'])) {
+            include('subjects/subject_info.php');
+          }
+          ?>
 
-      <?php
-      if (isset($_POST['add_subjects'])){
-        include('subjects/subject_add_form.php');
-      } ?>
+          <?php
+          if (isset($_POST['add_subjects'])) {
+            include('subjects/subject_add_form.php');
+          } ?>
 
-      <?php
-      if (isset($_POST['search_student'])) {
-
-
-        include('students/student_search_form.php');
-      }
-      if (isset($_POST['students'])) {
-        include('students/student_info.php');}
-
-      if (isset($_POST['search_student_id'])) {
-        include('students/student_search.php');
-      }
-
-      if (isset($_POST['add_student'])) {
-        include('students/student_add_form.php');
-      }
-
-      if (isset($_POST['edit_student'])) {
-        include('students/student_edit_search.php');
-      }?>
-          
-   </div>
+          <?php
+          if (isset($_POST['search_student'])) {
 
 
-</body>
+            include('students/student_search_form.php');
+          }
+          if (isset($_POST['students'])) {
+            include('students/student_info.php');
+          }
+
+          if (isset($_POST['search_student_id'])) {
+            include('students/student_search.php');
+          }
+
+          if (isset($_POST['add_student'])) {
+            include('students/student_add_form.php');
+          }
+
+          if (isset($_POST['edit_student'])) {
+            include('students/student_edit_search.php');
+          } ?>
+          <?php
+          if (isset($_POST['faq_teacher'])) {
+            include("./teacher/views/faq-view.php");
+          }
+          ?>
+
+          <?php
+          if (isset($_POST['assessments_teacher'])) {
+            require("./views/assessments-view.php");
+          }
+          ?>
+          <?php if (isset($_POST['attachments_teacher'])) {
+            require("./teacher/views/attached-teacher-view.php");
+          } ?>
+
+          <?php
+          if (isset($_POST['filter-assessments'])) {
+            $subject_id = $_POST['subject'];
+            $semester = $_POST['semester'];
+            require("./views/filtered-assessments-view.php");
+          }
+          ?>
+
+
+        </div>
+
+
+  </body>
 
 </html>
