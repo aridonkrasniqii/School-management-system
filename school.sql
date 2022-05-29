@@ -160,9 +160,7 @@ create table faq_answer(
 
 
 
-use school;
 
-select * from homework;
 
 
 
