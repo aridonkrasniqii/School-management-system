@@ -151,6 +151,12 @@ create table faq (
     faq_answer varchar(255) default null
 );
 
+create table faq_answer(
+  id integer primary key auto_increment,
+  faq_id integer,
+  faq_answer varchar(255),
+  foreign key (faq_id) references faq(faq_id);
+);
 
 
 

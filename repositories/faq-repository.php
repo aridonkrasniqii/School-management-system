@@ -51,7 +51,7 @@ class faq_repository
 
   public function updateAnswer($faq_id, $faq_answer)
   {
-    $query = "update faq set faq_answer = ? where faq_id = ?";
+    $query = "update faq_answer set faq_answer = ? where faq_id = ?";
     $stmt = mysqli_stmt_init($this->connection);
 
 
@@ -61,5 +61,27 @@ class faq_repository
       mysqli_stmt_bind_param($stmt, "si", $faq_answer, $faq_id);
       mysqli_stmt_execute($stmt);
     }
+  }
+
+  public function getSpecificAnswers($faq_id)
+  {
+    $query = "select * from faq_answer where faq_id = ?";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "i", $faq_id);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+
+      $faq_answers = [];
+      if ($row = mysqli_fetch_assoc($result)) {
+        $faq_answers = $row['faq_answer'];
+      }
+
+      return $faq_answers;
+    }
+    return null;
   }
 }

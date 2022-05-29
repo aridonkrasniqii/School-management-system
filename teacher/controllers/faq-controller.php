@@ -14,6 +14,7 @@ if (isset($_POST['submit-answer'])) {
   $repository->updateAnswer($faq_id, $faq_answer);
   
 
+
   header("Location: ../../teacher_dashboard.php?error=success");
   exit();
 } elseif (isset($_POST['submit-faq'])) {

@@ -14,7 +14,8 @@
         require("./database/connection.php");
         include "./repositories/faq-repository.php";
         $faqs = new faq_repository();
-        $faqArr = $faqs->getAll(); ?>
+        $faqArr = $faqs->getAll();
+        ?>
 
      </div>
      <div class="accordion">
@@ -28,10 +29,19 @@
          </button>
          <div class="accordion-content">
            <p>
-             <?php if (empty($arr['faq_answer'])) {
-                  echo "No answer for this question";
-                } else {
-                  echo "Answer : <br> " . $arr['faq_answer'] . "<br>";
+             <?php
+                // load answers
+                $faq_answers = $faqs->getSpecificAnswers($arr['faq_id']);
+
+
+                ?>
+             <?php
+                foreach ($faq_answers as $f) {
+                  if (empty($f)) {
+                    echo "No answer for this question";
+                  } else {
+                    echo "Answer : <br> " . $f . "<br>";
+                  }
                 }
                 ?>
            <div class="answer-class">
