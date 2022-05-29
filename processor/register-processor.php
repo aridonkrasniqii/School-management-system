@@ -61,7 +61,7 @@ class register_processor
         exit();
       }
       $hashpwd = password_hash($password, PASSWORD_DEFAULT);
-      $model = new student(1, $fullname, $username, $email, $hashpwd, $index);  
+      $model = new student(1, $fullname, $username, $email, $hashpwd, $index);
 
       if (!$student_repository->create($model)) {
         header("Location: ../views/student-signup-view.php?error=sqlerror");
