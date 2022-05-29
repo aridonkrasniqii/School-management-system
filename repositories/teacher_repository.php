@@ -73,13 +73,11 @@ class teacher_repository
       $username = $model->getTeacher_username();
       $email = $model->getTeacher_email();
       $password = $model->getTeacher_password();
-      $index = $model->getStudent_index();
+      $index = $model->getTeacher_index();
       $role = $model->getTeacher_role();
       mysqli_stmt_bind_param($stmt, "ssssss", $fullname, $role, $username, $email, $password, $index);
-      mysqli_stmt_execute($stmt);
-      return $this->find($model->getTeacher_id());
+      return mysqli_stmt_execute($stmt);
     }
-    return null;
   }
 
   public function teacherExists($username, $email)

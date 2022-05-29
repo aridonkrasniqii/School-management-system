@@ -23,7 +23,6 @@ class student_repository
     if (!mysqli_stmt_prepare($stmt, $query)) {
       throw new Exception();
     } else {
-
       mysqli_stmt_bind_param($stmt, "i", $id);
       mysqli_stmt_execute($stmt);
 
@@ -55,6 +54,7 @@ class student_repository
       $studentid = $student->getStudent_index();
       $id = $student->getStudent_id();
 
+
       mysqli_stmt_bind_param($stmt, "sssssi", $name, $username, $email, $hashpwd, $studentid, $id);
 
       mysqli_stmt_execute($stmt);
@@ -69,7 +69,7 @@ class student_repository
   public function create($model)
   {
     $query = "insert into student(student_name, student_username, student_email, student_password, student_index)
-          values(? , ? , ? , ? , ?);";
+          values(?,?,?,?,?);";
     $stmt = mysqli_stmt_init($this->connection);
     if (!mysqli_stmt_prepare($stmt, $query)) {
       throw new Exception();
@@ -80,10 +80,8 @@ class student_repository
       $password = $model->getStudent_password();
       $index = $model->getStudent_index();
       mysqli_stmt_bind_param($stmt, "sssss", $fullname, $username, $email, $password, $index);
-      mysqli_stmt_execute($stmt);
-      return $this->find($model->getStudent_id());
+      return mysqli_stmt_execute($stmt);
     }
-    return null;
   }
 
   public function userExists($username)
