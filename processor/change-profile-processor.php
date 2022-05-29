@@ -4,6 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if (isset($_POST['save-updates'])) {
+  require("../database/connection.php");
   include "../repositories/student-repository.php";
   include "../models/student.php";
   session_start();
@@ -42,7 +43,7 @@ if (isset($_POST['save-updates'])) {
   }
 
 
-  $stu = new student($id, $name, $role, $username, $email, $password, $index);
+  $stu = new student($id, $name, $username, $email, $password, $index);
 
   if ($repository->update($stu) != null) {
     header("Location: ../views/profile-view.php?error=success");

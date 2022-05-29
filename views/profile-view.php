@@ -140,6 +140,7 @@ error_reporting(E_ALL);
     <div class="container">
 
       <?php
+      require("../database/connection.php");
       include "../repositories/student-repository.php";
       include "../models/student.php";
       $userId = $_SESSION['user_id'];
