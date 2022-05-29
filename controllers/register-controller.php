@@ -18,6 +18,7 @@ if (isset($_POST['student-register'])) {
   $processor = new register_processor();
 
   $processor->registerUser($index, $fullname, $role, $username, $email, $password, $passwordRepeat);
+  
 } elseif (isset($_POST['teacher-register'])) {
 
   $index =  $_POST['index'];
@@ -33,6 +34,7 @@ if (isset($_POST['student-register'])) {
   $processor = new register_processor();
 
   $processor->registerUser($index, $fullname, $role, $username, $email, $password, $passwordRepeat);
+
 } else {
   header("Location: ../signup.php?");
   exit();

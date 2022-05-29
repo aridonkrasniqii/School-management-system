@@ -23,7 +23,7 @@ class teacher extends user
 
   public function getTeacher_password()
   {
-    parent::getPassword();
+    return parent::getPassword();
   }
 
   public function setTeacher_password($password)
@@ -33,8 +33,9 @@ class teacher extends user
 
   public function getTeacher_index()
   {
-    parent::getIndex();
+    return parent::getIndex();
   }
+
   public function setTeacher_index($index)
   {
     parent::setIndex($index);
