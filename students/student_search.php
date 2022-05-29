@@ -1,7 +1,9 @@
-<?php $id = $_POST['id'];
+<?php
+$id = $_POST['id'];
 
 require("./database/connection.php");
 $connection = db::getConnection();
+
 $query = "SELECT * FROM student WHERE student_id = {$id};";
 $query_run = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($query_run)) {

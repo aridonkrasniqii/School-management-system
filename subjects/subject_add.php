@@ -5,6 +5,12 @@ error_reporting(E_ALL);
 require("../database/connection.php");
 $connection = db::getConnection();
 session_start();
+
+
+// FIXME:            if(isset($_POST['submit]))
+
+
+
 $name = $_POST['name'];
 $credits = $_POST['credits'];
 $created_by = $_SESSION['user_id'];

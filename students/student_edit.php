@@ -1,6 +1,6 @@
 <?php
 
-require("./database/connection.php");
+require("../database/connection.php");
 $connection = db::getConnection();
 // $connection = mysqli_connect("localhost:3307", "root", "");
 // $db = mysqli_select_db($connection, "school");
@@ -8,6 +8,9 @@ $id = "";
 
 if (isset($_POST['edit'])) {
 
+
+
+  // FIXME:     check this idd , where does thish come from
   update($id);
 
 ?>

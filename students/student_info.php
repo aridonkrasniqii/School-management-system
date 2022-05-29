@@ -50,12 +50,7 @@ error_reporting(E_ALL);
     <?php
       echo "</tr>";
     }
-
-
-
-
     ?>
-
     <script>
 
     </script>

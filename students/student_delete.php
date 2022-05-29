@@ -1,5 +1,5 @@
 <?php
-require("./database/connection.php");
+require("../database/connection.php");
 $connection = db::getConnection();
 //check get request
 if (isset($_GET['id'])) {

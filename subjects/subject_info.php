@@ -4,8 +4,9 @@
   <div class="row">
 
     <?php
-    require("../database/connection.php");
+    require("./database/connection.php");
     $connection = db::getConnection();
+    
     $query = "select * from subject;";
     $subjects = [];
     $stmt = mysqli_stmt_init($connection);

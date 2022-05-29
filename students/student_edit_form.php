@@ -1,5 +1,6 @@
 <?php
 
+require("../database/connection.php");
 $connection = db::getConnection();
 
 if (isset($_POST['student_edit_search'])) {

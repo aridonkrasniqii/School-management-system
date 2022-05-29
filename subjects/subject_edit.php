@@ -1,6 +1,11 @@
 <?php
-require("./database/connection.php");
+require("../database/connection.php");
 $connection = db::getConnection();
+
+
+// FIXME:     if(isset($_POST['submit]))
+
+
 $id = $_POST['id'];
 $name = $_POST['name'];
 $credits = $_POST['credits'];
