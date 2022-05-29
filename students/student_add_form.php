@@ -35,7 +35,7 @@ form {
 <body>
   <section class="container" grey-text>
     <h4 class="center">Add student</h4>
-    <form action="students/student_add_form.php" method="POST" class="white">
+    <form action="./controllers/add-student-controller.php" method="post" class="white">
       <label for="name">Name of student: </label>
       <input type="text" name="name">
       <label for="username">Username of subject : </label>
@@ -54,10 +54,10 @@ form {
 
     <?php
 
-    if(isset($_POST['edit'])){
-      if(empty($_POST['name'])||empty($_POST['username'])||empty($_POST['email'])||empty($_POST['index'])){
+    if (isset($_POST['edit'])) {
+      if (empty($_POST['name']) || empty($_POST['username']) || empty($_POST['email']) || empty($_POST['index'])) {
         echo "fill all fields";
-      }else{
+      } else {
         // include('student_add.php');
       }
     }

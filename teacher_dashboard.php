@@ -238,8 +238,6 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
 
           <?php
           if (isset($_POST['search_student'])) {
-
-
             include('students/student_search_form.php');
           }
           if (isset($_POST['students'])) {
