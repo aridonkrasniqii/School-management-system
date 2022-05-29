@@ -1,6 +1,6 @@
 <?php
-$connection = mysqli_connect("localhost:3307", "root", "");
-$db = mysqli_select_db($connection, "school");
+require("./database/connection.php");
+$connection = db::getConnection();
 $id = $_POST['id'];
 $name = $_POST['name'];
 $credits = $_POST['credits'];

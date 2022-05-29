@@ -69,7 +69,22 @@ class subject_repository
 
   public function create($model)
   {
-    $query = "insert into subject(name,)values()";
-    // $stmt = mysqli_stmt_
+    $query = "insert into subject(name,credits, created_at, created_by , semester)values(?,?,?,?, ?)";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+
+      $name  = $model->getName();
+      $credits = $model->getCredits();
+      $created_at  = $model->getCreated_at();
+      $semester  = $model->getSemester();
+      $create_by = $model->getCreated_by();
+
+      mysqli_stmt_bind_param($stmt, "ssssi", $name, $credits, $created_at, $create_by, $semester);
+
+      return mysqli_stmt_execute($stmt);
+    }
   }
 }

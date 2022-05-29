@@ -285,6 +285,10 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
               if (isset($_GET['error'])) {
                 if ($_GET['error'] == 'addedstudent') {
                   echo "Student is added";
+                } elseif ($_GET['error'] == 'subjectnotadded') {
+                  echo "Subject not added ";
+                } elseif ($_GET['error'] == 'subjectadded') {
+                  echo "Subject added";
                 }
               }
               ?>

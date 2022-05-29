@@ -1,16 +1,16 @@
-<?php require("../database/db.php");
-$connection = mysqli_connect("localhost:3307","root","");
-$db = mysqli_select_db($connection,"school");
+<?php
 
-    $id=$name=$credits=$lectured_by=$semester="";
+require("../database/connection.php");
+$connection = db::getConnection();
+$id = $name = $credits = $lectured_by = $semester = "";
 
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
-        $name = $_GET['name'];
-        $credits = $_GET['credits'];
-        $lectured_by = $_GET['lectured_by'];
-        $semester = $_GET['semester'];
-    }
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+  $name = $_GET['name'];
+  $credits = $_GET['credits'];
+  $lectured_by = $_GET['lectured_by'];
+  $semester = $_GET['semester'];
+}
 ?>
 
 

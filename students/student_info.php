@@ -1,7 +1,7 @@
 <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
 
 <h2>Students</h2>
@@ -16,7 +16,12 @@
   </thead>
   <tbody>
     <?php
-    $connection = mysqli_connect("localhost:3307","root", "", "school");
+
+
+    require("./database/connection.php");
+
+    $connection = db::getConnection();
+    // $connection = mysqli_connect("localhost", "root", "", "school");
     $query = "select * from student;";
     $students = [];
     $stmt = mysqli_stmt_init($connection);
@@ -37,15 +42,13 @@
       echo "<td>" . $s['student_name'] . "</td>";
       echo "<td>" . $s['student_email'] . "</td>";
       echo "<td>" . $s['student_index'] . "</td>";
-      $id=$s['student_id'];
-      ?>
-      <td>
-      <a href="students/student_delete.php?id=<?php echo $id;?>">Delete</a>
+      $id = $s['student_id'];
+    ?>
+    <td>
+      <a href="students/student_delete.php?id=<?php echo $id; ?>">Delete</a>
     </td>
-      <?php
+    <?php
       echo "</tr>";
-      
-
     }
 
 

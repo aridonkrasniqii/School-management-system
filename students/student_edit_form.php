@@ -1,35 +1,33 @@
 <?php
-                                
-                                $connection = mysqli_connect("localhost:3307","root","");
-                                $db = mysqli_select_db($connection,"school");
 
-                                if(isset($_POST['student_edit_search'])){
-                                    $id = $_POST['id'];
-                                    $query = "select * from student where student_id = $id;";
-                                    $students = [];
-                                    $stmt = mysqli_stmt_init($connection);
+$connection = db::getConnection();
 
-                                    if(!mysqli_stmt_prepare($stmt, $query)){
-                                        throw new Exception();
-                                    }else {
-                                        mysqli_stmt_execute($stmt);
-                                        $result = mysqli_stmt_get_result($stmt);
+if (isset($_POST['student_edit_search'])) {
+  $id = $_POST['id'];
+  $query = "select * from student where student_id = $id;";
+  $students = [];
+  $stmt = mysqli_stmt_init($connection);
 
-                                        while($row = mysqli_fetch_assoc($result)){
-                                            $students[] = $row;
-                                        }
-                                    }
+  if (!mysqli_stmt_prepare($stmt, $query)) {
+    throw new Exception();
+  } else {
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-                                    foreach($students as $s) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      $students[] = $row;
+    }
+  }
 
-                                        $id = $s['student_id'];
-                                        $name = $s['student_name'];
-                                        $username = $s['student_username'];
-                                        $email = $s['student_email'];
-                                        $index = $s['student_index'];
+  foreach ($students as $s) {
 
-                                }
-                                  }?>
+    $id = $s['student_id'];
+    $name = $s['student_name'];
+    $username = $s['student_username'];
+    $email = $s['student_email'];
+    $index = $s['student_index'];
+  }
+} ?>
 
 
 

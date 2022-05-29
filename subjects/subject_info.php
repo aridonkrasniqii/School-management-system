@@ -4,10 +4,8 @@
   <div class="row">
 
     <?php
-
-    $connection = mysqli_connect("localhost:3307", "root", "");
-    $db = mysqli_select_db($connection, "school");
-
+    require("../database/connection.php");
+    $connection = db::getConnection();
     $query = "select * from subject;";
     $subjects = [];
     $stmt = mysqli_stmt_init($connection);

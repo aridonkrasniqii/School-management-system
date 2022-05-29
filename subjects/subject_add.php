@@ -2,8 +2,8 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$connection = mysqli_connect("localhost:3307", "root", "");
-$db = mysqli_select_db($connection, "school");
+require("../database/connection.php");
+$connection = db::getConnection();
 session_start();
 $name = $_POST['name'];
 $credits = $_POST['credits'];

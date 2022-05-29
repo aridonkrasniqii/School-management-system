@@ -1,7 +1,6 @@
 <?php
-$connection = mysqli_connect("localhost:3307", "root", "");
-$db = mysqli_select_db($connection, "school");
-
+require("./database/connection.php");
+$connection = db::getConnection();
 //check get request
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
