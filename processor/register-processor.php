@@ -23,7 +23,7 @@ class register_processor
     } elseif ($password != $passwordRepeat) {
       header("Location: ../views/" . $role . "-signup-view.php?error=passworddoesnotmatch");
       exit();
-    } elseif ($role != "teacher" || $role != "assistant") {
+    } elseif ($role != "teacher" && $role != "assistant") {
       header("Location: ../signup.php?error=wrngrole");
       exit();
     }
