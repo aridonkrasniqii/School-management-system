@@ -33,17 +33,16 @@
                 // load answers
                 $faq_answers = $faqs->getSpecificAnswers($arr['faq_id']);
 
-
                 ?>
              <?php
+                if (empty($faq_answers)) {
+                  echo "No answer for this question";
+                }
                 foreach ($faq_answers as $f) {
-                  if (empty($f)) {
-                    echo "No answer for this question";
-                  } else {
-                    echo "Answer : <br> " . $f . "<br>";
-                  }
+                  echo "Answer : <br> " . $f . "<br>";
                 }
                 ?>
+
            <div class="answer-class">
              <form class="answer-form" action="./teacher/controllers/faq-controller.php" method="post">
                <input type="text" name="faq-answer" placeholder=" Type your answer here ">

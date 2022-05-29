@@ -51,7 +51,7 @@ class faq_repository
 
   public function updateAnswer($faq_id, $faq_answer)
   {
-    $query = "update faq_answer set faq_answer = ? where faq_id = ?";
+    $query = "insert into faq_answer(faq_answer, faq_id) values(?, ?);";
     $stmt = mysqli_stmt_init($this->connection);
 
 
@@ -76,8 +76,8 @@ class faq_repository
       $result = mysqli_stmt_get_result($stmt);
 
       $faq_answers = [];
-      if ($row = mysqli_fetch_assoc($result)) {
-        $faq_answers = $row['faq_answer'];
+      while ($row = mysqli_fetch_assoc($result)) {
+        $faq_answers[] = $row['faq_answer'];
       }
 
       return $faq_answers;
