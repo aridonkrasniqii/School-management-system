@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+session_start();
 
 ?>
 
@@ -25,8 +26,9 @@ error_reporting(E_ALL);
   ?>
 
   <div>
-    <button id="button"> <a href=" ../student_dashboard.php" id="btn">Go back to home page</a>
-    </button>
+    <?php ?>
+    <button id="button"> <a href=" ../student_dashboard.php" id="btn">Go back to home page</a></button>
+    <?php ?>
   </div>
 </body>
 <style>

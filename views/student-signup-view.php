@@ -99,7 +99,7 @@ a {
           } else if ($_GET['error'] == "sqlerror") {
             echo "<p id = 'p'>Something went wrong try again ! </p>";
           } elseif ($_GET['error'] == "userexists") {
-            echo "<p id = 'f'>User already exists</p>";
+            echo "<p id = 'p'>User already exists</p>";
           } else if ($_GET['error'] == "success") {
             echo "<p id = 's'> Registered succesfully </p>";
           }
