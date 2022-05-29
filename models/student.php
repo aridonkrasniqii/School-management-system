@@ -3,115 +3,77 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-class student
+include("user.php");
+
+
+class student extends user
 {
-    private $student_id;
-    private $student_name;
-    private $student_role;
-    private $student_username;
-    private $student_email;
-    private $student_password;
-    private $student_salt;
-    private $student_index;public function __construct($student_id, $student_name, $student_role, $student_username, $student_email, $student_password, $student_salt, $student_index)
-    {
-        $this->student_index = $student_index;
-        $this->student_password = $student_password;
-        $this->student_id = $student_id;
-        $this->student_name = $student_name;
-        $this->student_role = $student_role;
-        $this->student_username = $student_username;
-        $this->student_email = $student_email;
-        $this->student_salt = $student_salt;
 
-    }
+  public function __construct($student_id, $student_name, $student_username, $student_email, $student_password, $student_index)
+  {
 
-    public function getStudent_index()
-    {
-        return $this->student_index;
-    }
+    parent::__construct($student_id, $student_name, $student_username, $student_email, $student_password, $student_index);
+  }
 
-    public function setStudent_index($student_index)
-    {
-        $this->student_index = $student_index;
-    }
 
-    public function getStudent_password()
-    {
-        return $this->student_password;
-    }
 
-    public function setStudent_password($student_password)
-    {
-        $this->student_password = $student_password;
+  public function getStudent_index()
+  {
+    return parent::getIndex();
+  }
 
-        return $this;
-    }
+  public function setStudent_index($student_index)
+  {
+    parent::setIndex($student_index);
+  }
 
-    public function getStudent_id()
-    {
-        return $this->student_id;
-    }
-    public function setStudent_id($student_id)
-    {
-        $this->student_id = $student_id;
+  public function getStudent_password()
+  {
+    return parent::getPassword();
+  }
 
-        return $this;
-    }
-    public function getStudent_name()
-    {
-        return $this->student_name;
-    }
+  public function setStudent_password($student_password)
+  {
+    parent::setPassword($student_password);
+  }
 
-    public function setStudent_name($student_name)
-    {
-        $this->student_name = $student_name;
+  public function getStudent_id()
+  {
+    return parent::getId();
+  }
+  public function setStudent_id($student_id)
+  {
+    parent::setId($student_id);
+  }
+  public function getStudent_name()
+  {
+    return parent::getName();
+  }
 
-        return $this;
-    }
-    public function getStudent_role()
-    {
-        return $this->student_role;
-    }
-    public function setStudent_role($student_role)
-    {
-        $this->student_role = $student_role;
+  public function setStudent_name($student_name)
+  {
+    parent::setName($student_name);
+  }
 
-        return $this;
-    }
 
-    public function getStudent_username()
-    {
-        return $this->student_username;
-    }
+  public function getStudent_username()
+  {
+    return parent::getUsername();
+  }
 
-    public function setStudent_username($student_username)
-    {
-        $this->student_username = $student_username;
+  public function setStudent_username($student_username)
+  {
+    parent::setUsername($student_username);
+  }
 
-        return $this;
-    }
 
-    public function getStudent_email()
-    {
-        return $this->student_email;
-    }
+  public function getStudent_email()
+  {
+    return parent::getEmail();
+  }
 
-    public function setStudent_email($student_email)
-    {
-        $this->student_email = $student_email;
-
-        return $this;
-    }
-
-    public function getStudent_salt()
-    {
-        return $this->student_salt;
-    }
-
-    public function setStudent_salt($student_salt)
-    {
-        $this->student_salt = $student_salt;
-
-        return $this;
-    }
+  public function setStudent_email($student_email)
+  {
+    parent::setEmail($student_email);
+  }
 }

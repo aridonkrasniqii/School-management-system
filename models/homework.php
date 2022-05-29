@@ -26,7 +26,7 @@ class homework
     $this->semester = $semester;
   }
 
-  
+
   public function getId()
   {
     return $this->id;
@@ -67,11 +67,7 @@ class homework
     return $this->subject;
   }
 
-  /**
-   * Set the value of subject
-   *
-   * @return  self
-   */
+  
   public function setSubject($subject)
   {
     $this->subject = $subject;
@@ -79,19 +75,12 @@ class homework
     return $this;
   }
 
-  /**
-   * Get the value of semester
-   */
   public function getSemester()
   {
     return $this->semester;
   }
 
-  /**
-   * Set the value of semester
-   *
-   * @return  self
-   */
+
   public function setSemester($semester)
   {
     $this->semester = $semester;

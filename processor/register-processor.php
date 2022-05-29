@@ -52,7 +52,7 @@ class register_processor
         exit();
       } else {
         // insted of selecting we are gonna insert into the database
-        $sql = "INSERT INTO " . $role . "(" . $role . "_name," . $role . "_role, " . $role . "_username," . $role . "_email," . $role . "_password," . $role . "_salt," . $role . "_index) values(?,?,?,?,?,?,?);";
+        $sql = "INSERT INTO " . $role . "(" . $role . "_name," . $role . "_role, " . $role . "_username," . $role . "_email," . $role . "_password," . $role . "_salt," . $role . "_index) values(?,?,?,?,?,?);";
         $stmt = mysqli_stmt_init($connection);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
           header("Location: ../views/" . $role . "-signup-view.php?error=sqlerror");
@@ -61,10 +61,9 @@ class register_processor
 
           // hash the password
           $hashpwd = password_hash($password, PASSWORD_DEFAULT);
-          // fix me compute hash
-          $salt = "12345678";
 
-          mysqli_stmt_bind_param($stmt, "sssssss", $fullname, $role, $username, $email, $hashpwd, $salt, $index);
+
+          mysqli_stmt_bind_param($stmt, "sssssss", $fullname, $role, $username, $email, $hashpwd, $index);
           mysqli_stmt_execute($stmt);
           header("Location: ../views/" . $role . "-signup-view.php?error=success");
           exit();
