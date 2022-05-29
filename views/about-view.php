@@ -1,9 +1,9 @@
 <?php
 session_start();
-require("./models/teacher.php");
-require("./database/connection.php");
-require("./repositories/teacher_repository.php");
-include("./files/readfile.php");
+require("../models/teacher.php");
+require("../database/connection.php");
+require("../repositories/teacher_repository.php");
+include("../files/readfile.php");
 
 $teacher_repository = new teacher_repository;
 
@@ -20,15 +20,23 @@ $teachers = $teacher_repository->aboutTeachers();
   $userRole = $_SESSION['user_role'];
   $i = 0;
   if ($userRole == "student") { ?>
-  <button><a href="student_dashboard.php" id="bobackbtn">Go Back To Home Page</a></button>
+  <button><a href="../student_dashboard.php" id="bobackbtn">Go Back To Home Page</a></button>
   <?php } else if ($userRole == "teacher") { ?>
 
-  <button> <a href="teacher_dashboard.php" id="bobackbtn">Go Back To Home Page</a></button>
+  <button> <a href="../teacher_dashboard.php" id="bobackbtn">Go Back To Home Page</a></button>
   <?php } ?>
 </div>
 
-
 <div class="about-section">
+  <?php
+  if (isset($_GET['mail'])) {
+    if ($_GET['mail'] == 'sent') {
+      echo "<p style = 'color:green;'>Email was sent</p>";
+    } elseif ($_GET['mail'] == 'notsent') {
+      echo "<p style = 'color:red;'>Email was not sent</p>";
+    }
+  }
+  ?>
   <h1>About Us Page</h1>
   <p><?php echo $aboutContent[0]; ?></p>
   <p><?php echo $aboutContent[1]; ?></p>
@@ -43,7 +51,7 @@ $teachers = $teacher_repository->aboutTeachers();
   <?php foreach ($teachers as $t) { ?>
   <div class="column">
     <div class="card">
-      <img src="<?php echo "./images/person" . $i . ".jpeg"; ?>" alt="Professor" style="width:100%">
+      <img src="<?php echo "../images/person" . $i . ".jpeg"; ?>" alt="Professor" style="width:100%">
       <div class="container">
         <h2> <?php echo $t->getTeacher_name(); ?></h2>
         <p class="title"><?php echo strtoupper($t->getTeacher_role()); ?></p>
@@ -51,7 +59,7 @@ $teachers = $teacher_repository->aboutTeachers();
           <?php echo $fileContent[$i]; ?>
         </p>
         <p><?php echo $t->getTeacher_email(); ?></p>
-        <form action="contact.php" method="post">
+        <form action="contact-view.php" method="post">
           <button class="button" type="submit" name="submit-contact">Contact</button>
           <input type="hidden" name="teacher-id" value="<?php echo $t->getTeacher_id(); ?>">
         </form>

@@ -42,7 +42,7 @@ require "./database/dbconnect.php";
       <li><a href="#">Home</a></li>
       <li><a href="./views/profile-view.php">Profile</a></li>
       <li><a href="logout.php">Logout</a></li>
-      <li><a href="about.php">About</a></li>
+      <li><a href="./views/about-view.php">About</a></li>
     </ul>
     <br>
   </div>
