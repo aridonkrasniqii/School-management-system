@@ -11,7 +11,7 @@ class student_repository
 
   public function __construct()
   {
-    $this->connection = mysqli_connect("localhost", "root", "", "school");
+    $this->connection = db::getConnection();
   }
 
   public function find($id)

@@ -1,4 +1,5 @@
  <?php
+  require("./database/connection.php");
   include "./repositories/faq-repository.php";
   $faqs = new faq_repository();
   $faqArr = $faqs->getAll();

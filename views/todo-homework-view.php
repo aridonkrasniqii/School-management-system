@@ -26,6 +26,7 @@ error_reporting(E_ALL);
 
 
   if (isset($_GET['id'])) {
+    require("../database/connection.php");
     include("../controllers/homework-controller.php");
     $id = $_GET['id'];
     $homework_controller = new homework_controller;

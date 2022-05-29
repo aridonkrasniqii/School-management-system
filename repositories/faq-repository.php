@@ -10,13 +10,15 @@ class faq_repository
 {
 
 
+  private $connection;
+  public function __construct()
+  {
+    $this->connection = db::getConnection();
+  }
   public function getAll()
   {
-
-    $connection = mysqli_connect("localhost", "root", "", "school");
-
     $query = "select * from faq";
-    $stmt = mysqli_stmt_init($connection);
+    $stmt = mysqli_stmt_init($this->connection);
 
     if (!mysqli_stmt_prepare($stmt, $query)) {
       throw new Exception();
@@ -36,9 +38,8 @@ class faq_repository
 
   public function create($question, $answer)
   {
-    $connection = mysqli_connect("localhost", "root", "", "school");
     $query = "insert into faq(faq_question , faq_answer) values( ? , ? )";
-    $stmt = mysqli_stmt_init($connection);
+    $stmt = mysqli_stmt_init($this->connection);
 
     if (!mysqli_stmt_prepare($stmt, $query)) {
       throw new Exception();
@@ -50,10 +51,8 @@ class faq_repository
 
   public function updateAnswer($faq_id, $faq_answer)
   {
-
-    require("../../database/db.php");
     $query = "update faq set faq_answer = ? where faq_id = ?";
-    $stmt = mysqli_stmt_init($connection);
+    $stmt = mysqli_stmt_init($this->connection);
 
 
     if (!mysqli_stmt_prepare($stmt, $query)) {

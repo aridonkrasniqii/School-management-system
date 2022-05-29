@@ -2,9 +2,18 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+require("./database/connection.php");
+include("./models/subject.php");
+include("./repositories/subject-repository.php");
 include("./controllers/subject_controller.php");
+
+
+
+
 $controller = new subject_controller;
 $subjects = $controller->findAllSubjects();
+
+
 ?>
 
 

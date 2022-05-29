@@ -1,9 +1,20 @@
   <?php
-  include "./controllers/subject_controller.php";
-  include "./controllers/todo-controller.php";
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+  require("./database/connection.php");
+  require("./models/subject.php");
+  require("./repositories/subject-repository.php");
+  require "./controllers/subject_controller.php";
+  require "./controllers/todo-controller.php";
+
+
+
 
   $subject_controller = new subject_controller;
   $sub = $subject_controller->findAllSubjects();
+
+
 
   $homework_controller = new todo_controller;
   $homeworks = $homework_controller->getAll();

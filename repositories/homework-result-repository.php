@@ -134,7 +134,7 @@ class homework_result_repository
 
   public function __construct()
   {
-    $this->connection = mysqli_connect("localhost", "root", "", "school");
+    $this->connection = db::getConnection();
   }
   public function filterData($student_id, $subject_id, $semester)
   {
@@ -270,5 +270,4 @@ class homework_result_repository
     }
     return false;
   }
-
 }

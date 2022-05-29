@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 
 
 <?php
+require("./database/connection.php");
 include "./repositories/homework-result-repository.php";
 include "./models/homework-result.php";
 include "./models/subject.php";

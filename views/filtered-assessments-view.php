@@ -5,18 +5,12 @@ error_reporting(E_ALL);
 ?>
 
 <?php
+require("./database/connection.php");
 include "./repositories/homework-result-repository.php";
 include "./models/homework-result.php";
 $repository = new homework_result_repository;
 $student_id = $_SESSION['user_id'];
 $result_array = $repository->filterData($student_id, $subject_id, $semester);
-
-
-
-//  show subject and semester of homework
-
-
-
 
 ?>
 

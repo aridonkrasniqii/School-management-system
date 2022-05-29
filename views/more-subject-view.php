@@ -19,7 +19,8 @@ error_reporting(E_ALL);
   if (isset($_GET['id'])) {
     include("../models/homework.php");
     include("../repositories/homework-repository.php");
-    require("../database/dbconnect.php");
+    require("../database/connection.php");
+
     $subject_id = $_GET['id'];
     $repository = new homework_repository();
     $array = $repository->showSubjectHomework($subject_id);

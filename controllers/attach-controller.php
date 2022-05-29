@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 
 if (isset($_POST['attach_homework'])) {
   include("../models/attached.php");
-  require("../database/dbconnect.php");
+  require("../database/connection.php");
   include("../repositories/attached-homework-repository.php");
   session_start();
   $subject_id = $_POST['subject'];

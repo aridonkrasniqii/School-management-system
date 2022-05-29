@@ -1,4 +1,7 @@
 <?php
+require("./database/connection.php");
+include("./models/subject.php");
+include("./repositories/subject-repository.php");
 include("./controllers/subject_controller.php");
 include("./controllers/attached-controller.php");
 

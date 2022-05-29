@@ -1,4 +1,7 @@
  <?php
+  require("./models/subject.php");
+  require("./database/connection.php");
+  require("./repositories/subject-repository.php");
   include("./controllers/subject_controller.php");
   include("./controllers/homework-controller.php");
 

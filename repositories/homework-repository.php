@@ -9,7 +9,7 @@ class homework_repository
   private $connection;
   public function __construct()
   {
-    $this->connection = mysqli_connect("localhost", "root", "", "school");
+    $this->connection = db::getConnection();
   }
   public function getAll()
   {

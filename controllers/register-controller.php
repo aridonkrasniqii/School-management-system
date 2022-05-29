@@ -7,7 +7,8 @@ error_reporting(E_ALL);
 
 if (isset($_POST['student-register'])) {
 
-  require("../database/db.php");
+  require("../database/connection.php");
+  $connection = db::getConnection();
   $index = mysqli_real_escape_string($connection, $_POST['index']);
   $fullname = mysqli_real_escape_string($connection, $_POST['fullname']);
   $role = "student";
@@ -22,8 +23,8 @@ if (isset($_POST['student-register'])) {
   $processor->registerUser($index, $fullname, $role, $username, $email, $password, $passwordRepeat);
 } elseif (isset($_POST['teacher-register'])) {
 
-  require("../database/db.php");
-
+  require("../database/connection.php");
+  $connection = db::getConnection();
   $index = mysqli_real_escape_string($connection, $_POST['index']);
   $fullname = mysqli_real_escape_string($connection, $_POST['fullname']);
   $role = "teacher";

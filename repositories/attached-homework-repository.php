@@ -11,7 +11,8 @@ class attached_repository
   private $connection;
   public function __construct()
   {
-    $this->connection = mysqli_connect("localhost", "root", "", "school");
+    // $this->connection = mysqli_connect("localhost", "root", "", "school");
+    $this->connection = db::getConnection();
   }
 
   public function find($id)

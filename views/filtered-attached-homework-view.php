@@ -1,5 +1,5 @@
 <?php
-// php code to load homework
+require("./database/connection.php");
 include("./models/attached.php");
 include("./repositories/attached-homework-repository.php");
 
