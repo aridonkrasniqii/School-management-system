@@ -28,12 +28,19 @@
          </button>
          <div class="accordion-content">
            <p>
-             <?php if (empty($arr['faq_answer'])) {
+
+             <?php
+                $faq_answers = $faqs->getSpecificAnswers($arr['faq_id']);
+                ?>
+             <?php
+                if (empty($faq_answers)) {
                   echo "No answer for this question";
-                } else {
-                  echo $arr['faq_answer'];
+                }
+                foreach ($faq_answers as $f) {
+                  echo "Answer : <br> " . $f . "<br>";
                 }
                 ?>
+
            </p>
          </div>
        </div>
