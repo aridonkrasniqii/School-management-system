@@ -10,11 +10,9 @@ drop table if exists student;
 	create table student(
 	  student_id integer primary key AUTO_INCREMENT,
 	  student_name varchar(100) ,
-	  student_role varchar(100),
 	  student_username varchar(100) not null,
 	  student_email varchar(100) not null ,
 	  student_password varchar(255) not null,
-	  student_salt varchar(20) default null,
 	  student_index varchar(100)
 	);
 
@@ -27,13 +25,11 @@ drop table if exists teacher;
 		  teacher_username varchar(100) not null ,
 		  teacher_email varchar(100) not null ,
 		  teacher_password varchar(255) not null,
-		  teacher_salt varchar(20) default null,
 		  teacher_index varchar(100)
 		);
 
 
 
-insert into teacher() values(1, "Aridon", "Teacher","aridonk16","aridonk16@outlook.com","aridon123","123123123","100000");
 
 create table subject(
   id integer primary key AUTO_INCREMENT,
