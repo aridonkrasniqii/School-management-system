@@ -255,12 +255,6 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
       if (isset($_POST['edit_student'])) {
         include('students/student_edit_search.php');
       }?>
-
-          
-
-
-          
-
           
    </div>
 
