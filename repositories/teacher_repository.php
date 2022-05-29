@@ -12,6 +12,7 @@ class teacher_repository
   {
     $this->connection = db::getConnection();
   }
+
   public function aboutTeachers()
   {
     $query = "select * from teacher order by teacher_id desc limit 3 ";
@@ -59,5 +60,43 @@ class teacher_repository
       return $teacher;
     }
     return null;
+  }
+  public function create($model)
+  {
+    $query = "insert into teacher(teacher_name, teacher_role, teacher_username, teacher_email,teacher_password, teacher_index) values(?,?,?,?,?,?);";
+    $stmt = mysqli_stmt_init($this->connection);
+
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      $fullname = $model->getTeacher_name();
+      $username = $model->getTeacher_username();
+      $email = $model->getTeacher_email();
+      $password = $model->getTeacher_password();
+      $index = $model->getStudent_index();
+      $role = $model->getTeacher_role();
+      mysqli_stmt_bind_param($stmt, "ssssss", $fullname, $role, $username, $email, $password, $index);
+      mysqli_stmt_execute($stmt);
+      return $this->find($model->getTeacher_id());
+    }
+    return null;
+  }
+
+  public function teacherExists($username, $email)
+  {
+    $sql = "select * from teacher where teacher_username = ? or teacher_email = ?";
+    $stmt = mysqli_stmt_init($this->connection);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_store_result($stmt);
+      $resultCheck = mysqli_stmt_num_rows($stmt);
+      if ($resultCheck > 0) {
+        return true;
+      }
+      return false;
+    }
   }
 }

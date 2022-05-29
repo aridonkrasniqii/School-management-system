@@ -66,6 +66,25 @@ class student_repository
     }
   }
 
+  public function create($model)
+  {
+    $query = "insert into student(student_name, student_username, student_email, student_password, student_index)
+          values(? , ? , ? , ? , ?);";
+    $stmt = mysqli_stmt_init($this->connection);
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+      throw new Exception();
+    } else {
+      $fullname = $model->getStudent_name();
+      $username = $model->getStudent_username();
+      $email = $model->getStudent_email();
+      $password = $model->getStudent_password();
+      $index = $model->getStudent_index();
+      mysqli_stmt_bind_param($stmt, "sssss", $fullname, $username, $email, $password, $index);
+      mysqli_stmt_execute($stmt);
+      return $this->find($model->getStudent_id());
+    }
+    return null;
+  }
 
   public function userExists($username)
   {
@@ -103,5 +122,22 @@ class student_repository
       }
     }
     return false;
+  }
+  public function studentExists($username, $email)
+  {
+    $sql = "select * from student where student_username = ? or student_email = ?";
+    $stmt = mysqli_stmt_init($this->connection);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+      throw new Exception();
+    } else {
+      mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_store_result($stmt);
+      $resultCheck = mysqli_stmt_num_rows($stmt);
+      if ($resultCheck > 0) {
+        return true;
+      }
+      return false;
+    }
   }
 }
