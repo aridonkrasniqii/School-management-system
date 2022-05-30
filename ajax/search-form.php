@@ -85,10 +85,15 @@ error_reporting(E_ALL);
 </head>
 
 <body>
-  <div class="search-box">
-    <input type="text" autocomplete="off" placeholder="Search country..." />
-    <div class="result"></div>
-  </div>
+  <center>
+    <div>
+      <h3>Search Subject: </h3>
+    </div>
+    <div class="search-box">
+      <input type="text" autocomplete="off" placeholder="Search subject..." />
+      <div class="result"></div>
+    </div>
+  </center>
 </body>
 
 </html>
