@@ -72,6 +72,17 @@ $teachers = $teacher_repository->aboutTeachers();
 
 
 </div>
+<div style="padding:20px; background-color:#474e5d">
+<?php
+        if(isset($_SESSION['visitCount'])){
+          $_SESSION['visitCount']++;
+          echo "Congrats! You have visited our website " . $_SESSION['visitCount'] ." times!";
+        }else{
+          $_SESSION['visitCount']=1;
+          echo "This is the first time you are visiting our website";
+        }
+        ?>
+</div>
 
 
 <style>
