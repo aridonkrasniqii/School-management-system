@@ -18,6 +18,10 @@ if (isset($_POST['add-student'])) {
 
   // TODO: regex
 
+  if(false) {
+    header("Location: ../teacher_dashboard.php?error=invalidemail");
+    exit();
+  }
 
 
 
@@ -30,7 +34,7 @@ if (isset($_POST['add-student'])) {
     header("Location: ../teacher_dashboard.php?error=addedstudent");
     exit();
   } else {
-    header("Location: ../teacher_dashboard.php?error=error");
+    header("Location: ../teacher_dashboard.php?error=studetnnotaddedd");
     exit();
   }
 } else {

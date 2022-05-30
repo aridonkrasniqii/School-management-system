@@ -289,7 +289,10 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
                   echo "Subject not added ";
                 } elseif ($_GET['error'] == 'subjectadded') {
                   echo "Subject added";
+                }elseif ($_GET['error'] == 'invalidemail') {
+                  echo "Ti a je lop a cka osht kjo email";
                 }
+                // TODO:       other error handling
               }
               ?>
 
@@ -299,7 +302,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
 
         </div>
 
-        
+
 
 
   </body>

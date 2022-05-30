@@ -43,7 +43,6 @@ error_reporting(E_ALL);
     box-sizing: border-box;
   }
 
-  /* Formatting result items */
   .result p {
     margin: 0;
     padding: 7px 10px;
