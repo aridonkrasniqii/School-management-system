@@ -148,7 +148,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])) {
 
       <?php
       if (isset($_POST['livesearch'])) {
-        // require("./ajax/backend-search.php");
         require("./ajax/search-form.php");
       }
       ?>
