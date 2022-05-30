@@ -14,7 +14,18 @@ if (isset($_POST['add-subject'])) {
   $lectured_by = $_POST['lectured_by'];
   $semester = $_POST['semester'];
 
-
+  if(!preg_match('/[0-9]/',$credits)) {
+    header("Location: ../teacher_dashboard.php?error=invalidcredits");
+    exit();
+  }
+  if(!preg_match('/[0-9]/',$lectured_by)) {
+    header("Location: ../teacher_dashboard.php?error=invalidteacherid");
+    exit();
+  }
+  if(!preg_match('/[0-9]/',$semester)) {
+    header("Location: ../teacher_dashboard.php?error=invalidsemester");
+    exit();
+  }
 
   $date = date("Y-m-d");
 

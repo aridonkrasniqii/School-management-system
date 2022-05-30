@@ -17,14 +17,18 @@ if (isset($_POST['submit-email'])) {
 
   
 
-
+  if(!(preg_match('/^[a-zA-Z0-9 _\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/',$email))){
+    header("Location: ../views/about-view.php?yourmail=invalid");
+  }if(!(preg_match('/^[a-zA-Z0-9 _\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/',$mailTo))){
+    header("Location: ../views/about-view.php?teachermail=invalid");
+  }
 
   // TODO: do the validation
 
 
 
   $headers = "From: " . $mail;
-  $txt = "An email form :  " . $name . ".\n\n" . $message;
+  $txt = "An email from :  " . $name . ".\n\n" . $message;
 
   if (mail($mailTo, $subject, $txt, $headers)) {
     header("Location: ../views/about-view.php?mail=sent");

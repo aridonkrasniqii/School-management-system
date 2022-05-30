@@ -285,12 +285,20 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
               if (isset($_GET['error'])) {
                 if ($_GET['error'] == 'addedstudent') {
                   echo "Student is added";
+                }elseif($_GET['error'] == 'studentnotadded'){
+                  echo "Student not added";
                 } elseif ($_GET['error'] == 'subjectnotadded') {
                   echo "Subject not added ";
                 } elseif ($_GET['error'] == 'subjectadded') {
                   echo "Subject added";
                 }elseif ($_GET['error'] == 'invalidemail') {
-                  echo "Ti a je lop a cka osht kjo email";
+                  echo "Email is invalid";
+                }elseif($_GET['error'] == 'invalidcredits'){
+                  echo "Credits should only be numbers";
+                }elseif($_GET['error'] == 'invalidteacherid'){
+                  echo "Teacher ID should only be numbers";
+                }elseif($_GET['error'] == 'invalidsemester'){
+                  echo "Semester should only be numbers";
                 }
                 // TODO:       other error handling
               }

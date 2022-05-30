@@ -33,7 +33,13 @@ $teachers = $teacher_repository->aboutTeachers();
       echo "<p style = 'color:green;'>Email was sent</p>";
     } elseif ($_GET['mail'] == 'notsent') {
       echo "<p style = 'color:red;'>Email was not sent</p>";
+    }elseif($_GET['yourmail'] == 'invalid'){
+      echo "<p style = 'color:red;'>Your email you typed is invalid</p>";
     }
+    elseif($_GET['teachermail'] == 'invalid'){
+      echo "<p style = 'color:red;'>Your teacher's email you typed is invalid</p>";
+    }
+  
   }
   ?>
   <h1>About Us Page</h1>

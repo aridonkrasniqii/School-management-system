@@ -18,7 +18,7 @@ if (isset($_POST['add-student'])) {
 
   // TODO: regex
 
-  if(false) {
+  if(!preg_match('/^[a-zA-Z0-9 _\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/',$email)) {
     header("Location: ../teacher_dashboard.php?error=invalidemail");
     exit();
   }
@@ -34,10 +34,11 @@ if (isset($_POST['add-student'])) {
     header("Location: ../teacher_dashboard.php?error=addedstudent");
     exit();
   } else {
-    header("Location: ../teacher_dashboard.php?error=studetnnotaddedd");
+    header("Location: ../teacher_dashboard.php?error=studentnotadded");
     exit();
   }
 } else {
   header("Location: ../teacher_dashboard.php");
   exit();
 }
+?>
