@@ -4,6 +4,8 @@ require("../database/connection.php");
 $connection = db::getConnection();
 
 if (isset($_POST['student_edit_search'])) {
+
+  // FIXME:
   $id = $_POST['id'];
   $query = "select * from student where student_id = $id;";
   $students = [];

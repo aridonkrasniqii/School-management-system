@@ -15,6 +15,13 @@ if (isset($_POST['add-student'])) {
   $index = $_POST['index'];
   $password = password_hash($index, PASSWORD_DEFAULT);
 
+
+  // TODO: regex
+
+
+
+
+
   $model = new student(1, $name, $username, $email, $password, $index);
 
   $repository = new student_repository();

@@ -14,6 +14,8 @@ if (isset($_POST['add-subject'])) {
   $lectured_by = $_POST['lectured_by'];
   $semester = $_POST['semester'];
 
+
+
   $date = date("Y-m-d");
 
   $model = new subject(1, $name, $credits, $date, $semester, $created_by);

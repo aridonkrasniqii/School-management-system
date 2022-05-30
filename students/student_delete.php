@@ -3,6 +3,9 @@ require("../database/connection.php");
 $connection = db::getConnection();
 //check get request
 if (isset($_GET['id'])) {
+
+  // FIXME:
+  
   $id = $_GET['id'];
 
   $query = "SET FOREIGN_KEY_CHECKS=0;";

@@ -1,8 +1,20 @@
 <?php
-$id = $_POST['id'];
 
 require("./database/connection.php");
 $connection = db::getConnection();
+
+
+// FIXME:
+
+// if(isset())
+
+
+// FIXME:
+
+$id = mysqli_real_escape_string($connection, $_POST['id']);
+
+
+
 
 $query = "SELECT * FROM student WHERE student_id = {$id};";
 $query_run = mysqli_query($connection, $query);

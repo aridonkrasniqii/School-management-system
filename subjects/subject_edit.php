@@ -6,7 +6,8 @@ $connection = db::getConnection();
 // FIXME:     if(isset($_POST['submit]))
 
 
-$id = $_POST['id'];
+// FIXME:
+$id = mysqli_real_escape_string($connection , $_POST['id']);
 $name = $_POST['name'];
 $credits = $_POST['credits'];
 $lectured_by = $_POST['lectured_by'];

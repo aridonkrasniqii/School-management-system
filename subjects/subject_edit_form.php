@@ -5,6 +5,7 @@ $connection = db::getConnection();
 $id = $name = $credits = $lectured_by = $semester = "";
 
 if (isset($_GET['id'])) {
+  // FIXME:
   $id = $_GET['id'];
   $name = $_GET['name'];
   $credits = $_GET['credits'];

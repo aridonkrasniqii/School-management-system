@@ -8,9 +8,6 @@ $id = "";
 
 if (isset($_POST['edit'])) {
 
-
-
-  // FIXME:     check this idd , where does thish come from
   update($id);
 
 ?>
@@ -38,11 +35,14 @@ function update(&$id)
 {
   global $connection;
 
+  // FIXME:
   $id = $_POST['id'];
   $name = $_POST['name'];
   $username = $_POST['username'];
   $email = $_POST['email'];
   $index = $_POST['index'];
+
+  
   $query = "UPDATE student
     SET
     student_name = '$name',
@@ -58,6 +58,8 @@ function update(&$id)
 function delete(&$id)
 {
   global $connection;
+
+  // FIXME:
   $id = $_POST['id'];
   $query = "SET FOREIGN_KEY_CHECKS=0;";
   mysqli_query($connection, $query);
