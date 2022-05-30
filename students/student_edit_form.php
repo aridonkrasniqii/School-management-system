@@ -5,8 +5,7 @@ $connection = db::getConnection();
 
 if (isset($_POST['student_edit_search'])) {
 
-  // FIXME:
-  $id = $_POST['id'];
+  $id = mysqli_real_escape_string($connection, $_POST['id']);
   $query = "select * from student where student_id = $id;";
   $students = [];
   $stmt = mysqli_stmt_init($connection);

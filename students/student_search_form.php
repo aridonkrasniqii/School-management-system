@@ -44,7 +44,7 @@ form {
                             if(isset($_POST['search'])){
                                 $id=$name=$username=$email=$index="";
                                 // FIXME:
-                                $id = $_POST['id'];
+                                $id = mysqli_real_escape_string($connection, $_POST['id']);
 
                                  include('students/student_search.php');
 

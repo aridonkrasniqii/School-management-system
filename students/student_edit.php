@@ -9,24 +9,11 @@ $id = "";
 if (isset($_POST['edit'])) {
 
   update($id);
-
-?>
-
-<script type="text/javascript">
-alert("Student with id <?php echo $id; ?> edited successfully.");
-window.location.href = "../teacher_dashboard.php";
-</script>
-<?php
 }
 
 if (isset($_POST['delete'])) {
 
-  delete($id); ?>
-<script type="text/javascript">
-alert("Student with id <?php echo $id; ?> deleted successfully.");
-window.location.href = "../teacher_dashboard.php";
-</script>
-<?php
+  delete($id);
 
 }
 
@@ -72,7 +59,12 @@ function delete(&$id)
   $query3 = "SET FOREIGN_KEY_CHECKS=1;";
   mysqli_query($connection, $query3);
 }
-
+?>
+<script type="text/javascript">
+alert("Student with id <?php echo $id; ?> edited successfully.");
+window.location.href = "../teacher_dashboard.php";
+</script>
+<?php
 
 unset($id);
 ?>

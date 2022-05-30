@@ -34,7 +34,7 @@ form {
 
 <body>
   <section class="container" grey-text>
-    <h4 class="center">Edit subject</h4>
+    <h4 class="center">Edit student</h4>
     <form action="students/student_edit_form.php" method="POST" class="white">
       <label for="title">Enter ID of student:</label>
       <input type="text" name="id">
@@ -43,7 +43,7 @@ form {
       <?php
                             if(isset($_POST['search'])){
                                 $id=$name=$username=$email=$index="";
-                                $id = $_POST['id'];
+                                $id = mysqli_real_escape_string($connection, $_POST['id']);
 
                                 include('students/student_edit_form.php');
 

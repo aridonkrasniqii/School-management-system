@@ -147,11 +147,30 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])) {
 </body>
 
 
+<div style="padding:10px;background-color: white; color:black;">
+<form action="" method="POST">   
+<label>Web Mode Select</label><br><br>
+    <input type="radio" id="html" name="mode" value="#dfe6e9">
+    <label for="html">Light</label><br>
+    <input type="radio" id="css" name="mode" value="black">
+    <label for="css">Dark</label><br>
+    <input type="submit" name="submit_mode">
+    </form> 
 
+      <?php
+        if(isset($_POST['submit_mode'])){
+          $mode = $_POST['mode'];
+          setcookie ('background', $mode, time()+86400, '/');
+          if(isset($_COOKIE["background"]))
+          {$background=$_COOKIE["background"];}}
+        else
+          {$background="#000";}
 
+        echo "test" . $background;
 
+      ?>
 
-
+  </div>
 
 
 
@@ -162,7 +181,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])) {
 <style>
 body {
   font-family: 'Arial';
-  background-color: #dfe6e9;
+  background-color: <?php echo $background;?>;
 }
 
 #header {

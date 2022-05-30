@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 <table class="responsive-table white">
   <thead>
     <tr>
-      <th>id.</th>
+      <th>id</th>
       <th>name</th>
       <th>email</th>
       <th>index</th>

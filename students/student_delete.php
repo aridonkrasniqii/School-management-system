@@ -5,8 +5,8 @@ $connection = db::getConnection();
 if (isset($_GET['id'])) {
 
   // FIXME:
-  
-  $id = $_GET['id'];
+  $id = mysqli_real_escape_string($connection, $_GET['id']);
+
 
   $query = "SET FOREIGN_KEY_CHECKS=0;";
   mysqli_query($connection, $query);
@@ -22,4 +22,4 @@ if (isset($_GET['id'])) {
 
 
   header('Location: ../teacher_dashboard.php');
-}
+}?>

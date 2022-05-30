@@ -3,19 +3,9 @@
 require("./database/connection.php");
 $connection = db::getConnection();
 
-
-// FIXME:
-
-// if(isset())
-
-
-// FIXME:
+if(isset($_POST['student_search_form'])){
 
 $id = mysqli_real_escape_string($connection, $_POST['id']);
-
-
-
-
 $query = "SELECT * FROM student WHERE student_id = {$id};";
 $query_run = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($query_run)) {
@@ -103,5 +93,8 @@ form {
   style="margin-left:200px;">Go Back</a>
 <?php
 
+}}
+else{
+  header('Location: teacher_dashboard.php');
 }
 ?>
