@@ -22,12 +22,12 @@ function update(&$id)
 {
   global $connection;
 
-  // FIXME:
-  $id = $_POST['id'];
-  $name = $_POST['name'];
-  $username = $_POST['username'];
-  $email = $_POST['email'];
-  $index = $_POST['index'];
+  $id = mysqli_real_escape_string($connection, $_POST['id']);
+  $name = mysqli_real_escape_string($connection, $_POST['name']);
+  $username = mysqli_real_escape_string($connection, $_POST['username']);
+  $email = mysqli_real_escape_string($connection, $_POST['email']);
+  $index = mysqli_real_escape_string($connection, $_POST['index']);
+
 
   
   $query = "UPDATE student
@@ -46,8 +46,7 @@ function delete(&$id)
 {
   global $connection;
 
-  // FIXME:
-  $id = $_POST['id'];
+  $id = mysqli_real_escape_string($connection, $_POST['id']);
   $query = "SET FOREIGN_KEY_CHECKS=0;";
   mysqli_query($connection, $query);
 
