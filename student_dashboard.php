@@ -148,7 +148,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])) {
 
       <?php
       if (isset($_POST['livesearch'])) {
-        include("./events/livesearch.php");
+        // require("./ajax/backend-search.php");
+        require("./ajax/search-form.php");
       }
       ?>
     </div>
