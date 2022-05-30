@@ -5,12 +5,12 @@ $connection = db::getConnection();
 $id = $name = $credits = $lectured_by = $semester = "";
 
 if (isset($_GET['id'])) {
-  // FIXME:
-  $id = $_GET['id'];
-  $name = $_GET['name'];
-  $credits = $_GET['credits'];
-  $lectured_by = $_GET['lectured_by'];
-  $semester = $_GET['semester'];
+  $id = mysqli_real_escape_string($connection ,$_POST['id']);
+  $name = mysqli_real_escape_string($connection ,$_POST['name']);
+  $credits = mysqli_real_escape_string($connection ,$_POST['credits']);
+  $lectured_by = mysqli_real_escape_string($connection ,$_POST['lectured_by']);
+  $semester = mysqli_real_escape_string($connection ,$_POST['semester']);
+
 }
 ?>
 

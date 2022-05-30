@@ -18,7 +18,7 @@
 
       while ($row = mysqli_fetch_assoc($result)) {
         $subjects[] = $row;
-        arsort($subjects);
+        rsort($subjects);
       }
     } ?>
 

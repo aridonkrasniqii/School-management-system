@@ -7,18 +7,19 @@ $connection = db::getConnection();
 session_start();
 
 
-// FIXME:            if(isset($_POST['submit]))
+
+
+if(isset($_POST['add_subject'])){
+  $name = mysqli_real_escape_string($connection ,$_POST['name']);
+  $credits = mysqli_real_escape_string($connection ,$_POST['credits']);
+  $created_by = mysqli_real_escape_string($connection ,$_SESSION['user_id']);
+  $lectured_by = mysqli_real_escape_string($connection ,$_POST['lectured_by']);
+  $semester = mysqli_real_escape_string($connection ,$_POST['semester']);
+
+}
 
 
 
-$name = $_POST['name'];
-$credits = $_POST['credits'];
-$created_by = $_SESSION['user_id'];
-$lectured_by = $_POST['lectured_by'];
-$semester = $_POST['semester'];
-//validimi...
-
-//create sql
 $query1 = "INSERT INTO subject(name, credits, created_by, semester)
     VALUES('$name', $credits, $created_by, $semester);";
 mysqli_query($connection, $query1);

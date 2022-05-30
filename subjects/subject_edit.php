@@ -3,18 +3,16 @@ require("../database/connection.php");
 $connection = db::getConnection();
 
 
-// FIXME:     if(isset($_POST['submit]))
+if(isset($_POST['edit'])){
+    $id = mysqli_real_escape_string($connection , $_POST['id']);
+    $name = mysqli_real_escape_string($connection ,$_POST['name']);
+    $credits = mysqli_real_escape_string($connection ,$_POST['credits']);
+    $lctured_by = mysqli_real_escape_string($connection ,$_POST['lectured_by']);
+    $semester = mysqli_real_escape_string($connection ,$_POST['semester']);
+
+}
 
 
-// FIXME:
-$id = mysqli_real_escape_string($connection , $_POST['id']);
-$name = $_POST['name'];
-$credits = $_POST['credits'];
-$lectured_by = $_POST['lectured_by'];
-$semester = $_POST['semester'];
-//validimi...
-
-//create sql
 $query = "UPDATE subject
     SET
     name = '$name',
