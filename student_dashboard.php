@@ -76,6 +76,11 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])) {
           </tr>
           <tr>
             <td>
+              <input type="submit" name="livesearch" value="Events" id="btn"><br><br>
+            </td>
+          </tr>
+          <tr>
+            <td>
               <input type="submit" name="faq" value="FAQ" id="btn"><br><br>
             </td>
           </tr>
@@ -139,8 +144,12 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])) {
       if (isset($_POST['faq'])) {
         include("./views/faq-view.php");
       }
+      ?>
 
-
+      <?php
+      if (isset($_POST['livesearch'])) {
+        include("./events/livesearch.php");
+      }
       ?>
     </div>
   </div>
