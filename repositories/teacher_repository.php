@@ -15,7 +15,7 @@ class teacher_repository
 
   public function aboutTeachers()
   {
-    $query = "select * from teacher order by teacher_id desc limit 3 ";
+    $query = "select * from teacher order by teacher_id desc limit 4 ";
     $stmt = mysqli_stmt_init($this->connection);
 
     if (!mysqli_stmt_prepare($stmt, $query)) {

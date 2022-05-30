@@ -16,8 +16,6 @@ if (isset($_POST['add-student'])) {
   $password = password_hash($index, PASSWORD_DEFAULT);
 
 
-  // TODO: regex
-
   if(!preg_match('/^[a-zA-Z0-9 _\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/',$email)) {
     header("Location: ../teacher_dashboard.php?error=invalidemail");
     exit();

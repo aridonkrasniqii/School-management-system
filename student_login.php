@@ -1,11 +1,33 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
+require_once "/opt/lampp/htdocs/vendor/autoload.php";
+
+$clientID = '823699711954-ej92o1r21lcnif32n602bff19i0fqanl.apps.googleusercontent.com';
+$clientSecret='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';
+$redirectUrl = 'http://localhost/school-management-system/student_login.php';
+
+$client = new Google_Client();
+$client->setClientId($clientID);
+$client ->setClientSecret($clientSecret);
+$client ->setRedirectUri($redirectUrl);
+$client ->addScope('profile');
+$client ->addScope('email');
+
 if (isset($_SESSION['user_id'])) {
   header("Location: student_dashboard.php");
   exit();
 }
 
+
+
+ echo "<a href ='".$client->createAuthUrl()."'>Login with Google</a>";
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
