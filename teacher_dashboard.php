@@ -299,6 +299,8 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_username'])) {
                   echo "Teacher ID should only be numbers";
                 }elseif($_GET['error'] == 'invalidsemester'){
                   echo "Semester should only be numbers";
+                }elseif($_GET['error'] =='userexists') { 
+                  echo "user already existsss ss s ";
                 }
                 // TODO:       other error handling
               }

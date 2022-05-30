@@ -30,6 +30,13 @@ if (isset($_POST['add-student'])) {
 
   $repository = new student_repository();
 
+
+  if($repository->studentExists($model->getStudent_username(), $model->getStudent_email)) { 
+    header("Location: ../teacher_dashboard.php?error=userexists");
+    exit();
+  }
+  
+
   if ($repository->create($model)) {
     header("Location: ../teacher_dashboard.php?error=addedstudent");
     exit();
