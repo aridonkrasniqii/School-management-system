@@ -13,6 +13,7 @@ School Management System to manage all school related activities
 
 ## Setup instruction 
 1 . Create new MySQL database 'school' and import provided School.sql file.
+
 2 . Put all files and folders in your host's public directory.
 
 ## Authors
