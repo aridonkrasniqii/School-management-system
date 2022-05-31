@@ -18,7 +18,11 @@ School Management System to manage all school related activities
 
 ## Authors
 [Era Kadiri](https://github.com/EraKadiri)
+
 [Aridon Krasniqi](https://github.com/aridonkrasniqii)
+
 [Andi Ahmeti](https://github.com/Andi-A)
+
 [Ardi Lulaj](https://github.com/ArdiLulaj)
+
 [Valon Kuleta](https://github.com/valon19)
