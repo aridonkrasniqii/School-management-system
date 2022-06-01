@@ -13,7 +13,7 @@ $repository = new homework_result_repository;
 
 $user_role = $_SESSION['user_role'];
 
-
+$student_id = $_SESSION['user_id'];
 
 if ($user_role == "student")
   $result_array = $repository->filterData($student_id, $subject_id, $semester);

@@ -129,7 +129,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])) {
       if (isset($_POST['filter-assessments'])) {
         $subject_id = $_POST['subject'];
         $semester = $_POST['semester'];
-
         include("./views/filtered-assessments-view.php");
       }
       ?>
